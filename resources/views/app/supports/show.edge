@@ -1,0 +1,56 @@
+@layout('templates.main')
+@section('title') 
+ Support Details
+@endsection 
+@section('content')
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card support-pane-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="card-title mb-0"> Support Details</h4>
+        </div>
+        <div class="table-responsive support-pane no-wrap">
+
+          <div class="t-row">
+              <p class="font-weight-bold mb-2 d-inline-block">Type</p>
+              <p>{{ support.type }}</p>
+          </div>
+
+
+          <div class="t-row">
+              <p class="font-weight-bold mb-2 d-inline-block">Message</p>
+              <p>{{ support.message }}</p>
+          </div>
+
+          <div class="t-row">
+              <p class="font-weight-bold mb-2 d-inline-block">Status</p>
+              <p>
+                <label class="badge badge-{{ support.fullStatus.class }}">{{ support.fullStatus.label }}</label>
+              </p>
+          </div>
+
+
+          <div class="t-row">
+              <p class="font-weight-bold mb-2 d-inline-block">Reply</p>
+              <p>{{ support.reply || 'No Reply Yet'}}</p>
+          </div>
+
+
+          <div class="t-row">
+              <p class="font-weight-bold mb-2 d-inline-block">Sent</p>
+              <p>{{ formatTime(investment.created_at, "L") }}</p>
+          </div>
+
+          <div class="t-row">
+              <p class="font-weight-bold mb-2 d-inline-block">Reply</p>
+              <p>{{ formatTime(investment.updated_at, "L") }}</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

@@ -1,0 +1,44 @@
+@layout('templates.main')
+@section('title')
+  New Support Message
+@endsection
+@section('content')
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card support-pane-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="card-title mb-0">New Support Message</h4>
+        </div>
+        <form class="forms-sample" method="POST" action="{{ route('app.supports.store') }}">
+          {{ csrfField() }}
+
+          <div class="form-group row">
+            <label for="type" class="col-sm-3 col-form-label">Type</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="type" name="type">
+                        @each(type in types)
+                        <option value="{{ type.name }}" {{ (old('type', '') == type.name) ? 'selected' : '' }}>{{ type.name }}</option>
+                        @endeach
+                    </select>
+                    {{ elIf('<span>$self</span>', getErrorFor('type'), hasErrorFor('type')) }}
+                </div>
+            </div>
+
+          <div class="form-group row">
+            <label for="first_name" class="col-sm-3 col-form-label">Message</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" id="message" name="message" placeholder="Enter Message">{{ old('message', '') }}</textarea>
+              {{ elIf('<span>$self</span>', getErrorFor('message'), hasErrorFor('message')) }}
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+@endsection

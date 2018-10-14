@@ -1,0 +1,79 @@
+version: '3.3'
+
+services:
+
+    node:
+        restart: always
+        build:
+            context: ./docker/node
+            args:
+                - NODE_VERSION=latest
+                - PROJECT_PATH=/home/www-app
+                - NODE_ENV=production
+                - YARN=false
+        volumes:
+            - ./:/home/www-app
+        entrypoint: run-nodock "node ace migration:run --force && npm start"
+        tty: true
+
+    mysql:
+        restart: always
+        build:
+            context: ./docker/mysql
+            args:
+                - MYSQL_DATABASE=${DB_DATABASE}
+                - MYSQL_USER=${DB_USER}
+                - MYSQL_PASSWORD=${DB_PASSWORD}
+                - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+        volumes:
+            - ./data/mysql/:/var/lib/mysql
+        expose:
+            - "3306"
+
+    nginx:
+        restart: always
+        build:
+            context: ./docker/nginx
+            args:
+                - WEB_REVERSE_PROXY_PORT=8000
+                - WEB_SSL=true
+                - SELF_SIGNED=true
+                - NO_DEFAULT=false
+        volumes:
+            - ./data/logs/nginx/:/var/log/nginx
+            - ./docker/certbot/certs/:/var/certs
+        ports:
+            - "80:80"
+            - "443:443"
+        tty: true
+
+    certbot:
+        build:
+            context: ./docker/certbot
+        links:
+            - nginx
+        environment:
+            - CN=digitalcoop.com
+            - EMAIL=obinphil@gmail.com
+        volumes:
+          - ./docker/certbot/letsencrypt/:/var/www/letsencrypt
+          - ./docker/certbot/certs/:/var/certs
+
+    redis:
+        restart: always
+        build:
+            context: ./docker/redis
+        expose:
+            - "6379"
+
+    workspace:
+        build:
+            context: ./docker/workspace
+            args:
+                - NODE_VERSION=latest
+                - TZ=UTC
+        links:
+            - nginx
+        volumes:
+            - ./:/home/www-app
+            - ./data/logs/cron/:/var/log/cron

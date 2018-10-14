@@ -1,0 +1,17 @@
+@if(flashMessage('info'))
+  <div class="alert alert-info alert-dismissible" role="alert">
+   {{ flashMessage('info') }}
+  </div>
+@endif
+
+@if(flashMessage('error'))
+  <div class="alert alert-danger alert-dismissible" role="alert">
+   {{ flashMessage('error') }}
+  </div>
+@endif
+
+@if(flashMessage('success'))
+  <div class="alert alert-info alert-dismissible" role="alert">
+   {{ flashMessage('success') }}
+  </div>
+@endif

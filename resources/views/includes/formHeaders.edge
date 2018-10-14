@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card support-pane-card mb0">
+        <div class="card-body">
+          <div class=" pt-3">
+            <div class="row"> 
+                @each(formHeader in formHeaders)
+              <div class="col-{{ 12 / formHeaders.length }} text-center">
+                <h6>{{ formHeader.title }}</h6>
+  
+                <p>
+                    @if(formHeader.type  == 'money')
+                      {{{ moneyFormat(formHeader.value) }}}
+                    @elseif(formHeader.type  == 'rate')
+                      {{ formHeader.value }}%
+                      @else
+                      {{ formHeader.value }}
+                    @endif
+  
+                  </p>
+                
+              </div>
+               @endeach 
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  

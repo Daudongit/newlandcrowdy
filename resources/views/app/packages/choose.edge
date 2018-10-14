@@ -1,0 +1,59 @@
+@layout('templates.main')
+@section('title')
+New Package
+@endsection
+@section('content')
+
+
+<div id="paystackEmbedContainer"></div>
+<div class="page-title-box" style="padding-bottom: 0px">
+  <h4 class="page-title">Choose Plan</h4>
+      {{ elIf('<span class="validation">$self</span>', getErrorFor('plan_id'), hasErrorFor('plan_id')) }}
+</div>
+
+<div class="row">
+  @each(plan in plans)
+  <div class="col-xl-3 col-md-6">
+    <div class="card mini-stat choose-package pick-package" style="background: {{ plan.color }}" data-id="{{ plan.id }}">
+
+        <div class="card-body mini-stat-img">
+          <div class="text-white">
+            <h6 class="text-uppercase mb-3">{{ plan.name }}</h6>
+            <h4 class="mb-4">Fee: {{{ moneyFormat(plan.capital) }}}</h4>
+            <h4 class="mb-4">@ {{plan.interest}}% </h4>
+            <h6 class="mb-4">{{{ moneyFormat(plan.perMonth) }}} monthly</h6>
+            <h6 class="mb-4">for {{plan.duration}} months</h6>
+            <h4 class="mb-4">ROI: {{{ moneyFormat(plan.roi) }}}</h4>
+            <a href="#" class="btn">Choose</a>
+          </div>
+        </div>
+
+    </div>
+  </div>
+  @endeach
+</div>
+<div class="page-title-box" style="padding-bottom: 0px">
+    <h4 class="page-title">Choose Payment Method</h4>
+        {{ elIf('<span class="validation">$self</span>', getErrorFor('method'), hasErrorFor('method')) }}
+  </div>
+
+  <div class="row">
+
+  @each(payment in ['Paystack', 'Bank Deposit'])
+    <div class="col-xl-6 col-md-6">
+      <div class="card choose-payment" data-method="{{ payment }}">
+        <div class="card-body">
+          <h6>{{ payment }}</h6>
+        </div><!-- end row -->
+      </div><!-- end row -->
+    </div>
+  @endeach
+</div>
+<form action="{{ route('app.packages.store') }}" method="POST">
+    <input type="hidden" name="plan_id" id="plan_id">
+    <input type="hidden" name="method" id="method">
+    {{ csrfField() }}
+  <button type="submit" class="btn btn-primary btn-block btn-lg">Proceed</button>
+</form>
+@endsection
+

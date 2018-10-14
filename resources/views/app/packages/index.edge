@@ -1,0 +1,54 @@
+@layout('templates.main')
+@section('title')
+Packages
+@endsection
+@section('content')
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <!-- <div class="card"> -->
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between pb-4">
+          <h4 class="card-title mb-0">Packages
+          </h4>
+          <a href="{{ route('app.packages.choose') }}" class="btn btn-primary pull-right">New Package</a>
+
+        </div>
+        <div class="row">
+          @each(package in packages)
+          <div class="col-xs-6 col-sm-6 col-md-3 grid-margin stretch-card card-tile ">
+            <a href="{{ route('app.investment.show', {id: investment.id}) }}">
+                <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between pb-2">
+                    <h5>{{{ moneyFormat(package.plan.capital) }}}</h5>
+
+                    <i> {{ package.plan.interest }}%</i>
+                    
+                    </div>
+                    <div class="d-flex justify-content-between">
+                    <p class="text-muted">{{ package.fullStatus.label }}</p>
+                    <p class="text-muted">Day: {{package.__meta__.payments_count}}</p>
+                    </div>
+                    <div class="progress progress-md">
+                    <div class="progress-bar bg-{{ investment.fullStatus.class }}" style="width: {{ package.__meta__.payments_count / package.plan.duration * 100 }}%" role="progressbar" aria-valuenow="{{ package.percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                </div>
+            </a>
+          </div>
+          @else
+          <div style="margin: 0 auto">
+            <div class="text-center ">
+              <h6> You dont a have package <a href="{{ route('app.packages.choose') }}"> Click me to create one</a></h6>
+            </div>
+          </div>
+          @endeach
+
+          </div>
+        </div>
+      <!-- </div> -->
+    </div>
+  </div>
+
+  @endsection

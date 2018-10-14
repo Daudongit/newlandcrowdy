@@ -1,0 +1,38 @@
+@layout('templates.main')
+@section('title') 
+ Announcement Details
+@endsection 
+@section('content')
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card support-pane-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="card-title mb-0"> Announcement Details</h4>
+        </div>
+        <div class="table-responsive support-pane no-wrap">
+
+          <div class="t-row">
+              <p class="font-weight-bold mb-2 d-inline-block">Title</p>
+              <p>{{ announcement.title }}</p>
+          </div>
+
+
+          <div class="t-row">
+              <p class="font-weight-bold mb-2 d-inline-block">Message</p>
+              <p>{{ announcement.message }}</p>
+          </div>
+
+         
+          <div class="t-row">
+              <p class="font-weight-bold mb-2 d-inline-block">Created</p>
+              <p>{{ formatTime(announcement.created_at, "L") }}</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

@@ -1,0 +1,45 @@
+{
+  "name": "adonis-fullstack-app",
+  "version": "4.1.0",
+  "adonis-version": "4.1.0",
+  "description": "The fullstack application boilerplate for Adonisjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"node server.js\" \"node ace run:scheduler\"",
+    "test": "node ace test",
+    "migrate": "node ace migration:run --force"
+  },
+  "keywords": [
+    "adonisjs",
+    "adonis-app"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@adonisjs/ace": "^5.0.2",
+    "@adonisjs/auth": "^3.0.5",
+    "@adonisjs/bodyparser": "^2.0.3",
+    "@adonisjs/cors": "^1.0.6",
+    "@adonisjs/fold": "^4.0.8",
+    "@adonisjs/framework": "^5.0.7",
+    "@adonisjs/ignitor": "^2.0.6",
+    "@adonisjs/lucid": "^5.0.4",
+    "@adonisjs/mail": "^3.0.8",
+    "@adonisjs/session": "^1.0.25",
+    "@adonisjs/shield": "^1.0.6",
+    "@adonisjs/validator": "^5.0.3",
+    "adonis-cache": "^0.3.2",
+    "axios": "^0.18.0",
+    "dateformat": "^3.0.3",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "mysql": "^2.16.0",
+    "randomstring": "^1.1.5",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {},
+  "autoload": {
+    "App": "./app"
+  }
+}

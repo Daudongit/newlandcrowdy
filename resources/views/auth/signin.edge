@@ -1,0 +1,44 @@
+@layout('templates.auth')
+@section('title')
+  Sign In
+@endsection
+@section('content')
+
+<div class="p-3">
+  @include('includes.alert')
+     @!section('content')
+  <form class="form-horizontal m-t-30" action="{{ route(authFrom + '.signin') }}" method="POST">
+      {{ csrfField() }}
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" name="email" id="email"
+        placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="userpassword">Password</label>
+      <input type="password" class="form-control" name="password" id="userpassword"
+        placeholder="Enter password">
+    </div>
+    <div class="form-group row m-t-20">
+      <div class="col-12 text-right">
+        <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
+      </div>
+    </div>
+    @if(authFrom == 'app')
+
+    <div class="form-group m-t-10 mb-0 row">
+      <div class="col-12 m-t-20">
+        <a href="{{ route('app.forgotpassword') }}" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+      </div>
+    </div>
+    @endif
+
+  </form>
+  <div class="m-t-40 text-center">
+    @if(authFrom == 'app')
+    <p>Don't have an account ?
+      <a href="{{ route('app.signup') }}" class="text-primary">Signup Now</a>
+    </p>
+    @endif
+  </div>
+@endsection

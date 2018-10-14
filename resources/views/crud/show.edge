@@ -1,0 +1,62 @@
+@layout('templates.main')
+@section('title') 
+ Show {{ singleItem }}
+@endsection 
+@section('content')
+<div class="row">
+  <div class="col-md-12">
+    <div class="card support-pane-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="card-title mb-0">{{ singleItem }}</h4>
+          <div class="btn-toolbar mb-0 d-none d-sm-block" role="toolbar" aria-label="Toolbar with button groups">
+            @if(hasEdit)
+            <a href="{{ route(resourceRoute + '.edit', {id : resourceDatum.id}) }}" class="btn btn-primary btn-xs">
+              <i class="mdi mdi-pencil"></i> Edit
+            </a>
+            @endif
+            @if(hasDelete)
+            <form class="form-inline" method="POST" action="{{ route(resourceRoute + '.destroy', {id : resourceDatum.id}) }}?_method=DELETE">
+              {{ csrfField() }}
+              <button class="btn btn-danger btn-xs">
+                <i class="mdi mdi-delete"></i>
+              </button>
+            </form>
+            @endif
+          </div>
+        </div>
+        <div class="table-responsive support-pane no-wrap">
+          @each(showAble in showAbles)
+          <div class="t-row">
+              <p class="font-weight-bold mb-2 d-inline-block">{{ showAble.label }}</p>
+              <p>
+              @if(showAble.type == 'label')
+              <label class="badge badge-{{ lodash(resourceDatum, showAble.value)['class'] }}">{{ lodash(resourceDatum, showAble.value)['label'] }}</label>
+              @elseif(showAble.type == 'date')
+              {{ formatTime(lodash(resourceDatum, showAble.value), "L") }}
+              @elseif(showAble.type == 'rate')
+              {{ lodash(resourceDatum, showAble.value) }}%
+              @elseif(showAble.type == 'money')
+              {{{ moneyFormat(lodash(resourceDatum, showAble.value) ) }}}
+              @elseif(showAble.type == 'days')
+              {{ lodash(resourceDatum, showAble.value) }} days
+              @elseif(showAble.value == 'user.fullName')
+              @if(resourceDatum.user)
+              <a href="{{ route('admin.users.show', {id: resourceDatum.user.id }) }}"> {{ lodash(resourceDatum, showAble.value) }} </a>
+              @else
+              N/A
+              @endif
+              @elseif(showAble.type == 'image')
+              <img src="{{ lodash(resourceDatum, showAble.value) }}" class="img-responsive" />
+              @else
+              {{ lodash(resourceDatum, showAble.value) }}
+              @endif
+            </p>
+            </div>
+          @endeach
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

@@ -1,0 +1,143 @@
+@layout('templates.main')
+@section('title')
+  {{ mutipleItems }}
+@endsection
+@section('content')
+<div class="row">
+  <div class="col-md-12">
+    <div class="card support-pane-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="card-title mb-0"> {{ mutipleItems }} </h4>
+          <div class="btn-toolbar mb-0 d-none d-sm-block" role="toolbar" aria-label="Toolbar with button groups">
+            @if(hasCreate)
+            <div class="btn-group float-right" role="group" aria-label="First group">
+              <a class="btn btn-primary" href="{{ route(resourceRoute + '.create') }}">
+                <i class="mdi mdi-plus-circle"></i> 
+                <span class="hidden-xs"> New {{ singleItem }} </span>
+              </a>
+            </div>
+            @endif
+
+            @if(filterFields.length > 0)
+            <div class="dropdown float-right mr10">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Filter
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                  @each(filterField in filterFields)
+                    <a class="dropdown-item" href="{{ route(resourceRoute + '.filter', filterField) }}">{{ filterField.title }}</a>
+                  @endeach
+                </div>
+              </div>
+              @endif
+
+              @if(searchAbles)
+              <div class="float-right mr10" role="group" aria-label="First group">
+  
+              <form class="form-inline">
+                  <div class="add-items d-flex">
+                    <input type="text" name="search" class="form-control todo-list-input" placeholder="Search">
+                    <button class="add btn btn-primary font-weight-bold todo-list-add-btn">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
+                    </form>
+                  </div>
+              @endif
+          </div>
+        </div>
+  
+        <div class="table-responsive support-pane no-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                @each(indexAble in indexAbles)
+                  <th>
+                    @if(indexAble.type == 'money')
+                  <a href="{{ route(resourceRoute + '.sort', {sort: indexAble.value, order: (lodash(request, 'params.sort') == indexAble.value) ? ((request.params.order == 'desc') ? 'asc' : 'desc' ) : 'asc' }) }}"> {{ indexAble.label }}  <i class="mdi mdi-sort-ascending"></i> </a>
+                    @else
+                    {{ indexAble.label }}
+                    @endif
+                  </th>
+                @endeach
+                @if(!noAction)
+                <th>Action</th>
+                @endif
+              </tr>
+            </thead>
+            <tbody>
+
+              @each(data in resourceData.data)
+              <tr>
+                  @each(indexAble in indexAbles)
+                  <td>
+                    @if(indexAble.type == 'label')
+                    <label class="badge badge-{{ lodash($parent.data, indexAble.value)['class'] }}">{{ lodash($parent.data, indexAble.value)['label'] }}</label>
+                    @elseif(indexAble.type == 'date')
+                     {{ formatTime(lodash($parent.data, indexAble.value) ) }}
+                     @elseif(indexAble.type == 'days')
+                     {{ lodash($parent.data, indexAble.value) }} months
+                     @elseif(indexAble.type == 'rate')
+                     {{ lodash($parent.data, indexAble.value) }} %
+                    @elseif(indexAble.type == 'money')
+                    {{{ moneyFormat(lodash($parent.data, indexAble.value) ) }}}
+                   @elseif(indexAble.value == 'user.fullName')
+                    @if($parent.data.user)
+                    <a href="{{ route('admin.users.show', {id: $parent.data.user.id }) }}"> {{ lodash($parent.data, indexAble.value) }} </a>
+                    @else
+                    N/A
+                    @endif
+                  @else
+                    {{ lodash($parent.data, indexAble.value) }}
+                    @endif
+                  </td>
+                 @endeach
+                 @if(!noAction)
+               
+                <td>
+                  @if(hasShow)
+                  <a href="{{ route(resourceRoute + '.show', {id : data.id}) }}" class="btn btn-default btn-xs">
+                      <i class="icon-eye"></i> Details
+                    </a>
+                  @endif
+
+                  @if(hasEdit)
+                  <a href="{{ route(resourceRoute + '.edit', {id : data.id}) }}" class="btn btn-primary btn-xs">
+                    <i class="icon-pencil"></i> Edit
+                  </a>
+                  @endif
+                  
+                  @if(hasDelete)
+                  <form class="form-inline" method="POST" action="{{ route(resourceRoute + '.destroy', {id : data.id}) }}?_method=DELETE">
+                    {{ csrfField() }}
+                    <button class="btn btn-danger btn-xs">
+                      <i class="fa fa-ban"></i>
+                    </button>
+                  </form>
+                  @endif
+
+                  <!-- Other actions = [] -->
+
+                </td>
+
+                @endif
+
+              </tr>
+              @else
+              <tr>
+                <td colspan="100" class="text-center"> No {{ singleItem }} Found </td>
+              </tr>
+              @endeach
+
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex float-right align-items-center mt-4">
+          @!component('components.pagination', data = resourceData )
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

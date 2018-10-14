@@ -1,0 +1,18 @@
+@layout('templates.main')
+@section('title')
+New Package
+@endsection
+@section('content')
+
+<div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+ <button type="submit" class="btn btn-primary btn-block">Paystack</button>
+ <button type="submit" class="btn btn-primary btn-block">Bank Deposit</button>
+ <button type="submit" class="btn btn-primary btn-block">Wallet ({{auth.user.wallet}})</button>
+</div><!-- end row -->
+</div><!-- end row -->
+</div><!-- end row -->
+</div><!-- end row -->
+@endsection

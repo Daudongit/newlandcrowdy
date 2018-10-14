@@ -1,0 +1,42 @@
+@layout('templates.main')
+@section('title')
+  Announcements
+@endsection
+@section('content')
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card support-pane-card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="card-title mb-0">Announcements</h4>
+              <div class="btn-toolbar mb-0 d-none d-sm-block" role="toolbar" aria-label="Toolbar with button groups">
+              </div>
+            </div>
+
+              <div class="inbox-wid">
+            @each(announcement in announcements.data)
+            <a href="{{ route('app.announcements.show', {id: announcement.announcement.id}) }}" class="text-dark">
+                <div class="inbox-item">
+                  <h6 class="inbox-item-author mt-0 mb-1">{{ announcement.announcement.title }} 
+                      <label class="badge badge-{{ announcement.fullOpened.class }}">{{ announcement.fullOpened.label }}</label>
+                  </h6>
+                  <p class="inbox-item-text text-muted mb-0">{{ excerpt(announcement.announcement.message) }}</p>
+                  <p class="inbox-item-date text-muted">{{ formatTime(announcement.announcement.created_at) }}</p>
+                </div>
+              </a>
+            @else
+                <p class="text-center"> No Annoucement</p>
+            @endeach
+          </div>
+            <div class="d-flex float-right align-items-center mt-4">
+              @!component('components.pagination', data = announcements )
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+@endsection

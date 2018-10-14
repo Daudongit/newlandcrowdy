@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Evonance | Trusted Trading Professionals">
+    <meta name="keywords" content="Evonance">
+    <meta name="author" content="Evolution Finance">
+	<!-- Page Title -->
+	<title>Home :: DigitalCoop Finance Limited - Invest And Earn</title>
+	<!-- Google Fonts css-->
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,700i,900%7CPoppins:300,400,500,600,700,800,900" rel="stylesheet">
+	<!-- Bootstrap css -->
+	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<!-- Font Awesome icon css-->
+	<link href="/assets/css/font-awesome.min.css" rel="stylesheet" media="screen">
+	<link href="/assets/css/flaticon.css" rel="stylesheet" media="screen">
+	<!-- Swiper's CSS -->
+	<link rel="stylesheet" href="/assets/css/swiper.min.css">
+	<!-- Animated css -->
+	<link href="/assets/css/animate.css" rel="stylesheet">
+	<!-- Magnific Popup CSS -->
+	<link href="/assets/css/magnific-popup.css" rel="stylesheet">
+	<!-- Slick nav css -->
+	<link rel="stylesheet" href="/assets/css/slicknav.css">
+	<!-- Main custom css -->
+	<link href="/assets/css/index.css" rel="stylesheet" media="screen">
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	 <link rel="icon" href="favicon32.html" type="image/gif" sizes="32x32"> 
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/icons/favicon152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icons/favicon144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/icons/favicon120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icons/favicon114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/favicon72.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon16.png">
+	
+		<!-- css files -->
+	<link rel="stylesheet" href="/assets/css/pricing.css" type="text/css" media="all" /> <!-- Style-CSS --> 
+	<!-- //css files -->
+	
+	<!-- web-fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+	<!-- //web-fonts -->
+	
+</head>
+<body data-spy="scroll" data-target="#navigation" data-offset="71">
+	
+	<!-- Preloader starts -->
+	<div class="preloader">
+		<div class="loader"></div>
+	</div>
+	<!-- Preloader Ends -->
+
+	<!-- Header Section Starts-->
+	<header>
+		<nav class="navbar navbar-toggleable-md navbar-light fixed-top" id="navigation">
+			<div class="container">
+				<a class="navbar-brand" href="https://digitalcoop.com.ng/"><img src="/assets/images/logo.png" alt="" /></a>
+				<ul class="navbar-nav ml-auto" id="main-menu">
+					<li class="nav-item"><a class="nav-link active" href="https://digitalcoop.com.ng/">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/about.html">About</a></li> 
+					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/trading.html">Trading</a></li>
+					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/faq.html">FAQ</a></li>
+					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/charts.html">Charts</a></li>
+					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/contact.html">Contact Us</a></li>
+					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/{{ route('app.signup') }}">Sign Up</a></li>
+				</ul>
+				
+				<div class="navbar-toggle"></div>
+				<div id="responsive-menu"></div>
+			</div>
+		</nav>
+	</header>
+	<!-- Header Section ends -->
+		<!-- Banner Section Starts -->
+	<section class="banner" id="home">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<!-- Header content start -->
+					<div class="header-content wow fadeInUp">
+						<h2>Safest & easiest way to <span>Invest and Trade</span>Cryptocurrencies</h2>
+						<p>You don't need to be a professional to trade or invest. We trade for you and satisfy your passion.</p>
+						
+						<div class="download-button">
+							<a href="{{ route('app.signup') }}" class="btn-download btn-apple"><i class="fa"><img src="/assets/images/signup.png"></i> <span>Invest Now</span>Sign Up</a>
+						</div>
+					</div>
+					<!-- Header content end -->
+				</div>
+				
+				<div class="col-lg-4 offset-lg-2">
+					<div class="registration wow fadeInRight">
+						<h3>My Account</h3>
+						
+						<div class="register-form">
+							<form action="{{ route('app.signin') }}" method="post">
+ {{ csrfField() }}
+								
+						<div class="register-form">
+
+								<div class="row">
+									
+									<div class="form-group col-md-12">
+										<input type="text" name="email" class="form-control" placeholder="EMail" required>
+									</div>
+									
+									<div class="form-group col-md-12">
+										<input type="password" name="password" class="form-control" placeholder="Password" required>
+									</div>
+									
+									
+									<div class="form-group col-md-12">
+										<button type="submit" name="login" class="btn-register">Access Portal</button>
+										<p class="registration-note">Help <a href="{{ route('app.forgotpassword') }}">Forgot Password?</a></p>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</section>
+	
+	<!-- Banner Section Ends -->
+	
+	<!-- Currency Price box starts -->
+	<div class="currency-price">
+		<div class="container">
+			<div class="row">
+				<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  
+  <script type="text/javascript" src="../s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+  {
+  "symbols": [
+    {
+      "title": "S&P 500",
+      "proName": "INDEX:SPX"
+    },
+    {
+      "title": "Nasdaq 100",
+      "proName": "INDEX:IUXX"
+    },
+    {
+      "title": "EUR/USD",
+      "proName": "FX_IDC:EURUSD"
+    },
+    {
+      "title": "BTC/USD",
+      "proName": "BITFINEX:BTCUSD"
+    },
+    {
+      "title": "ETH/USD",
+      "proName": "BITFINEX:ETHUSD"
+    }
+  ],
+  "locale": "en"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+			</div>
+		</div>
+	</div>
+	<!-- Currency Price box ends -->
+	
+	<!-- Currency Price box starts -->
+	<div class="currency-price">
+		<div class="container">
+			<div class="row">
+				<!-- TradingView Widget BEGIN -->
+<div class="pricing">
+				<div class="w3l-pricing-grids">
+					<div class="agileits-pricing-grid first">
+						<div class="pricing_grid">
+							<div class="wthree-pricing-info pricing-top">
+								<h3>Bronze</h3>
+								<p><span>40%</span><br>₦7,500 Monthly<br><br>For 10 Months</p>
+							</div>
+							<div class="pricing-bottom">
+								<div class="pricing-bottom-bottom">
+									<p><span class="fa fa-check"></span><span>Fee: </span>₦25,000</p>
+									<p><span class="fa fa-check"></span><span>ROI: </span>₦75,000</p>
+								</div>
+								<div class="buy-button">
+									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="agileits-pricing-grid second">
+						<div class="pricing_grid">
+							<div class="wthree-pricing-info pricing-top blue-top">
+								<h3>Silver</h3>
+								<p><span>40%</span><br>₦15,000 Monthly<br><br>For 10 Months</p>
+							</div>
+							<div class="pricing-bottom">
+								<div class="pricing-bottom-bottom blue-pricing-bottom-top">
+									<p><span class="fa fa-check"></span><span>Fee: </span>₦50,000</p>
+									<p><span class="fa fa-check"></span><span>ROI: </span>₦150,000</p>
+								</div>
+								<div class="buy-button">
+									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="agileits-pricing-grid third">
+						<div class="pricing_grid">
+							<div class="wthree-pricing-info pricing-top green-top">
+								<h3>Gold</h3>
+								<p><span>40%</span><br>₦30,000 Monthly<br><br>For 10 Months</p>
+							</div>
+							<div class="pricing-bottom">
+								<div class="pricing-bottom-bottom green-pricing-bottom-top">
+									<p><span class="fa fa-check"></span><span>Fee:</span> ₦100,000</p>
+									<p><span class="fa fa-check"></span><span>ROI:</span> ₦300,000</p>
+								</div>
+								<div class="buy-button">
+									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
+								</div>
+					
+					</div>
+						</div>
+					</div>
+					
+					
+					<div class="agileits-pricing-grid third">
+						<div class="pricing_grid">
+							<div class="wthree-pricing-info pricing-top">
+								<h3>Emerald</h3>
+								<p><span>40%</span><br>₦60,000 Monthly<br><br>For 10 Months</p>
+							</div>
+							<div class="pricing-bottom">
+								<div class="pricing-bottom-bottom">
+									<p><span class="fa fa-check"></span><span>Fee: </span>₦200,000</p>
+									<p><span class="fa fa-check"></span><span>ROI: </span>₦600,000</p>
+								</div>
+								<div class="buy-button">
+									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="agileits-pricing-grid third">
+						<div class="pricing_grid">
+							<div class="wthree-pricing-info pricing-top blue-top">
+								<h3>Ruby</h3>
+								<p><span>40%</span><br>₦150,000 Monthly<br><br>For 10 Months</p>
+							</div>
+							<div class="pricing-bottom">
+								<div class="pricing-bottom-bottom blue-pricing-bottom-top">
+									<p><span class="fa fa-check"></span><span>Fee: </span>₦500,000</p>
+									<p><span class="fa fa-check"></span><span>ROI: </span>₦1,500,000</p>
+								</div>
+								<div class="buy-button">
+									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="agileits-pricing-grid fourth">
+						<div class="pricing_grid">
+							<div class="wthree-pricing-info pricing-top yellow-top">
+								<h3>Diamond</h3>
+								<p><span>40%</span><br>₦300,000 Monthly<br><br>For 10 Months</p>
+							</div>
+							<div class="pricing-bottom">
+								<div class="pricing-bottom-bottom yellow-pricing-bottom-top">
+									<p><span class="fa fa-check"></span><span>Fee:</span> ₦1,000,000</p>
+									<p><span class="fa fa-check"></span><span>ROI:</span>₦3,000,000</p>
+								</div>
+								<div class="buy-button">
+									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+</div>
+<!-- TradingView Widget END -->
+			</div>
+		</div>
+	</div>
+	
+	<!-- Currency Price box ends -->
+	
+	<!-- Buy Step section starts -->
+	<div class="buy-step">
+		<div class="container">
+			<div class="row">
+				<!-- Section title start -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2>Easy Investment Steps</h2>
+					</div>
+				</div>
+				<!-- Section title end -->
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="buy-step-single right-arrow wow fadeInUp" data-wow-delay="0.2s">
+						<span>1</span>
+						<p><a href="{{ route('app.signup') }}">Register</a> your <br />investment account.</p>
+					</div>
+				</div>
+				
+				<div class="col-lg-4">
+					<div class="buy-step-single right-arrow wow fadeInUp" data-wow-delay="0.4s">
+						<span>2</span>
+						<p>Deposit funds  in <br />your account.</p>
+					</div>
+				</div>
+				
+				<div class="col-lg-4">
+					<div class="buy-step-single wow fadeInUp" data-wow-delay="0.6s">
+						<span>3</span>
+						<p>Invest on a plan <br />and, we trade for you.</p>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<!-- Buy Step section ends -->
+	
+	<!-- Why choose us section starts -->
+	<section class="why-choose-us" id="feature">
+		<div class="container">
+			<div class="row">
+				<!-- Section title start -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2>Why Invest with us?</h2>
+					</div>
+				</div>
+				<!-- Section title end -->
+			</div>
+			
+			<div class="row">
+				<!-- Why us box start -->
+				<div class="col-lg-3 col-md-6">
+					<div class="why-us-box wow fadeInUp" data-wow-delay="0.2s">
+						<h3>Accuracy</h3>
+						<div class="icon-box">
+							<i class="flaticon-mixer"></i>
+						</div>
+						<p>Our expert trading professionals analyse market trends for best trading results.</p>
+					</div>
+				</div>
+				<!-- Why us box end -->
+				
+				<!-- Why us box start -->
+				<div class="col-lg-3 col-md-6">
+					<div class="why-us-box wow fadeInUp" data-wow-delay="0.4s">
+						<h3>Fast</h3>
+						<div class="icon-box">
+							<i class="flaticon-startup"></i>
+						</div>
+						<p>Our services are automated and operates at a flash speed for maximum efficiency.</p>
+					</div>
+				</div>
+				<!-- Why us box end -->
+				
+				<!-- Why us box start -->
+				<div class="col-lg-3 col-md-6">
+					<div class="why-us-box wow fadeInUp" data-wow-delay="0.6s">
+						<h3>Secure</h3>
+						<div class="icon-box">
+							<i class="flaticon-locked"></i>
+						</div>
+						<p>Our website and trading portal is fully secured with the latest technologies of cyber security.</p>
+					</div>
+				</div>
+				<!-- Why us box end -->
+				
+				<!-- Why us box start -->
+				<div class="col-lg-3 col-md-6">
+					<div class="why-us-box wow fadeInUp" data-wow-delay="0.8s">
+						<h3>Multibank</h3>
+						<div class="icon-box">
+							<i class="flaticon-coins"></i>
+						</div>
+						<p>We accept deposits via three (3) popular banks for flexibility, GTB, Access and Diamond.</p>
+					</div>
+				</div>
+				<!-- Why us box end -->
+				
+				<!-- Why us box start -->
+				<div class="col-lg-3 col-md-6">
+					<div class="why-us-box wow fadeInUp" data-wow-delay="1.0s">
+						<h3>Online Payment</h3>
+						<div class="icon-box">
+							<i class="flaticon-wallet"></i>
+						</div>
+						<p>Our payment systems are electronic, fast and secure. Efficient online transactions remains best.</p>
+					</div>
+				</div>
+				<!-- Why us box end -->
+				
+				<!-- Why us box start -->
+				<div class="col-lg-3 col-md-6">
+					<div class="why-us-box wow fadeInUp" data-wow-delay="1.2s">
+						<h3>Legal</h3>
+						<div class="icon-box">
+							<i class="flaticon-law"></i>
+						</div>
+						<p>Our Company is legally incorporated with CAC with Registration Number: <a target="_blank" href="#">2511833</a></p>
+					</div>
+				</div>
+				<!-- Why us box end -->
+				
+				<!-- Why us box start -->
+				<div class="col-lg-3 col-md-6">
+					<div class="why-us-box wow fadeInUp" data-wow-delay="1.4s">
+						<h3>Commisions</h3>
+						<div class="icon-box">
+							<i class="flaticon-percent"></i>
+						</div>
+						<p>We charge the lowest commissions on witdrawals as low as ₦500 for a single withdrawal.</p>
+					</div>
+				</div>
+				<!-- Why us box end -->
+				
+				<!-- Why us box start -->
+				<div class="col-lg-3 col-md-6">
+					<div class="why-us-box wow fadeInUp" data-wow-delay="1.6s">
+						<h3>Withdraw</h3>
+						<div class="icon-box">
+							<i class="flaticon-withdraw"></i>
+						</div>
+						<p>Witdrawals are paid at lightening speed through our automated payment system.</p>
+					</div>
+				</div>
+				<!-- Why us box end -->
+			</div>
+		</div>
+	</section>
+	<!-- Why choose us section ends -->
+	
+	<!-- How it work section starts -->
+	
+	<!-- How it work section ends -->
+	
+	
+	<!-- Stat Counter section starts -->
+	<div class="stat-counter">
+		<div class="container">
+			<div class="row">
+				<!-- Stat Counter single start -->
+				<div class="col-md-3">
+					<div class="counter-box">
+						<h3 class="counter">
+						
+								13						</h3>
+						<p>Investors</p>
+					</div>
+				</div>
+				<!-- Stat Counter single end -->
+				
+				<!-- Stat Counter single start -->
+				<div class="col-md-3">
+					<div class="counter-box">
+						<h3 class="counter">6</h3>
+						<p>Running days</p>
+					</div>
+				</div>
+				<!-- Stat Counter single end -->
+				
+				<!-- Stat Counter single start -->
+				<div class="col-md-3">
+					<div class="counter-box">
+						<h3 class="counter">568,028</h3>
+						<p>₦ Deposits</p>
+					</div>
+				</div>
+				<!-- Stat Counter single end -->
+				
+				<!-- Stat Counter single start -->
+				<div class="col-md-3">
+					<div class="counter-box">
+						<h3 class="counter">
+					103,816				</h3>
+						<p>₦ Withdrawals</p>
+					</div>
+				</div>
+				<!-- Stat Counter single end -->
+			</div>
+		</div>
+	</div>
+	<!-- Stat Counter section ends -->
+	
+	<!-- Testimonial section starts -->
+	<section class="testimonial" id="testimonial">
+		<div class="container">
+			<div class="row">
+				<!-- Section title start -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2>Testimonial</h2>
+					</div>
+				</div>
+				<!-- Section title end -->
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<div class="testimonial-slider-wrapper">
+						<div class="swiper-container testimonial-slider">
+							<div class="swiper-wrapper">
+															<!-- Testimonial slide start -->
+								<div class="swiper-slide">
+									<div class="testimonial-slide">
+										<div class="testimonial-quote">
+											<p>Awesone. Got withdrwal instantly</p>
+										</div>
+										
+										<div class="testimonial-author">
+											<i class="fa fa-quote-left"></i>
+											<h3>javedjakali786</h3>
+											<p>Investor</p>
+										</div>
+									</div>
+								</div>
+								<!-- Testimonial slide end -->
+								
+																<!-- Testimonial slide start -->
+								<div class="swiper-slide">
+									<div class="testimonial-slide">
+										<div class="testimonial-quote">
+											<p>Thanks for sending my money to my account. You guys rock! Thanks </p>
+										</div>
+										
+										<div class="testimonial-author">
+											<i class="fa fa-quote-left"></i>
+											<h3>Dmen</h3>
+											<p>Investor</p>
+										</div>
+									</div>
+								</div>
+								<!-- Testimonial slide end -->
+								
+																<!-- Testimonial slide start -->
+								<div class="swiper-slide">
+									<div class="testimonial-slide">
+										<div class="testimonial-quote">
+											<p>Digitalcoop is real and legitimate... Thanks for changing my financial level for good</p>
+										</div>
+										
+										<div class="testimonial-author">
+											<i class="fa fa-quote-left"></i>
+											<h3>FEMITEWORLD</h3>
+											<p>Investor</p>
+										</div>
+									</div>
+								</div>
+								<!-- Testimonial slide end -->
+								
+																
+							</div>
+							<!-- Testimonial Pagination start -->
+							<div class="testimonial-pagination"></div>
+							<!-- Testimonial Pagination end -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Testimonial section ends -->
+	
+	
+		
+	
+	
+	
+	
+	<!-- Footer Section starts -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					
+					
+					<!-- Footer Menu start -->
+					<div class="footer-menu">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="index46b3.html?about">About</a></li>
+							<li><a href="index16f5.html?trading">Trading</a></li>
+							<li><a href="indexda75.html?faq">FAQ</a></li>
+							<li><a href="indexcc18.html?charts">Charts</a></li>
+							<li><a href="#">Contact us</a></li>
+							<li><a href="#">Terms</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+						</ul>
+					</div>
+					<!-- Footer Menu end -->
+					
+					<!-- Footer contact info start -->
+					
+					<!-- Footer contact info end -->
+				</div>
+				
+				<div class="col-md-3 text-right">
+					<div class="footer-logo">
+						<img src="/assets/images/footer-logo1.png" alt="" />
+					</div>
+					
+					<div class="copyright">
+						<p>&copy; 2018 DigitalCoop.com.ng | Digital Cooporative Finance Ltd. All Rights Reserved.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer Section ends -->
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/58d8e2a3f97dd14875f5a4cd/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+	<!-- Jquery Library File -->
+	<script src="/assets/js/jquery-1.12.4.min.js"></script>
+	<!-- Bootstrap js file -->
+	<script src="/assets/js/tether.min.js"></script>
+	<script src="/assets/js/bootstrap.min.js"></script>
+	<!-- Bootstrap form validator -->
+	<script src="/assets/js/validator.min.js"></script>
+	<!-- Wow js file -->
+	<script src="/assets/js/wow.js"></script>
+	<!-- Swiper Carousel js file -->
+	<script src="/assets/js/swiper.min.js"></script>
+	<!-- Counterup js file -->
+	<script src="/assets/js/waypoints.min.js"></script>
+    <script src="/assets/js/jquery.counterup.min.js"></script>
+	<!-- Magnific Popup core JS file -->
+	<script src="/assets/js/jquery.magnific-popup.min.js"></script>
+	<!-- Slick Nav js file -->
+	<script src="/assets/js/jquery.slicknav.js"></script>
+	<!-- SmoothScroll -->
+	<script src="/assets/js/SmoothScroll.js"></script>
+    <!-- Main Custom js file -->
+	<script src="/assets/js/function.js"></script>
+	</body>
+</html>
