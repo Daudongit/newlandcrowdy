@@ -1,8 +1,6 @@
 'use strict'
 const Route = use('Route')
 
-// TODO find a way to 
-
 function generateResource(route, controller, as) {
   Route.get(`/${route}`, `${controller}.index`).as(`${as}.index`)
   Route.get(`/${route}/create`, `${controller}.create`).as(`${as}.create`)
