@@ -153,12 +153,14 @@ class AuthController {
     }
     const email = request.input('email');
 
+    const responseMessage = "We just sent you a mail containing your new password if the email you sent was valid.";
+
     const user = await User.query().where({
       email
     }).first();
     if (!user) {
       session.flash({
-        error: 'Email Doesn\'t exist.'
+        error: responseMessage
       }).flashExcept()
       return response.redirect('back');
     }
@@ -182,7 +184,7 @@ class AuthController {
     }).then(() => {})
 
     session.flash({
-      info: 'We just sent you a mail containing your new password.'
+      info: responseMessage
     });
 
     return response.redirect('back');

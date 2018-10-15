@@ -65,15 +65,15 @@
 	<header>
 		<nav class="navbar navbar-toggleable-md navbar-light fixed-top" id="navigation">
 			<div class="container">
-				<a class="navbar-brand" href="https://digitalcoop.com.ng/"><img src="/assets/images/logo.png" alt="" /></a>
+				<a class="navbar-brand" href="/"><img src="/assets/images/logo.png" alt="" /></a>
 				<ul class="navbar-nav ml-auto" id="main-menu">
-					<li class="nav-item"><a class="nav-link active" href="https://digitalcoop.com.ng/">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/about.html">About</a></li> 
-					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/trading.html">Trading</a></li>
-					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/faq.html">FAQ</a></li>
-					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/charts.html">Charts</a></li>
-					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/contact.html">Contact Us</a></li>
-					<li class="nav-item"><a class="nav-link" href="https://digitalcoop.com.ng/{{ route('app.signup') }}">Sign Up</a></li>
+					<li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="/about.html">About</a></li> 
+					<li class="nav-item"><a class="nav-link" href="/trading.html">Trading</a></li>
+					<li class="nav-item"><a class="nav-link" href="/faq.html">FAQ</a></li>
+					<li class="nav-item"><a class="nav-link" href="/charts.html">Charts</a></li>
+					<li class="nav-item"><a class="nav-link" href="/contact.html">Contact Us</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{ route('app.signup') }}">Sign Up</a></li>
 				</ul>
 				
 				<div class="navbar-toggle"></div>
@@ -625,7 +625,7 @@
 					</div>
 					
 					<div class="copyright">
-						<p>&copy; 2018 DigitalCoop.com.ng | Digital Cooporative Finance Ltd. All Rights Reserved.</p>
+						<p>&copy; {{ currentYear() }} DigitalCoop.com.ng | Digital Cooporative Finance Ltd. All Rights Reserved.</p>
 					</div>
 				</div>
 			</div>

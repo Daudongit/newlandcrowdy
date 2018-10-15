@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-      <div class="card support-pane-card">
+      <!-- <div class="card support-pane-card"> -->
        
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -13,7 +13,7 @@
               </div>
 <div id="accordion">
     @each(faq in faqs)
-    <div class="card mb-1">
+    <div class="card mb-1" style="padding: 0px">
         <div class="card-header p-3" id="headingOne">
             <h6 class="m-0 font-14">
                 <a href="#collapse{{ $loop.index }}" class="text-dark" data-toggle="collapse"
@@ -26,7 +26,7 @@
 
         <div id="collapse{{ $loop.index }}" class="collapse"
                 aria-labelledby="headingOne" data-parent="#accordion">
-            <div class="card-body">
+            <div class="card-body" style="padding: 10px;">
                 {{ faq.answer }}
             </div>
         </div>
@@ -35,7 +35,7 @@
  
 </div>
 </div>
-</div>
+<!-- </div> -->
 </div>
 
 @endsection
