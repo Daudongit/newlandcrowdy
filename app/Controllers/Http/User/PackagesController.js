@@ -260,7 +260,6 @@ class PackagesController {
           amount,
           email,
         });
-        console.log(postData);
         req.write(postData);
         req.end();
       });

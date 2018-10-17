@@ -64,35 +64,35 @@ class AuthController {
 
     let referred_by = 0;
 
-    if (referral) {
-      const referralUser = await User.query().where('username', request.input('referral')).first();
+    // if (referral) {
+    //   const referralUser = await User.query().where('username', request.input('referral')).first();
 
-      if (!referralUser) {
-        session.flash({
-          error: 'Referral Doesn\'t exist.'
-        }).flashExcept()
-        return response.redirect('back');
-      }
+    //   if (!referralUser) {
+    //     session.flash({
+    //       error: 'Referral Doesn\'t exist.'
+    //     }).flashExcept()
+    //     return response.redirect('back');
+    //   }
 
-      referred_by = referralUser.id
+    //   referred_by = referralUser.id
 
-      emailMessage = emailMessage
-        .replace('{{first_name}}', first_name)
-        .replace('{{last_name}}', last_name)
-        .replace('{{phone_number}}', phone_number)
-        .replace('{{email}}', email)
-        .replace('{{username}}', username)
+    //   emailMessage = emailMessage
+    //     .replace('{{first_name}}', first_name)
+    //     .replace('{{last_name}}', last_name)
+    //     .replace('{{phone_number}}', phone_number)
+    //     .replace('{{email}}', email)
+    //     .replace('{{username}}', username)
 
-      Mail.send('emails.referral_notify', {
-        name: referralUser.getFullName(),
-        message: emailMessage.replace(/(?:\r\n|\r|\n)/g, '<br>')
-      }, (message) => {
-        message
-          .to(referralUser.email)
-          .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
-          .subject('Referral Registration - ' + Config.get('app.name'))
-      }).then(() => {})
-    }
+    //   Mail.send('emails.referral_notify', {
+    //     name: referralUser.getFullName(),
+    //     message: emailMessage.replace(/(?:\r\n|\r|\n)/g, '<br>')
+    //   }, (message) => {
+    //     message
+    //       .to(referralUser.email)
+    //       .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
+    //       .subject('Referral Registration - ' + Config.get('app.name'))
+    //   }).then(() => {})
+    // }
 
     emailMessage = emailMessage
       .replace('{{first_name}}', first_name)
@@ -351,13 +351,6 @@ class AuthController {
       return response.redirect('back');
     }
 
-    if (!user.isUser()) {
-      session.flash({
-        error: 'Invalid Login.'
-      })
-      return response.redirect('back');
-    }
-
     if (user.verified !== '1') {
       session.flash({
         error: 'Acccount Not Activated.'
@@ -373,8 +366,9 @@ class AuthController {
     try {
       await auth.remember(true).attempt(email, password);
     } catch (e) {
+      console.log(e)
       session.flash({
-        error: 'Invalid Login.'
+        error: 'Invalid Login3.'
       });
       return response.redirect('back');
     }
