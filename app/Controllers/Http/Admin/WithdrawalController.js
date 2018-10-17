@@ -2,7 +2,7 @@
 
 const ResourceController = require('../ResourceController');
 class WithdrawalController extends ResourceController {
-
+// TODO show bank details
   constructor() {
     super();
     this.model = use('App/Models/Withdrawal');

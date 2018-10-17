@@ -106,9 +106,21 @@ class AccountController {
 
     const updateData = request.only(['bank_name', 'account_number', 'account_name']);
 
-    BankDetail.query().where({
-      user_id: auth.user.id
-    }).update(updateData).then(() => {});
+    const bankDetailsCount = (await BankDetail.query().where({  user_id: auth.user.id }).count('* as count'))[0].count
+
+    if(bankDetailsCount == 1){
+
+      BankDetail.query().where({
+        user_id: auth.user.id
+      }).update(updateData).then(() => {});
+
+    }else{
+
+      BankDetail.create({
+        ...updateData, user_id: auth.user.id
+      }).then(() => {});
+      
+    }
 
     session.flash({
       info: 'Bank Details Updated Successfully.'

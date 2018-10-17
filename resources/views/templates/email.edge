@@ -1,79 +1,468 @@
-<!DOCTYPE html>
-<html lang="en">
-<!-- Mirrored from themesbrand.com/lexa/html/vertical/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 Sep 2018 10:45:19 GMT -->
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
-  <title>Lexa - Responsive Bootstrap 4 Admin Dashboard</title>
-  <meta content="Admin Dashboard"
-    name="description">
-  <meta content="Themesbrand" name="author">
-  <link rel="shortcut icon" href="assets/images/favicon.ico">
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
-  <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{{ siteTitle() }}</title>
+  <style type="text/css">
+
+  * {
+    margin:0;
+    padding:0;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  img {
+    max-width: 100%;
+    outline: none;
+    text-decoration: none;
+    -ms-interpolation-mode: bicubic;
+  }
+
+  .image-fix {
+    display:block;
+  }
+
+  .collapse {
+    margin:0;
+    padding:0;
+  }
+
+  body {
+    -webkit-font-smoothing:antialiased;
+    -webkit-text-size-adjust:none;
+    width: 100%!important;
+    height: 100%;
+    text-align: center;
+    color: #747474;
+    background-color: #ffffff;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.1;
+  }
+
+  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+    font-size: 60%;
+    line-height: 0;
+    text-transform: none;
+  }
+
+  h1 {
+    font-weight:200;
+    font-size: 44px;
+  }
+
+  h2 {
+    font-weight:200;
+    font-size: 32px;
+    margin-bottom: 14px;
+  }
+
+  h3 {
+    font-weight:500;
+    font-size: 27px;
+  }
+
+  h4 {
+    font-weight:500;
+    font-size: 23px;
+  }
+
+  h5 {
+    font-weight:900;
+    font-size: 17px;
+  }
+
+  h6 {
+    font-weight:900;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  .collapse {
+    margin:0!important;
+  }
+
+  td, div {
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+  }
+
+  p, ul {
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  p.lead {
+    font-size:17px;
+  }
+
+  p.last {
+    margin-bottom:0px;
+  }
+
+  ul li {
+    margin-left:5px;
+    list-style-position: inside;
+  }
+
+  a {
+    color: #747474;
+    text-decoration: none;
+  }
+
+  a img {
+    border: none;
+  }
+
+  .head-wrap {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #f9f8f8;
+    border-bottom: 1px solid #d8d8d8;
+  }
+
+  .head-wrap * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .header-background {
+    background: repeat-x url(https://www.filepicker.io/api/file/wUGKTIOZTDqV2oJx5NCh) left bottom;
+  }
+
+  .header {
+    height: 42px;
+  }
+
+  .header .content {
+    padding: 0;
+  }
+
+  .header .brand {
+    font-size: 16px;
+    line-height: 42px;
+    font-weight: bold;
+  }
+
+  .header .brand a {
+    color: #464646;
+  }
+
+  .body-wrap {
+    width: 505px;
+    margin: 0 auto;
+    background-color: #ffffff;
+  }
+
+  .soapbox .soapbox-title {
+    font-size: 30px;
+    color: #464646;
+    padding-top: 25px;
+    padding-bottom: 28px;
+  }
+
+  .content .status-container.single .status-padding {
+    width: 80px;
+  }
+
+  .content .status {
+    width: 90%;
+  }
+
+  .content .status-container.single .status {
+    width: 300px;
+  }
+
+  .status {
+    border-collapse: collapse;
+    margin-left: 15px;
+    color: #656565;
+  }
+
+  .status .status-cell {
+    border: 1px solid #b3b3b3;
+    height: 50px;
+  }
+
+  .status .status-cell.success,
+  .status .status-cell.active {
+    height: 65px;
+  }
+
+  .status .status-cell.success {
+    background: #f2ffeb;
+    color: #51da42;
+  }
+
+  .status .status-cell.success .status-title {
+    font-size: 15px;
+  }
+
+  .status .status-cell.active {
+    background: #fffde0;
+    width: 135px;
+  }
+
+  .status .status-title {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 23px;
+  }
+
+  .status .status-image {
+    vertical-align: text-bottom;
+  }
+
+  .body .body-padded,
+  .body .body-padding {
+    padding-top: 34px;
+  }
+
+  .body .body-padding {
+    width: 41px;
+  }
+
+  .body-padded,
+  .body-title {
+    text-align: left;
+  }
+
+  .body .body-title {
+    font-weight: bold;
+    font-size: 17px;
+    color: #464646;
+  }
+
+  .body .body-text .body-text-cell {
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 9px 0 17px;
+  }
+
+  .body .body-signature-block .body-signature-cell {
+    padding: 25px 0 30px;
+    text-align: left;
+  }
+
+  .body .body-signature {
+    font-family: "Comic Sans MS", Textile, cursive;
+    font-weight: bold;
+  }
+
+  .footer-wrap {
+    width: 100%;
+    margin: 0 auto;
+    clear: both !important;
+    background-color: #e5e5e5;
+    border-top: 1px solid #b3b3b3;
+    font-size: 12px;
+    color: #656565;
+    line-height: 30px;
+  }
+
+  .footer-wrap .container {
+    padding: 14px 0;
+  }
+
+  .footer-wrap .container .content {
+    padding: 0;
+  }
+
+  .footer-wrap .container .footer-lead {
+    font-size: 14px;
+  }
+
+  .footer-wrap .container .footer-lead a {
+    font-size: 14px;
+    font-weight: bold;
+    color: #535353;
+  }
+
+  .footer-wrap .container a {
+    font-size: 12px;
+    color: #656565;
+  }
+
+  .footer-wrap .container a.last {
+    margin-right: 0;
+  }
+
+  .footer-wrap .footer-group {
+    display: inline-block;
+  }
+
+  .container {
+    display: block !important;
+    max-width: 505px !important;
+    clear: both !important;
+  }
+
+  .content {
+    padding: 0;
+    max-width: 505px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .content table {
+    width: 100%;
+  }
+
+
+  .clear {
+    display: block;
+    clear: both;
+  }
+
+  table.full-width-gmail-android {
+    width: 100% !important;
+  }
+
+  </style>
+
+  <style type="text/css" media="only screen">
+
+  @media only screen {
+
+    table[class*="head-wrap"],
+    table[class*="body-wrap"],
+    table[class*="footer-wrap"] {
+      width: 100% !important;
+    }
+
+    td[class*="container"] {
+      margin: 0 auto !important;
+    }
+
+  }
+
+  @media only screen and (max-width: 505px) {
+
+    *[class*="w320"] {
+      width: 320px !important;
+    }
+
+    table[class="status"] td[class*="status-cell"],
+    table[class="status"] td[class*="status-cell"].active {
+      display: block !important;
+      width: auto !important;
+    }
+
+    table[class="status-container single"] table[class="status"] {
+      width: 270px !important;
+      margin-left: 0;
+    }
+
+    table[class="status"] td[class*="status-cell"],
+    table[class="status"] td[class*="status-cell"].active,
+    table[class="status"] td[class*="status-cell"] [class*="status-title"] {
+      line-height: 65px !important;
+      font-size: 18px !important;
+    }
+
+    table[class="status-container single"] table[class="status"] td[class*="status-cell"],
+    table[class="status-container single"] table[class="status"] td[class*="status-cell"].active,
+    table[class="status-container single"] table[class="status"] td[class*="status-cell"] [class*="status-title"] {
+      line-height: 51px !important;
+    }
+
+    table[class="status"] td[class*="status-cell"].active [class*="status-title"] {
+      display: inline !important;
+    }
+
+  }
+  </style>
 </head>
 
-<body>
-  <!-- Begin page -->
-  <div class="wrapper-page">
-    <div class="card">
-      <div class="card-body">
-        <h3 class="text-center m-0"><a href="index.html" class="logo logo-admin"><img src="assets/images/logo.png" height="30" alt="logo"></a></h3>
-        <div class="p-3">
-          <h4 class="text-muted font-18 m-b-5 text-center">Welcome Back !</h4>
-          <p class="text-muted text-center">Sign in to continue to Fonik.</p>
-          <form class="form-horizontal m-t-30" action="http://themesbrand.com/lexa/html/vertical/index.html">
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" id="username"
-                placeholder="Enter username">
-            </div>
-            <div class="form-group">
-              <label for="userpassword">Password</label>
-              <input type="password" class="form-control" id="userpassword"
-                placeholder="Enter password">
-            </div>
-            <div class="form-group row m-t-20">
-              <div class="col-6">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customControlInline">
-                  <label class="custom-control-label" for="customControlInline">Remember me</label>
-                </div>
-              </div>
-              <div class="col-6 text-right">
-                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
-              </div>
-            </div>
-            <div class="form-group m-t-10 mb-0 row">
-              <div class="col-12 m-t-20">
-                <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="m-t-40 text-center">
-      <p>Don't have an account ?
-        <a href="pages-register.html" class="text-primary">Signup Now</a>
-      </p>
-      <p>© 2018 Lexa. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
-    </div>
-  </div>
-  <!-- jQuery  -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/metisMenu.min.js"></script>
-  <script src="assets/js/jquery.slimscroll.js"></script>
-  <script src="assets/js/waves.min.js"></script>
-  <script src="http://themesbrand.com/lexa/html/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
-  <!-- App js -->
-  <script src="assets/js/app.js"></script>
-</body>
-<!-- Mirrored from themesbrand.com/lexa/html/vertical/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 Sep 2018 10:45:20 GMT -->
+<body bgcolor="#ffffff">
 
+  <div align="center">
+    <table class="head-wrap w320 full-width-gmail-android" bgcolor="#f9f8f8" cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <td background="https://www.filepicker.io/api/file/UOesoVZTFObSHCgUDygC" bgcolor="#ffffff" width="100%" height="8" valign="top">
+          <!--[if gte mso 9]>
+          <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="mso-width-percent:1000;height:8px;">
+            <v:fill type="tile" src="https://www.filepicker.io/api/file/UOesoVZTFObSHCgUDygC" color="#ffffff" />
+            <v:textbox inset="0,0,0,0">
+          <![endif]-->
+          <div height="8">
+          </div>
+          <!--[if gte mso 9]>
+            </v:textbox>
+          </v:rect>
+          <![endif]-->
+        </td>
+      </tr>
+      <tr class="header-background">
+        <td class="header container" align="center">
+          <div class="content">
+            <span class="brand">
+              <a href="#">
+                {{ siteTitle() }}
+              </a>
+            </span>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <table class="body-wrap w320">
+      <tr>
+        <td></td>
+        <td class="container">
+          <div class="content">
+            <table cellspacing="0">
+              <tr>
+                <td>
+                  <table class="soapbox">
+                    <tr>
+                      <td class="soapbox-title">
+                        @!section('title')
+                      </td>
+                    </tr>
+                  </table>
+   
+                  @!section('content')
+
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+        <td></td>
+      </tr>
+    </table>
+
+    <table class="footer-wrap w320 full-width-gmail-android" bgcolor="#e5e5e5">
+      <tr>
+        <td class="container">
+          <div class="content footer-lead">
+            <a href="#"><b>Get in touch</b></a> if you have any questions or feedback
+          </div>
+        </td>
+      </tr>
+    </table>
+    <table class="footer-wrap w320 full-width-gmail-android" bgcolor="#e5e5e5">
+      <tr>
+        <td class="container">
+          <div class="content">
+            <a href="#">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <span class="footer-group">
+              <a href="http://facebook.com/#">Facebook</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="http://twitter.com/#">Twitter</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="http://facebook.com/#">Support</a>
+            </span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</body>
 </html>

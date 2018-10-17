@@ -9,63 +9,56 @@
     <div class="card support-pane-card">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h4 class="card-title mb-0">Investment</h4>
+          <h4 class="card-title mb-0">Package</h4>
           <div class="btn-toolbar mb-0 d-none d-sm-block" role="toolbar" aria-label="Toolbar with button groups">
-                <a href="{{ route('app.transactions.from', {from : 'investment_payout', id : investment.id }) }}" class="btn btn-primary btn-xs">
-                  <i class="mdi mdi-cash-usd"></i> Payouts
+                @if(package.status == 0)
+                <a href="{{ route('app.packages.evidence', {id : package.id }) }}" class="btn btn-primary btn-xs">
+                  <i class="mdi mdi-file"></i> Submit Evidence
                 </a>
+                @else
+                <a href="{{ route('app.packages.payments', {id : package.id }) }}" class="btn btn-primary btn-xs">
+                  <i class="mdi mdi-cash-usd"></i> Payments
+                </a>
+                @endif
             </div>
         </div>
         <div class="table-responsive support-pane no-wrap">
 
           <div class="t-row">
-            <div class="content">
               <p class="font-weight-bold mb-2 d-inline-block">Amount</p>
-              <p>{{{ moneyFormat(investment.amount) }}}</p>
+              <p>{{{ moneyFormat(package.amount) }}}</p>
             </div>
-          </div>
 
           <div class="t-row">
-            <div class="content">
               <p class="font-weight-bold mb-2 d-inline-block">Next Interest Days Count</p>
-              <p>{{ investment.next_interest_days_count }} days</p>
+              <p>{{ package.next_interest_days_count }} days</p>
             </div>
-          </div>
 
           <div class="t-row">
-            <div class="content">
                 <p class="font-weight-bold mb-2 d-inline-block">Interest Duration Days</p>
-                <p>{{ investment.interest_duration }} days</p>
+                <p>{{ package.interest_duration }} days</p>
             </div>
             </div>
 
           <div class="t-row">
-            <div class="content">
               <p class="font-weight-bold mb-2 d-inline-block">Rate</p>
-              <p>{{ investment.rate }}%</p>
+              <p>{{ package.rate }}%</p>
             </div>
-          </div>
 
           <div class="t-row">
-            <div class="content">
               <p class="font-weight-bold mb-2 d-inline-block">Status</p>
-              <p><label class="badge badge-{{ investment.fullStatus.class }}">{{ investment.fullStatus.label  }}</label></p>
+              <p><label class="badge badge-{{ package.fullStatus.class }}">{{ package.fullStatus.label  }}</label></p>
             </div>
-          </div>
 
           <div class="t-row">
-            <div class="content">
               <p class="font-weight-bold mb-2 d-inline-block">Created</p>
-              <p>{{ formatTime(investment.created_at, "L") }}</p>
+              <p>{{ formatTime(package.created_at, "L") }}</p>
             </div>
-          </div>
-          @if(investment.started)
+          @if(package.started)
           <div class="t-row">
-            <div class="content">
                 <p class="font-weight-bold mb-2 d-inline-block">Started</p>
-                <p>{{ formatTime(investment.started, "L") }}</p>
+                <p>{{ formatTime(package.started, "L") }}</p>
             </div>
-          </div>
           @endif
         </div>
       </div>

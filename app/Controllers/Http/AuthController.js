@@ -62,7 +62,7 @@ class AuthController {
       referral
     } = request.all();
 
-    let referred_by = 0;
+    // let referred_by = 0;
 
     // if (referral) {
     //   const referralUser = await User.query().where('username', request.input('referral')).first();
@@ -94,12 +94,12 @@ class AuthController {
     //   }).then(() => {})
     // }
 
-    emailMessage = emailMessage
-      .replace('{{first_name}}', first_name)
-      .replace('{{last_name}}', last_name)
-      .replace('{{phone_number}}', phone_number)
-      .replace('{{email}}', email)
-      .replace('{{username}}', username)
+    // emailMessage = emailMessage
+    //   .replace('{{first_name}}', first_name)
+    //   .replace('{{last_name}}', last_name)
+    //   .replace('{{phone_number}}', phone_number)
+    //   .replace('{{email}}', email)
+    //   .replace('{{username}}', username)
 
 
     const activationCode = randomstring.generate();
@@ -111,13 +111,11 @@ class AuthController {
       phone_number,
       last_name,
       first_name,
-      referred_by,
       verified: activationCode,
     });
 
     Mail.send('emails.activateaccount', {
       name: username,
-      message: emailMessage.replace(/(?:\r\n|\r|\n)/g, '<br>'),
       link: 'http://' + request.hostname() + Route.url('auth.activateAccount', {
         username,
         token: activationCode

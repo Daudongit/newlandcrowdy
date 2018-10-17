@@ -4,13 +4,17 @@ const Hash = use('Hash');
 const Config = use('Config');
 const Deposit = use('App/Models/Deposit');
 const User = use('App/Models/User');
+const Helpers = use('Helpers');
 const Transaction = use('App/Models/Transaction');
+const Payment = use('App/Models/Payment');
 const Reference = use('App/Models/Reference');
 const Plan = use('App/Models/Plan');
 const Package = use('App/Models/Package');
 const _ = require('lodash');
 const moment = require('moment');
+const uuidv4 = require('uuid/v4');
 const https = require('https');
+const dateFormat = require('dateformat');
 
 const {
   validateAll
@@ -22,12 +26,6 @@ class PackagesController {
     auth,
     view
   }) {
-    console.log((await Package.query().where({
-      user_id: auth.user.id
-    }).with('plan')
-    .withCount('payments', (builder) => {
-      builder.where('status', 1)
-    }).fetch()).toJSON());
 
     return view.render('app.packages.index', {
       packages: (await Package.query().where({
@@ -45,9 +43,9 @@ class PackagesController {
     view
   }) {
     return view.render('app.packages.show', {
-      investment: (await Investment.query().where({
+      package: (await Package.query().where({
         id: params.id
-      }).first()).toJSON()
+      }).with('plan').first()).toJSON()
     });
   }
 
@@ -140,13 +138,17 @@ class PackagesController {
 
       amount = amount / 100;
 
+      const plan_id = (await Plan.query().where({
+        capital: amount
+      }).first()).id
+
       const authUser = await User.query().where({
         email
       }).first()
 
       const _package = await Package.create({
         user_id: authUser.id,
-        plan_id: session.pull('plan_id'),
+        plan_id,
         status: 1
       });
 
@@ -177,6 +179,120 @@ class PackagesController {
 
     }
 
+  }
+
+  async getEvidence({
+    params,
+    view,
+  }) {
+
+    return view.render('app.packages.evidence', {
+      id: params.id
+    });
+  }
+
+  async doEvidence({
+    params,
+    request,
+    response,
+    session,
+  }) {
+    const validationRules = {
+      reference_no: 'required',
+    };
+
+    const validation = await validateAll(request.all(), validationRules, validationMessages);
+
+    if (validation.fails()) {
+      session
+        .withErrors(validation.messages())
+      return response.redirect('back')
+    }
+
+    const {
+      reference_no
+    } = request.only(['amount', 'reference_no']);
+
+    const image = request.file('proof')
+
+
+    if (image.type != 'image') {
+      session.flash({
+        error: "Only Images Are Allowed",
+      });
+      return response.redirect('back');
+    }
+
+    if (image.size > 1000000) {
+      session.flash({
+        error: "Image size too large. Maximum size is 1MB",
+      });
+      return response.redirect('back');
+    }
+
+    const proof = 'uploads/deposits/' + uuidv4() + '.jpg';
+
+    await image.move(Helpers.publicPath(), {
+      name: proof
+    })
+
+    if (!image.moved()) {
+      return image.error()
+    }
+
+    Deposit.query().where({
+      package_id: params.id
+    }).update({
+      file: '/' + proof,
+      reference: reference_no,
+    }).then(() => {})
+
+    session.flash({
+      info: 'Evidence Submitted Successfully'
+    });
+
+    return response.redirect('back');
+  }
+
+  async payments({
+    params,
+    view,
+    request
+  }) {
+    const page = request.input('page') || 1;
+    return view.render('crud.index', {
+      mutipleItems: 'Payments',
+      singleItem: 'Payment',
+      resourceRoute: '',
+      noAction: true,
+      resourceData: (await Payment.query().where({
+        package_id: params.id
+      }).orderBy('id', 'desc').paginate(page)).toJSON(),
+      indexAbles: [
+        {
+          label: "Amount",
+          value: "amount",
+        },
+        {
+          label: "Date",
+          value: "created_at",
+          type: "date"
+        }]
+    });
+
+  }
+
+  async invoice({
+    params,
+    view,
+  }) {
+    return view.render('app.packages.invoice', {
+      plan: await Plan.query().where({
+        id: params.id
+      }).first(),
+      toDate: dateFormat(null, "mmmm dS, yyyy"),
+      bankDetail: (await Reference.query().whereIn('slug', ['bank_name', 'account_number', 'account_name']).get())
+    });
   }
 
   async store({
@@ -213,8 +329,6 @@ class PackagesController {
       plan_id,
       method
     } = request.all()
-
-    session.put('plan_id', plan_id)
 
     const plan = await Plan.query().where({
       id: plan_id
@@ -268,19 +382,27 @@ class PackagesController {
 
     }
 
-    // if it is deposit
-    Package.create({
+    const _package = await Package.create({
       user_id: auth.user.id,
-      plan_id: request.input('plan_id'),
+      plan_id,
     });
 
-    // Redirect to the payment details page
+    Deposit.create({
+      user_id: auth.user.id,
+      package_id: _package.id,
+      platform: 'BANK_DEPOSIT',
+      status: 0,
+      amount: amount / 100,
+    }).then(() => {});
 
     session.flash({
       info: 'Package Successfully Created'
     });
 
-    return response.route('app.packages.index');
+    return response.route('app.packages.invoice', {
+      id: plan_id
+    });
+
   }
 
 }

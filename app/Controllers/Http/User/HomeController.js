@@ -23,17 +23,17 @@ class HomeController {
         id: auth.user.id
       }).first()).toJSON(),
 
-      referralLink:  Config.get('app.fullUrl') + Route.url('auth.referral', {
-        referral: auth.user.username
-      }),
-
-      // totalPackages: (await Package.query().where({
-      //   user_id: auth.user.id
-      // }).sum('amount as amount'))[0].amount,
+      totalInvested: (await Transaction.query().where({
+        user_id: auth.user.id,
+        type: 0
+      }).sum('amount as amount'))[0].amount,
 
       totalWithdrawals: (await Withdrawal.query().where({
         user_id: auth.user.id
-      }).sum('amount as amount'))[0].amount,
+      }).sum('amount as amount'))[0].amount + 
+      (await Withdrawal.query().where({
+        user_id: auth.user.id
+      }).sum('charge as charge'))[0].charge,
 
 
       lastTransactions: (await Transaction.query().where({

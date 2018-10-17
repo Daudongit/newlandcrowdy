@@ -40,6 +40,11 @@ button[type=submit]{
   text-align: center;
   cursor: pointer;
 }
+
+.cursor{
+  cursor: pointer;
+}
+
 .choose-package:hover{
   opacity: 0.9;
 }
@@ -52,4 +57,11 @@ button[type=submit]{
 }
 .choose-payment.picked{
   border: 1px solid #000;
+}
+
+.mt20{
+  margin-top: 20px; 
+}
+.m0{
+  margin: 0px;
 }

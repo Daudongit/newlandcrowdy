@@ -4,6 +4,8 @@
 @endsection
 @section('content')
 
+@include('includes.alert')
+
 <form action="{{ route('app.signup') }}" method="POST">
  {{ csrfField() }}
 
@@ -87,18 +89,6 @@
    </div>
    {{ elIf('<span>$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
  </div>
-
- <div class="form-group">
-  <label class="label">Referral</label>
-  <div class="input-group">
-    <input type="text" class="form-control" name="referral" placeholder="Referral" value="{{ referral }}">
-    <div class="input-group-append">
-      <span class="input-group-text">
-        <i class="mdi mdi-check-circle-outline"></i>
-      </span>
-    </div>
-  </div>
-</div>
 
 
  <div class="form-group">

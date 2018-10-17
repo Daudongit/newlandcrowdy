@@ -22,6 +22,7 @@ Route
   .group(() => {
     Route.get('/', 'HomeController.getDashboard').as('admin.dashboard')
 
+    generateResource('deposits', 'DepositController', 'admin.deposits')
     generateResource('plans', 'PlansController', 'admin.plans')
     generateResource('packages', 'PackagesController', 'admin.packages')
     generateResource('supporttypes', 'SupportTypesController', 'admin.supporttypes')
@@ -61,14 +62,17 @@ Route
   .group(() => {
 
     Route.get('/', 'HomeController.getDashboard').as('app.dashboard')
-    Route.get('/account/settings', 'AccountController.getAccountSettings').as('app.account.settings')
 
     Route.get('/packages', 'PackagesController.index').as('app.packages.index')
     Route.get('/packages/choose', 'PackagesController.choose').as('app.packages.choose')
+    Route.get('/packages/invoice/:id', 'PackagesController.invoice').as('app.packages.invoice')
     Route.get('/packages/choose/payment/:id', 'PackagesController.choosePayment').as('app.packages.choose.payment')
     Route.get('/packages/:id', 'PackagesController.show').as('app.packages.show')
     Route.post('/packages', 'PackagesController.store').as('app.packages.store')
-
+    Route.get('/packages/evidence/:id', 'PackagesController.getEvidence').as('app.packages.evidence')
+    Route.post('/packages/evidence/:id', 'PackagesController.doEvidence').as('app.packages.evidence')
+    Route.get('/packages/payments/:id', 'PackagesController.payments').as('app.packages.payments')
+    
     Route.get('/transactions', 'TransactionController.index').as('app.transactions.index')
     Route.get('/transactions/filter/:field/:id', 'TransactionController.index').as('app.transactions.filter')
     Route.get(`/transactions/sort/:sort/:order`, `TransactionController.index`).as(`app.transactions.sort`)
@@ -84,6 +88,10 @@ Route
 
     Route.get('/faqs', 'FaqController.index').as('app.faqs.index')
 
+    Route.get('/account/settings', 'AccountController.getAccountSettings').as('app.account.settings')
+    Route.put('/account/password', 'AccountController.updatePassword').as('app.account.password')
+    Route.put('/account/bank_details', 'AccountController.updateBankDetails').as('app.account.bankDetails')
+    Route.put('/account/profile', 'AccountController.updateProfile').as('app.account.profile')
 
     Route.get('/withdrawals', 'WithdrawalController.index').as('app.withdrawals.index')
     Route.get('/withdrawals/create', 'WithdrawalController.create').as('app.withdrawals.create')

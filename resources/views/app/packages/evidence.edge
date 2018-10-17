@@ -1,0 +1,41 @@
+@layout('templates.main')
+@section('title')
+  Evidence
+@endsection
+@section('content')
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card support-pane-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="card-title mb-0">Deposit Evidence</h4>
+        </div>
+
+        <form class="forms-sample" method="POST" action="{{ route('app.packages.evidence', {id: id}) }}" enctype="multipart/form-data">
+          {{ csrfField() }}
+
+          <div class="form-group row">
+            <label for="reference_no" class="col-sm-3 col-form-label">Payment Reference</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" id="reference_no" name="reference_no" placeholder="Enter Payment Reference" value="{{ old('reference_no', '') }}"/> 
+                {{ elIf(' <span>$self</span>', getErrorFor('reference_no'), hasErrorFor('reference_no')) }}
+            </div>
+            </div>
+
+          <div class="form-group row">
+            <label for="proof" class="col-sm-3 col-form-label">Proof Picture</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="file" id="proof" name="proof" placeholder="Submit Proof" /> 
+              {{ elIf('<span>$self</span>', getErrorFor('proof'), hasErrorFor('proof')) }}
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+@endsection

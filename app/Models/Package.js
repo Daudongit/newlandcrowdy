@@ -11,19 +11,19 @@ class Package extends Model {
         field: 'status',
         id: 0,
         label: "Un Approved",
-        class: 'primary',
+        class: 'warning',
       },
       {
         field: 'status',
         id: 1,
         label: "Running",
-        class: 'primary',
+        class: 'success',
       },
       {
         field: 'status',
         id: 2,
         label: "Ended",
-        class: 'success',
+        class: 'primary',
       }
 
     ]
