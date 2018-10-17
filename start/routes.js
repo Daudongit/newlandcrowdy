@@ -97,7 +97,6 @@ Route
 
 Route
   .get('/payment/notify', 'User/PackagesController.paymentNotify')
-  .as('payment.notify').middleware(['auth.app', 'is.user'])
 
 Route
   .group(() => {
