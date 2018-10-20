@@ -2,6 +2,7 @@
 
 const Hash = use('Hash');
 const Config = use('Config');
+const BankOption = use('App/Models/BankOption');
 const Deposit = use('App/Models/Deposit');
 const User = use('App/Models/User');
 const Helpers = use('Helpers');
@@ -66,7 +67,7 @@ class PackagesController {
       return response.redirect('back')
     }
     return view.render('app.packages.choose', {
-      plans: (await Plan.query().fetch()).toJSON(),
+      plans: (await Plan.query().where({active: 1}).fetch()).toJSON(),
     });
   }
 
@@ -149,7 +150,8 @@ class PackagesController {
       const _package = await Package.create({
         user_id: authUser.id,
         plan_id,
-        status: 1
+        status: 1,
+        started: moment().format("YYYY-MM-DD HH:mm:ss")
       });
 
       Deposit.create({
@@ -160,6 +162,7 @@ class PackagesController {
         approved: moment().format("YYYY-MM-DD HH:mm:ss"),
         amount,
         reference,
+        file: '/assets/images/paystack.png'
       });
 
       Transaction.create({
@@ -291,7 +294,7 @@ class PackagesController {
         id: params.id
       }).first(),
       toDate: dateFormat(null, "mmmm dS, yyyy"),
-      bankDetail: (await Reference.query().whereIn('slug', ['bank_name', 'account_number', 'account_name']).get())
+      bankDetails: (await BankOption.query().get())
     });
   }
 
@@ -393,6 +396,7 @@ class PackagesController {
       platform: 'BANK_DEPOSIT',
       status: 0,
       amount: amount / 100,
+      file: '/assets/images/none.jpeg'
     }).then(() => {});
 
     session.flash({

@@ -1,11 +1,35 @@
 'use strict'
-
+const _ = require('lodash');
 const Model = use('Model')
 
 class Plan extends Model {
   static get computed() {
-    return ['color', 'perMonth', 'roi']
+    return ['color', 'perMonth', 'roi', 'fullActive']
   }
+
+  getFullActive({
+    active
+  }) {
+      return _.find(Plan.getEnums(), {field: 'active', id: active})
+  }
+
+  static getEnums() {
+    return [
+      {
+        field: 'active',
+        id: 0,
+        label: "Not Active",
+        class: 'warning',
+      },
+      {
+        field: 'active',
+        id: 1,
+        label: "Active",
+        class: 'success',
+      }
+    ]
+  }
+
   getColor({
     id
   }) {

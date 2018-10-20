@@ -11,6 +11,7 @@ class PlansSchema extends Schema {
       table.integer('duration').notNullable()
       table.integer('interest').notNullable()
       table.integer('capital').notNullable()
+      table.boolean('active').defaultTo(true)
       table.timestamps()
     })
   }

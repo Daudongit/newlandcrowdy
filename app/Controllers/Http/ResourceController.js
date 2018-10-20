@@ -25,6 +25,7 @@ class ResourceController {
     this.noAction = false;
     this.searchAbles = [];
     this.fileFields = [];
+    this.editText = "Edit"
   }
 
   async index({
@@ -90,7 +91,8 @@ class ResourceController {
       hasDelete: this.hasDelete,
       filterFields: this.filterFields,
       noAction: this.noAction,
-      searchAbles: this.searchAbles.length
+      searchAbles: this.searchAbles.length,
+      editText: this.editText
     });
 
   }
@@ -200,7 +202,9 @@ class ResourceController {
         }).first(),
         resourceRoute: this.resourceRoute,
         singleItem: this.singleItem,
-        editAbles: this.editAbles
+        editAbles: this.editAbles,
+        editText: this.editText
+
     });
   }
 

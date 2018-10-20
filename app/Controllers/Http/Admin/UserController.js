@@ -11,7 +11,7 @@ class UserController extends ResourceController {
     this.indexRoute = `${this.resourceRoute}.index`;
     this.singleItem = 'User';
     this.mutipleItems = 'Users';
-    this.dataFields = ['active', 'suspended', 'first_name', 'last_name', 'email', 'phone_number'];
+    this.dataFields = ['verified', 'suspended', 'first_name', 'last_name', 'email', 'phone_number'];
 
     this.indexWheres = [{
       role: 0
@@ -20,7 +20,7 @@ class UserController extends ResourceController {
       'email', 'username', 'first_name', 'last_name', 'phone_number'
     ];
     this.validationRules = {
-      active: 'required'
+      verified: 'required'
     };
 
     // this.relationships = [];
@@ -48,15 +48,15 @@ class UserController extends ResourceController {
         name: "phone_number",
       },
       {
-        label: "Active",
-        name: "active",
+        label: "Verified",
+        name: "verified",
         type: "select",
         options: [{
           value: '0',
-          display: 'Not Active'
+          display: 'Not Verified'
         }, {
           value: '1',
-          display: 'Active'
+          display: 'Verified'
         }]
       },
       {

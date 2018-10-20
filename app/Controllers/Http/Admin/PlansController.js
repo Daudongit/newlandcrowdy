@@ -83,12 +83,13 @@ class FaqsController extends ResourceController {
     this.indexRoute = `${this.resourceRoute}.index`;
     this.singleItem = 'Plan';
     this.mutipleItems = 'Plans';
-    this.dataFields = ['name', 'interest', 'duration', 'capital'];
+    this.dataFields = ['name', 'interest', 'duration', 'capital', 'active'];
     this.validationRules = {
       name: 'required',
       interest: 'required',
       duration: 'required',
       capital: 'required',
+      active: 'required',
     };
 
     this.hasCreate = true;
@@ -116,6 +117,18 @@ class FaqsController extends ResourceController {
         name: "capital",
         type: "number"
       },
+      {
+        label: "Active",
+        name: "active",
+        type: "select",
+        options: [{
+          value: '0',
+          display: 'Not Active'
+        }, {
+          value: '1',
+          display: 'Active'
+        }]
+      },
     ];
 
     this.editAbles = this.createAbles;
@@ -138,6 +151,11 @@ class FaqsController extends ResourceController {
         label: "Capital",
         value: "capital",
         type: "money"
+      },
+      {
+        label: "Active",
+        value: "fullActive",
+        type: "label"
       },
       {
         label: "Created",

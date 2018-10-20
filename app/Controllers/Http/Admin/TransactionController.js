@@ -18,6 +18,11 @@ class TransactionController extends ResourceController{
         id: 'online_deposit',
         title: "Online Deposit"
       },
+      {
+        field: 'from',
+        id: 'bank_deposit',
+        title: "Bank Deposit"
+      }
   ];
 
     this.indexAbles = [{

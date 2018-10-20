@@ -29,9 +29,12 @@ Invoice
               <div class="col-6 text-right"><address><strong>Digital Coop</strong><br>Lagos, Nigeria</address></div>
             </div>
             <div class="row">
-              <div class="col-6 m-t-30"><address><strong>Payment Method:</strong>
-                @each(detail in bankDetail)
-                <br >{{ detail.title }}: {{ detail.value }}
+              <div class="col-6 m-t-30"><address><strong>Bank Account Information:</strong>
+                @each(bankDetail in bankDetails)
+                <hr />
+                 Bank: <b>{{ bankDetail.bank_name }}</b>
+                <br >Account Name: <b>{{ bankDetail.account_name }}</b>
+                <br >Account Number: <b>{{ bankDetail.account_number }}</b>
                 @endeach
                 </address>
               </div>

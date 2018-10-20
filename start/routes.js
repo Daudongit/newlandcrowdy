@@ -28,8 +28,9 @@ Route
     generateResource('supporttypes', 'SupportTypesController', 'admin.supporttypes')
     generateResource('faqs', 'FaqController', 'admin.faqs')
     generateResource('banks', 'BankController', 'admin.banks')
+    generateResource('bankoptions', 'BankOptionController', 'admin.bankoptions')
     generateResource('withdrawals', 'WithdrawalController', 'admin.withdrawals') // Notification
-
+    
     Route.get('/transactions', 'TransactionController.index').as('admin.transactions.index')
     Route.get('/transactions/filter/:field/:id', 'TransactionController.index').as(`admin.transactions.filter`)
 

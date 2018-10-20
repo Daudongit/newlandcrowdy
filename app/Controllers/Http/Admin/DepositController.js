@@ -1,11 +1,13 @@
 'use strict';
 const User = use('App/Models/User');
 const Transaction = use('App/Models/Transaction');
+const Package = use('App/Models/Package');
 const {
   validateAll
 } = use('Validator');
 const validationMessages = use('App/Helpers/ValidationMessages');
 const ResourceController = require('../ResourceController');
+const moment = require("moment");
 class DepositController extends ResourceController{
 
   constructor() {
@@ -16,6 +18,7 @@ class DepositController extends ResourceController{
     this.singleItem = 'Deposit';
     this.mutipleItems = 'Deposits';
     this.dataFields = ['status'];
+    this.editText = "Approve";
     this.validationRules = {
       status: 'required',
     };
@@ -94,34 +97,41 @@ class DepositController extends ResourceController{
         .withErrors(validation.messages())
       return response.redirect('back')
     }
+    const updateData = request.only(this.dataFields);
 
     const deposit = await this.model.query().where({
       id: params.id
     }).first();
+    if(deposit.status == 0 && updateData.status == 1){
 
-    const user = await User.query().where({
-      id: deposit.user_id
-    }).first();
+      const user = await User.query().where({
+        id: deposit.user_id
+      }).first();
 
-    const amountToCredit = await (new ActivateCheck).activateCheck(user, deposit.amount);
+      Package.query().where({
+        id: deposit.package_id
+      }).update({
+        status: 1,
+        started: moment().format("YYYY-MM-DD HH:mm:ss")
+      }).then(() => {})
 
-    User.query().where({
-      id: deposit.user_id
-    }).increment('wallet', amountToCredit).then(() => {})
+      Transaction.create({
+        user_id: user.id,
+        message: "Bought Package Through Bank Deposit",
+        from: "bank_deposit",
+        amount: deposit.amount,
+        from_id: deposit.package_id,
+        type: 1
+      });
 
-    Transaction.create({
-      user_id: deposit.user_id,
-      amount: deposit.amount,
-      message: `Wallet top up through deposit`,
-      type: "0",
-      from: 'deposits',
-      from_id: deposit.id
-    }).then(() => {})
+    }
 
-    const updateData = request.only(this.dataFields);
     this.model.query().where({
       id: params.id
-    }).update(updateData).then(() => {})
+    }).update({
+      ...updateData,
+      approved: moment().format("YYYY-MM-DD HH:mm:ss")
+    }).then(() => {})
 
     session.flash({
       info: `${this.singleItem} Updated Successfully.`

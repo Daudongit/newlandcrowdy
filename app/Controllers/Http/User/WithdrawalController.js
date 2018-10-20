@@ -145,12 +145,10 @@ class WithdrawalController {
         from: "withdrawal"
     }).then(() => {})
 
-    const effectiveCharge = ( amount * charges / 100);
-
     Withdrawal.create({
       user_id: auth.user.id,
-      charge: effectiveCharge,
-      amount: amount - effectiveCharge
+      charge: charges,
+      amount: amount - charges
     }).then(() => {})
 
     session.flash({
