@@ -54,7 +54,7 @@ services:
             - nginx
         environment:
             - CN=digitalcoop.com
-            - EMAIL=obinphil@gmail.com
+            - EMAIL=jcsonvonyon@gmail.com
         volumes:
           - ./docker/certbot/letsencrypt/:/var/www/letsencrypt
           - ./docker/certbot/certs/:/var/certs
