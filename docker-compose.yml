@@ -36,8 +36,8 @@ services:
             context: ./docker/nginx
             args:
                 - WEB_REVERSE_PROXY_PORT=8000
-                - WEB_SSL=false
-                - SELF_SIGNED=false
+                - WEB_SSL=true
+                - SELF_SIGNED=true
                 - NO_DEFAULT=false
         volumes:
             - ./data/logs/nginx/:/var/log/nginx
@@ -46,6 +46,18 @@ services:
             - "80:80"
             - "443:443"
         tty: true
+
+    certbot:
+        build:
+            context: ./docker/certbot
+        links:
+            - nginx
+        environment:
+            - CN=digitalcoop.com
+            - EMAIL=obinphil@gmail.com
+        volumes:
+          - ./docker/certbot/letsencrypt/:/var/www/letsencrypt
+          - ./docker/certbot/certs/:/var/certs
 
     redis:
         restart: always
