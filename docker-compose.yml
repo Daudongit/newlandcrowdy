@@ -36,7 +36,7 @@ services:
             context: ./docker/nginx
             args:
                 - WEB_REVERSE_PROXY_PORT=8000
-                - WEB_SSL=true
+                - WEB_SSL=false
                 - SELF_SIGNED=false
                 - NO_DEFAULT=false
         volumes:
