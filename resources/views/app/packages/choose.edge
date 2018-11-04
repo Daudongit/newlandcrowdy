@@ -39,15 +39,21 @@ New Package
 
   <div class="row">
 
-  @each(payment in ['Paystack', 'Bank Deposit'])
     <div class="col-xl-6 col-md-6">
-      <div class="card choose-payment cursor" data-method="{{ payment }}">
+      <div class="card choose-payment cursor" data-method="Paystack">
         <div class="card-body">
-          <h6>{{ payment }}</h6>
+          <h6>Online Payment (Paystack)</h6>
         </div><!-- end row -->
       </div><!-- end row -->
     </div>
-  @endeach
+    <div class="col-xl-6 col-md-6">
+        <div class="card choose-payment cursor" data-method="Bank Deposit">
+          <div class="card-body">
+            <h6>Bank Deposit</h6>
+          </div><!-- end row -->
+        </div><!-- end row -->
+      </div>
+      
 </div>
 <form action="{{ route('app.packages.store') }}" method="POST">
     <input type="hidden" name="plan_id" id="plan_id">
