@@ -651,3 +651,6 @@ button::-moz-focus-inner {
 .buy-button a{
 	border: 0px !important;
   }
+  .pricing-top p{
+	  color: #fff;
+  }
