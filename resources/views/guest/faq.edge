@@ -1,0 +1,54 @@
+@layout('templates.index')
+@section('title')
+  FAQ
+@endsection
+@section('content')
+	<!-- Header Section ends -->
+		<!-- FAQ Section starts -->
+	<section class="aboutus" id="about">
+		<div class="container">
+				<!-- Section title start -->
+			<div class="row">
+			
+				<div class="col-md-12">
+					<div class="section-title"> 
+						 <h2>Frequently Asked Questions</h2> 
+					</div>
+				</div>
+				<!-- Section title end -->
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<!-- FAQ Accordion start -->
+					<div id="accordion" class="faq-accordion">
+						@each(faq in faqs)
+ 
+						<!-- Faq Panel start -->
+						<div class="card  wow fadeInUp" data-wow-delay="0.2s">
+							<div class="card-header" id="heading{{ $loop.index }}">
+								<h5 class="mb-0">
+									<a class="collapsed" data-toggle="collapse" data-target="#collapse{{ $loop.index }}" aria-expanded="false" aria-controls="collapse{{ $loop.index }}">{{ faq.question }} </a>
+								</h5>
+							</div>
+
+							<div id="collapse{{ $loop.index }}" class="collapse" aria-labelledby="heading{{ $loop.index }}" data-parent="#accordion">
+								<div class="card-body">
+									<p>{{{ nl2br(faq.answer) }}}</p>
+								</div>
+							</div>
+						</div>
+						<!-- Faq Panel end -->
+						@endeach
+						
+						 
+						
+					</div>
+					<!-- FAQ Accordion end -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- FAQ Section ends -->
+		 
+@endsection 

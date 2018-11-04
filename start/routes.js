@@ -14,8 +14,15 @@ function generateResource(route, controller, as) {
 }
 
 Route
-  .get('/', 'HomeController.getIndex')
-  .as('index')
+  .group(() => {
+    Route.get('/', 'GuestController.getIndex').as('index')
+    Route.get('/trading', 'GuestController.getTrading').as('guest.trading')
+    Route.get('/about', 'GuestController.getAbout').as('guest.about')
+    Route.get('/faq', 'GuestController.getFaq').as('guest.faq')
+    Route.get('/contact', 'GuestController.getContact').as('guest.contact')
+    Route.post('/contact', 'GuestController.postContact').as('guest.contact')
+    Route.get('/chart', 'GuestController.getChart').as('guest.chart')
+  })
   .middleware(['guest']);
 
 Route

@@ -54,6 +54,11 @@ class Plan extends Model {
     capital,
     duration
   }) {
+    console.log({
+      interest,
+      capital,
+      duration
+    })
     return interest * capital * duration / 100
   }
 

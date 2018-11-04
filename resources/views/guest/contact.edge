@@ -1,0 +1,60 @@
+@layout('templates.index')
+@section('title')
+  Contact Us
+@endsection
+@section('content')
+	<section class="aboutus" id="about">
+		<div class="container">
+			<div class="row">
+				<!-- Section title start -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2>Contact us</h2>
+					</div>
+				</div>
+				<!-- Section title end -->
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+
+					<!-- Contact us Form start -->
+					<div class="contact-form wow fadeInUp" data-wow-delay="0.2s">
+							@include('includes.alert')
+
+							<form action="{{ route('guest.contact') }}" method="post">
+							{{ csrfField() }}
+							<div class="row">
+								<div class="form-group col-md-12">
+									<input type="text" class="form-control" placeholder="Your Name" name="name" required>
+									<div class="help-block with-errors">
+											{{ elIf('<span>$self</span>', getErrorFor('name'), hasErrorFor('name')) }}
+									</div>
+								</div>
+								
+								<div class="form-group col-md-12">
+									<input type="email" class="form-control" placeholder="Your Email" name="email" required>
+									<div class="help-block with-errors">
+											{{ elIf('<span>$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+									</div>
+								</div>
+								
+								<div class="form-group col-md-12 col-sm-12">
+									<textarea rows="4" class="form-control" placeholder="Write Message Here..." name="message" required></textarea>
+									<div class="help-block with-errors">
+											{{ elIf('<span>$self</span>', getErrorFor('message'), hasErrorFor('message')) }}
+									</div>
+									<button type="submit" name="support" class="btn-contact" title="Submit Your Message!">Submit</button>
+									<div id="msgSubmit" class="h3 text-left hidden"></div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- Contact us Form end -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Contact us section ends -->
+	 
+@endsection

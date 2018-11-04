@@ -17,6 +17,10 @@ hooks.after.providersBooted(() => {
     return dateFormat(time, "mmmm dS, yyyy");
   })
 
+  View.global('nl2br', function(str){
+    return str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+  });
+  
   View.global('parseInt', function(number){
     return parseInt(number);
   });

@@ -1,0 +1,53 @@
+@layout('templates.index')
+@section('title')
+  Trading
+@endsection
+@section('content')
+		<section class="aboutus" id="about">
+		<div class="container">
+			<div class="row">
+				<!-- Section title start -->
+				<div class="col-md-12">
+					<div class="section-title">
+					
+						<h2>Trading</h2>
+					</div>
+				</div>
+				<!-- Section title end -->
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<!-- About Information start -->
+					<div class="about-entry">
+						<h3>How we trade</h3>
+					</div>
+					<p><img src="/assets/images/trading.jpg"></p>
+					<!-- About Information end -->
+				</div>
+				
+				<div class="col-md-6">
+				<script>
+  (function(b,i,t,C,O,I,N) {
+    window.addEventListener('load',function() {
+      if(b.getElementById(C))return;
+      I=b.createElement(i),N=b.getElementsByTagName(i)[0];
+      I.src=t;I.id=C;N.parentNode.insertBefore(I, N);
+    },false)
+  })(document,'script','https://widgets.bitcoin.com/widget.js','btcwdgt');
+</script>
+					<!-- Trading Mission start -->
+					<div class="about-mission wow fadeInUp">
+						<h3>Market Movements</h3>
+						<p><div class="btcwdgt-chart"></div></p>
+					</div>
+					<!-- Chart end -->
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- Trading section ends -->
+
+		
+	@endsection

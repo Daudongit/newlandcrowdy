@@ -1,86 +1,9 @@
+@layout('templates.index')
+@section('title')
+  Home
+@endsection
+@section('content')
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<!-- Meta -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Evonance | Trusted Trading Professionals">
-    <meta name="keywords" content="Evonance">
-    <meta name="author" content="Evolution Finance">
-	<!-- Page Title -->
-	<title>Home :: DigitalCoop Finance Limited - Invest And Earn</title>
-	<!-- Google Fonts css-->
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,700i,900%7CPoppins:300,400,500,600,700,800,900" rel="stylesheet">
-	<!-- Bootstrap css -->
-	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<!-- Font Awesome icon css-->
-	<link href="/assets/css/font-awesome.min.css" rel="stylesheet" media="screen">
-	<link href="/assets/css/flaticon.css" rel="stylesheet" media="screen">
-	<!-- Swiper's CSS -->
-	<link rel="stylesheet" href="/assets/css/swiper.min.css">
-	<!-- Animated css -->
-	<link href="/assets/css/animate.css" rel="stylesheet">
-	<!-- Magnific Popup CSS -->
-	<link href="/assets/css/magnific-popup.css" rel="stylesheet">
-	<!-- Slick nav css -->
-	<link rel="stylesheet" href="/assets/css/slicknav.css">
-	<!-- Main custom css -->
-	<link href="/assets/css/index.css" rel="stylesheet" media="screen">
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	 <link rel="icon" href="favicon32.html" type="image/gif" sizes="32x32"> 
-	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/icons/favicon152.png">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icons/favicon144.png">
-<link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/icons/favicon120.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icons/favicon114.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/favicon72.png">
-<link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon16.png">
-	
-		<!-- css files -->
-	<link rel="stylesheet" href="/assets/css/pricing.css" type="text/css" media="all" /> <!-- Style-CSS --> 
-	<!-- //css files -->
-	
-	<!-- web-fonts -->
-	<link href="http://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
-	<!-- //web-fonts -->
-	
-</head>
-<body data-spy="scroll" data-target="#navigation" data-offset="71">
-	
-	<!-- Preloader starts -->
-	<div class="preloader">
-		<div class="loader"></div>
-	</div>
-	<!-- Preloader Ends -->
-
-	<!-- Header Section Starts-->
-	<header>
-		<nav class="navbar navbar-toggleable-md navbar-light fixed-top" id="navigation">
-			<div class="container">
-				<a class="navbar-brand" href="/"><img src="/assets/images/logo.png" alt="" /></a>
-				<ul class="navbar-nav ml-auto" id="main-menu">
-					<li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="/about.html">About</a></li> 
-					<li class="nav-item"><a class="nav-link" href="/trading.html">Trading</a></li>
-					<li class="nav-item"><a class="nav-link" href="/faq.html">FAQ</a></li>
-					<li class="nav-item"><a class="nav-link" href="/charts.html">Charts</a></li>
-					<li class="nav-item"><a class="nav-link" href="/contact.html">Contact Us</a></li>
-					<li class="nav-item"><a class="nav-link" href="{{ route('app.signup') }}">Sign Up</a></li>
-				</ul>
-				
-				<div class="navbar-toggle"></div>
-				<div id="responsive-menu"></div>
-			</div>
-		</nav>
-	</header>
 	<!-- Header Section ends -->
 		<!-- Banner Section Starts -->
 	<section class="banner" id="home">
@@ -184,16 +107,17 @@
 				<!-- TradingView Widget BEGIN -->
 <div class="pricing">
 				<div class="w3l-pricing-grids">
+					@each(plan in plans)
 					<div class="agileits-pricing-grid first">
 						<div class="pricing_grid">
 							<div class="wthree-pricing-info pricing-top">
-								<h3>Bronze</h3>
-								<p><span>40%</span><br>₦7,500 Monthly<br><br>For 10 Months</p>
+								<h3>{{ plan.name }}</h3>
+								<p><span>{{plan.interest}}%</span><br>{{{ moneyFormat(plan.perMonth) }}} Monthly<br><br>For {{plan.duration}} Months</p>
 							</div>
 							<div class="pricing-bottom">
 								<div class="pricing-bottom-bottom">
-									<p><span class="fa fa-check"></span><span>Fee: </span>₦25,000</p>
-									<p><span class="fa fa-check"></span><span>ROI: </span>₦75,000</p>
+									<p><span class="fa fa-check"></span><span>Fee: </span>{{{ moneyFormat(plan.capital) }}}</p>
+									<p><span class="fa fa-check"></span><span>ROI: </span>{{{ moneyFormat(plan.roi) }}}</p>
 								</div>
 								<div class="buy-button">
 									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
@@ -201,97 +125,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="agileits-pricing-grid second">
-						<div class="pricing_grid">
-							<div class="wthree-pricing-info pricing-top blue-top">
-								<h3>Silver</h3>
-								<p><span>40%</span><br>₦15,000 Monthly<br><br>For 10 Months</p>
-							</div>
-							<div class="pricing-bottom">
-								<div class="pricing-bottom-bottom blue-pricing-bottom-top">
-									<p><span class="fa fa-check"></span><span>Fee: </span>₦50,000</p>
-									<p><span class="fa fa-check"></span><span>ROI: </span>₦150,000</p>
-								</div>
-								<div class="buy-button">
-									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					
-					<div class="agileits-pricing-grid third">
-						<div class="pricing_grid">
-							<div class="wthree-pricing-info pricing-top green-top">
-								<h3>Gold</h3>
-								<p><span>40%</span><br>₦30,000 Monthly<br><br>For 10 Months</p>
-							</div>
-							<div class="pricing-bottom">
-								<div class="pricing-bottom-bottom green-pricing-bottom-top">
-									<p><span class="fa fa-check"></span><span>Fee:</span> ₦100,000</p>
-									<p><span class="fa fa-check"></span><span>ROI:</span> ₦300,000</p>
-								</div>
-								<div class="buy-button">
-									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
-								</div>
-					
-					</div>
-						</div>
-					</div>
-					
-					
-					<div class="agileits-pricing-grid third">
-						<div class="pricing_grid">
-							<div class="wthree-pricing-info pricing-top">
-								<h3>Emerald</h3>
-								<p><span>40%</span><br>₦60,000 Monthly<br><br>For 10 Months</p>
-							</div>
-							<div class="pricing-bottom">
-								<div class="pricing-bottom-bottom">
-									<p><span class="fa fa-check"></span><span>Fee: </span>₦200,000</p>
-									<p><span class="fa fa-check"></span><span>ROI: </span>₦600,000</p>
-								</div>
-								<div class="buy-button">
-									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="agileits-pricing-grid third">
-						<div class="pricing_grid">
-							<div class="wthree-pricing-info pricing-top blue-top">
-								<h3>Ruby</h3>
-								<p><span>40%</span><br>₦150,000 Monthly<br><br>For 10 Months</p>
-							</div>
-							<div class="pricing-bottom">
-								<div class="pricing-bottom-bottom blue-pricing-bottom-top">
-									<p><span class="fa fa-check"></span><span>Fee: </span>₦500,000</p>
-									<p><span class="fa fa-check"></span><span>ROI: </span>₦1,500,000</p>
-								</div>
-								<div class="buy-button">
-									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="agileits-pricing-grid fourth">
-						<div class="pricing_grid">
-							<div class="wthree-pricing-info pricing-top yellow-top">
-								<h3>Diamond</h3>
-								<p><span>40%</span><br>₦300,000 Monthly<br><br>For 10 Months</p>
-							</div>
-							<div class="pricing-bottom">
-								<div class="pricing-bottom-bottom yellow-pricing-bottom-top">
-									<p><span class="fa fa-check"></span><span>Fee:</span> ₦1,000,000</p>
-									<p><span class="fa fa-check"></span><span>ROI:</span>₦3,000,000</p>
-								</div>
-								<div class="buy-button">
-									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					@endeach
 				</div>
 </div>
 <!-- TradingView Widget END -->
@@ -585,87 +419,4 @@
 		</div>
 	</section>
 	<!-- Testimonial section ends -->
-	
-	
-		
-	
-	
-	
-	
-	<!-- Footer Section starts -->
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-9">
-					
-					
-					<!-- Footer Menu start -->
-					<div class="footer-menu">
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="index46b3.html?about">About</a></li>
-							<li><a href="index16f5.html?trading">Trading</a></li>
-							<li><a href="indexda75.html?faq">FAQ</a></li>
-							<li><a href="indexcc18.html?charts">Charts</a></li>
-							<li><a href="#">Contact us</a></li>
-							<li><a href="#">Terms</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-						</ul>
-					</div>
-					<!-- Footer Menu end -->
-					
-					<!-- Footer contact info start -->
-					
-					<!-- Footer contact info end -->
-				</div>
-				
-				<div class="col-md-3 text-right">
-					<div class="footer-logo">
-						<img src="/assets/images/footer-logo1.png" alt="" />
-					</div>
-					
-					<div class="copyright">
-						<p>&copy; {{ currentYear() }} DigitalCoop.com.ng | Digital Cooporative Finance Ltd. All Rights Reserved.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- Footer Section ends -->
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/58d8e2a3f97dd14875f5a4cd/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
-	<!-- Jquery Library File -->
-	<script src="/assets/js/jquery-1.12.4.min.js"></script>
-	<!-- Bootstrap js file -->
-	<script src="/assets/js/tether.min.js"></script>
-	<script src="/assets/js/bootstrap.min.js"></script>
-	<!-- Bootstrap form validator -->
-	<script src="/assets/js/validator.min.js"></script>
-	<!-- Wow js file -->
-	<script src="/assets/js/wow.js"></script>
-	<!-- Swiper Carousel js file -->
-	<script src="/assets/js/swiper.min.js"></script>
-	<!-- Counterup js file -->
-	<script src="/assets/js/waypoints.min.js"></script>
-    <script src="/assets/js/jquery.counterup.min.js"></script>
-	<!-- Magnific Popup core JS file -->
-	<script src="/assets/js/jquery.magnific-popup.min.js"></script>
-	<!-- Slick Nav js file -->
-	<script src="/assets/js/jquery.slicknav.js"></script>
-	<!-- SmoothScroll -->
-	<script src="/assets/js/SmoothScroll.js"></script>
-    <!-- Main Custom js file -->
-	<script src="/assets/js/function.js"></script>
-	</body>
-</html>
+	@endsection
