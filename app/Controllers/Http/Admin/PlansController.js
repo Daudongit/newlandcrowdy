@@ -1,80 +1,7 @@
-// 'use strict'
-
-// const ResourceController = require('../ResourceController');
-// module.exports = class PlansController extends ResourceController {
-
-//   constructor() {
-//     super();
-//     this.model = use('App/Models/');
-//     this.resourceRoute = 'admin.plans';
-//     this.indexRoute = `${this.resourceRoute}.index`;
-//     this.singleItem = 'Plan';
-//     this.mutipleItems = 'Plans';
-//     this.enableDelete = true;
-//     this.relationships = [];
-
-//     this.fields = [
-//         {
-//             label: "Name",
-//             name: "name",
-//             type: "text",
-//             create: true,
-//             edit: true,
-//             search: true,
-//             index: true,
-//             validation: 'required',
-//         },
-//         {
-//             label: "Interest",
-//             name: "interest",
-//             type: "text",
-//             create: true,
-//             edit: true,
-//             search: true,
-//             type: 'number',
-//             index: true,
-//             validation: 'required',
-//         },
-//         {
-//             label: "Duration",
-//             name: "duration",
-//             type: "text",
-//             create: true,
-//             type: 'number',
-//             edit: true,
-//             search: true,
-//             index: true,
-//             required: true,
-//             validation: 'required',
-//         },
-//         {
-//             label: "Capital",
-//             name: "capital",
-//             type: "text",
-//             create: true,
-//             edit: true,
-//             search: true,
-//             type: 'number',
-//             index: true,
-//             validation: 'required',
-//         },
-//         {
-//             label: "Created",
-//             name: "created_at",
-//             type: "date",
-//             index: true,
-//         },
-//     ]
-  
-//   }
-
-// }
- 
-
 'use strict'
 
 const ResourceController = require('../ResourceController');
-class FaqsController extends ResourceController {
+class PlansController extends ResourceController {
 
   constructor() {
     super();
@@ -83,13 +10,14 @@ class FaqsController extends ResourceController {
     this.indexRoute = `${this.resourceRoute}.index`;
     this.singleItem = 'Plan';
     this.mutipleItems = 'Plans';
-    this.dataFields = ['name', 'interest', 'duration', 'capital', 'active'];
+    this.dataFields = ['name', 'interest', 'duration', 'capital', 'active', 'color'];
     this.validationRules = {
       name: 'required',
       interest: 'required',
       duration: 'required',
       capital: 'required',
       active: 'required',
+      color: 'required',
     };
 
     this.hasCreate = true;
@@ -116,6 +44,11 @@ class FaqsController extends ResourceController {
         label: "Capital",
         name: "capital",
         type: "number"
+      },
+      {
+        label: "Color",
+        name: "color",
+        type: "text"
       },
       {
         label: "Active",
@@ -158,6 +91,11 @@ class FaqsController extends ResourceController {
         type: "label"
       },
       {
+        label: "Color",
+        value: "color",
+        type: "color"
+      },
+      {
         label: "Created",
         value: "created_at",
         type: "date"
@@ -170,4 +108,4 @@ class FaqsController extends ResourceController {
 
 }
 
-module.exports = FaqsController
+module.exports = PlansController

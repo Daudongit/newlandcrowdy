@@ -34,6 +34,8 @@ Route
     generateResource('packages', 'PackagesController', 'admin.packages')
     generateResource('supporttypes', 'SupportTypesController', 'admin.supporttypes')
     generateResource('faqs', 'FaqController', 'admin.faqs')
+    generateResource('testimonials', 'TestimonialsController', 'admin.testimonials')
+    
     generateResource('banks', 'BankController', 'admin.banks')
     generateResource('bankoptions', 'BankOptionController', 'admin.bankoptions')
     generateResource('withdrawals', 'WithdrawalController', 'admin.withdrawals') // Notification

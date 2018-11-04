@@ -215,7 +215,6 @@ p.text {
 .buy-button a:hover{
 	background: none;
 	border: solid 1px #fb8a2e;
-	color:#fb8a2e;
 	transition: 0.5s all;
 	-webkit-transition: 0.5s all;
 	-moz-transition: 0.5s all;
@@ -230,7 +229,6 @@ p.text {
 .first .buy-button a:hover{
 	background: none;
 	border: solid 1px #c73a40;
-	color: #c73a40;
 }
 .second .buy-button a{
 	background: #0091cd;
@@ -649,3 +647,7 @@ button::-moz-focus-inner {
 }
 
 /*--//responsive--*/
+
+.buy-button a{
+	border: 0px !important;
+  }

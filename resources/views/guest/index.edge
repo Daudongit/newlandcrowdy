@@ -110,7 +110,7 @@
 					@each(plan in plans)
 					<div class="agileits-pricing-grid first">
 						<div class="pricing_grid">
-							<div class="wthree-pricing-info pricing-top">
+							<div class="wthree-pricing pricing-top" style="background: {{ plan.color }}">
 								<h3>{{ plan.name }}</h3>
 								<p><span>{{plan.interest}}%</span><br>{{{ moneyFormat(plan.perMonth) }}} Monthly<br><br>For {{plan.duration}} Months</p>
 							</div>
@@ -120,7 +120,7 @@
 									<p><span class="fa fa-check"></span><span>ROI: </span>{{{ moneyFormat(plan.roi) }}}</p>
 								</div>
 								<div class="buy-button">
-									<a class="popup-with-zoom-anim" href="{{ route('app.signup') }}">Sign Up</a>
+									<a class="popup-with-zoom-anim" style="background: {{ plan.color }}" href="{{ route('app.signup') }}">Sign Up</a>
 								</div>
 							</div>
 						</div>
@@ -359,53 +359,25 @@
 					<div class="testimonial-slider-wrapper">
 						<div class="swiper-container testimonial-slider">
 							<div class="swiper-wrapper">
+
+								@each(testimonial in testimonials)
 															<!-- Testimonial slide start -->
 								<div class="swiper-slide">
 									<div class="testimonial-slide">
 										<div class="testimonial-quote">
-											<p>Awesone. Got withdrwal instantly</p>
+											<p>{{ testimonial.message }}</p>
 										</div>
 										
 										<div class="testimonial-author">
 											<i class="fa fa-quote-left"></i>
-											<h3>javedjakali786</h3>
-											<p>Investor</p>
+											<h3>{{ testimonial.name }}</h3>
+											<p>{{ testimonial.role }}</p>
 										</div>
 									</div>
 								</div>
 								<!-- Testimonial slide end -->
-								
-																<!-- Testimonial slide start -->
-								<div class="swiper-slide">
-									<div class="testimonial-slide">
-										<div class="testimonial-quote">
-											<p>Thanks for sending my money to my account. You guys rock! Thanks </p>
-										</div>
-										
-										<div class="testimonial-author">
-											<i class="fa fa-quote-left"></i>
-											<h3>Dmen</h3>
-											<p>Investor</p>
-										</div>
-									</div>
-								</div>
-								<!-- Testimonial slide end -->
-								
-																<!-- Testimonial slide start -->
-								<div class="swiper-slide">
-									<div class="testimonial-slide">
-										<div class="testimonial-quote">
-											<p>Digitalcoop is real and legitimate... Thanks for changing my financial level for good</p>
-										</div>
-										
-										<div class="testimonial-author">
-											<i class="fa fa-quote-left"></i>
-											<h3>FEMITEWORLD</h3>
-											<p>Investor</p>
-										</div>
-									</div>
-								</div>
-								<!-- Testimonial slide end -->
+								@endeach
+								 
 								
 																
 							</div>

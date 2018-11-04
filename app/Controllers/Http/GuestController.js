@@ -1,6 +1,8 @@
 'use strict'
 const Plan = use('App/Models/Plan');
 const Faq = use('App/Models/Faq');
+const Testimonial = use('App/Models/Testimonial');
+
 const Mail = use("Mail");
 const Config = use("Config");
 
@@ -12,7 +14,8 @@ const {
 class GuestController {
     async getIndex ({view}) {
         return view.render('guest.index',{
-            plans : (await Plan.query().fetch()).toJSON()
+            plans : (await Plan.query().where({active: 1}).fetch()).toJSON(),
+            testimonials : (await Testimonial.query().fetch()).toJSON(),
         })
     }
 
