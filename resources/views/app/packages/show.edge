@@ -26,23 +26,23 @@
 
           <div class="t-row">
               <p class="font-weight-bold mb-2 d-inline-block">Amount</p>
-              <p>{{{ moneyFormat(package.amount) }}}</p>
+              <p>{{{ moneyFormat(package.plan.capital) }}}</p>
             </div>
 
           <div class="t-row">
               <p class="font-weight-bold mb-2 d-inline-block">Next Interest Days Count</p>
-              <p>{{ package.next_interest_days_count }} days</p>
+              <p>{{ package.nextInterestDays }}</p>
             </div>
 
           <div class="t-row">
-                <p class="font-weight-bold mb-2 d-inline-block">Interest Duration Days</p>
-                <p>{{ package.interest_duration }} days</p>
+                <p class="font-weight-bold mb-2 d-inline-block">Interest Duration</p>
+                <p>{{ package.plan.duration }} months</p>
             </div>
             </div>
 
           <div class="t-row">
               <p class="font-weight-bold mb-2 d-inline-block">Rate</p>
-              <p>{{ package.rate }}%</p>
+              <p>{{ package.plan.interest }}%</p>
             </div>
 
           <div class="t-row">

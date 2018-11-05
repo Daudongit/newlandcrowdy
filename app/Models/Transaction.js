@@ -8,6 +8,14 @@ class Transaction extends Model {
     return ['fullType', 'fullFrom']
   }
 
+  static debit(){
+    return 0
+  }
+
+  static credit(){
+    return 1
+  }
+
   static getEnums() {
     return [
       {

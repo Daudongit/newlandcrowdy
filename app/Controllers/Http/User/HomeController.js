@@ -2,9 +2,10 @@
 
 const Config = use('Config');
 const Route = use('Route');
-// const Package = use('App/Models/Package');
 const Transaction = use('App/Models/Transaction');
+// const Package = use('App/Models/Package');
 const Withdrawal = use('App/Models/Withdrawal');
+const UserAnnouncement = use('App/Models/UserAnnouncement');
 const User = use('App/Models/User');
 
 
@@ -19,13 +20,18 @@ class HomeController {
 
      sitename: Config.get('app.name'),
 
+     announcementCount: (await UserAnnouncement.query().where({
+      user_id: auth.user.id,
+      opened: 0
+    }).count('* as count'))[0].count,
+
      user: (await User.query().where({
         id: auth.user.id
       }).first()).toJSON(),
 
       totalInvested: (await Transaction.query().where({
         user_id: auth.user.id,
-        type: 0
+        type: Transaction.debit()
       }).sum('amount as amount'))[0].amount,
 
       totalWithdrawals: (await Withdrawal.query().where({

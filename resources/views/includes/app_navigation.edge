@@ -3,7 +3,11 @@
   <li><a href="{{ route('app.account.settings') }}" class="waves-effect"><i class="mdi mdi-human-male"></i><span> Account</span></a></li>
   <li><a href="{{ route('app.packages.index') }}" class="waves-effect"><i class="mdi mdi-gift"></i><span> Packages</span></a></li>
   <li><a href="{{ route('app.transactions.index') }}" class="waves-effect"><i class="mdi mdi-book"></i><span> Transactions</span></a></li>
-  <li><a href="{{ route('app.announcements.index') }}" class="waves-effect"><i class="mdi mdi-speaker"></i><span> Announcements</span></a></li>
+  <li><a href="{{ route('app.announcements.index') }}" class="waves-effect"><i class="mdi mdi-speaker"></i><span> Announcements 
+    @if(announcementCount && announcementCount > 0)
+    <span class="badge badge-primary badge-pill float-right"> {{ announcementCount }}</span>
+    @endif
+   </span></a></li>
   <li><a href="{{ route('app.withdrawals.index') }}" class="waves-effect"><i class="mdi mdi-cash"></i><span> Withdrawals</span></a></li>
   <!-- <li><a href="{{ route('app.dashboard') }}" class="waves-effect"><i class="mdi mdi-cadmialendar-check"></i><span> Referral</span></a></li> -->
   <li><a href="{{ route('app.supports.index') }}" class="waves-effect"><i class="mdi mdi-help"></i><span> Support</span></a></li>

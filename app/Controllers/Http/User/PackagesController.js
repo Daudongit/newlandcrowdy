@@ -171,7 +171,7 @@ class PackagesController {
         from: "online_deposit",
         amount,
         from_id: _package.id,
-        type: 1
+        type: Transaction.debit()
       });
 
       session.flash({

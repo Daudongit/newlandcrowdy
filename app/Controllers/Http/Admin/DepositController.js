@@ -121,7 +121,7 @@ class DepositController extends ResourceController{
         from: "bank_deposit",
         amount: deposit.amount,
         from_id: deposit.package_id,
-        type: 1
+        type: Transaction.debit()
       });
 
     }

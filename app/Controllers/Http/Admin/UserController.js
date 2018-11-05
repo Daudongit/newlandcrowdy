@@ -158,7 +158,7 @@ class UserController extends ResourceController {
       user_id: params.id,
       amount: amount,
       message: `Admin ${cd}`,
-      type: (cd == 'debit') ? 1 : 0,
+      type: (cd == 'debit') ? Transaction.debit() : Transaction.credit(),
       from: `admin_${cd}`,
     }).then(() => {})
 

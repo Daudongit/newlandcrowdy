@@ -1,9 +1,24 @@
 'use strict'
 const _ = require('lodash');
 
+const moment = require('moment')
 const Model = use('Model')
 
 class Package extends Model {
+ 
+
+  getNextInterestDays({
+    started,
+    status
+  }){
+    if(status === 1){
+      const end = moment(started)
+      const start = moment() 
+      return 30 - (Math.floor(moment.duration(start.diff(end)).asDays()) % 30);
+    }
+    return 'N/A'
+  }
+
 
   static getEnums() {
     return [
@@ -30,7 +45,7 @@ class Package extends Model {
   }
 
   static get computed() {
-    return ['fullStatus']
+    return ['fullStatus', 'nextInterestDays']
   }
   
   getFullStatus({

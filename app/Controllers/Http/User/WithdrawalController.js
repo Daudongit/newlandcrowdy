@@ -141,7 +141,7 @@ class WithdrawalController {
         user_id : auth.user.id,
         amount,
         message: "Withdrawal Request Submitted Successfully",
-        type: "0",
+        type: Transaction.credit(),
         from: "withdrawal"
     }).then(() => {})
 
