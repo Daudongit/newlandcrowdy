@@ -4,7 +4,8 @@ server {
     listen 80 default_server;
 
     location / {
-        proxy_pass http://node:${WEB_REVERSE_PROXY_PORT};
+        return 301 https://digitalcoop.com.ng$request_uri;
+        #proxy_pass http://node:${WEB_REVERSE_PROXY_PORT};
     }
 
     location /.well-known/acme-challenge/ {
