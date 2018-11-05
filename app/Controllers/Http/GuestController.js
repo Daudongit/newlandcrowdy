@@ -38,9 +38,6 @@ class GuestController {
         return view.render('guest.terms')
     }
     
-
-    
-
     getContact ({view}) {
         return view.render('guest.contact')
     }

@@ -13,3 +13,5 @@ database/development.sqlite
 public/uploads
 
 data
+
+docker/nginx/certs

@@ -116,7 +116,7 @@ class AuthController {
 
     Mail.send('emails.activateaccount', {
       name: username,
-      link: 'http://' + Config.get('app.fullUrl') + Route.url('auth.activateAccount', {
+      link: Config.get('app.fullUrl') + Route.url('auth.activateAccount', {
         username,
         token: activationCode
       })
