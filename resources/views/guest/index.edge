@@ -298,44 +298,18 @@
 	<div class="stat-counter">
 		<div class="container">
 			<div class="row">
+				@each(counter in counters)
 				<!-- Stat Counter single start -->
 				<div class="col-md-3">
 					<div class="counter-box">
 						<h3 class="counter">
 						
-								13						</h3>
-						<p>Investors</p>
+								{{ numberFormat(counter.value) }}						</h3>
+						<p>{{  counter.title.replace("Counter - ", "") }}</p>
 					</div>
 				</div>
 				<!-- Stat Counter single end -->
-				
-				<!-- Stat Counter single start -->
-				<div class="col-md-3">
-					<div class="counter-box">
-						<h3 class="counter">6</h3>
-						<p>Running days</p>
-					</div>
-				</div>
-				<!-- Stat Counter single end -->
-				
-				<!-- Stat Counter single start -->
-				<div class="col-md-3">
-					<div class="counter-box">
-						<h3 class="counter">568,028</h3>
-						<p>₦ Deposits</p>
-					</div>
-				</div>
-				<!-- Stat Counter single end -->
-				
-				<!-- Stat Counter single start -->
-				<div class="col-md-3">
-					<div class="counter-box">
-						<h3 class="counter">
-					103,816				</h3>
-						<p>₦ Withdrawals</p>
-					</div>
-				</div>
-				<!-- Stat Counter single end -->
+				@endeach
 			</div>
 		</div>
 	</div>

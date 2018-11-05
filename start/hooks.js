@@ -42,6 +42,14 @@ hooks.after.providersBooted(() => {
     return `&#8358;0.00`
   })
 
+  View.global('numberFormat', function (money) {
+    if(money){
+      money = Number(money);
+      return money.toFixed(0).replace(/\d(?=(\d{3})+$)/g, '$&,')
+    }
+    return '0.00'
+  })
+
   View.global('lodash', function (object, path){
     return _.get(object, path, "NOT FOUND");
   });

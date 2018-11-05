@@ -2,7 +2,7 @@
 const Plan = use('App/Models/Plan');
 const Faq = use('App/Models/Faq');
 const Testimonial = use('App/Models/Testimonial');
-
+const Reference = use('App/Models/Reference');
 const Mail = use("Mail");
 const Config = use("Config");
 
@@ -16,6 +16,7 @@ class GuestController {
         return view.render('guest.index',{
             plans : (await Plan.query().where({active: 1}).fetch()).toJSON(),
             testimonials : (await Testimonial.query().fetch()).toJSON(),
+            counters : await Reference.query().where({type: 'counter'}).get(),
         })
     }
 
