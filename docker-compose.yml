@@ -37,7 +37,7 @@ services:
             args:
                 - WEB_REVERSE_PROXY_PORT=8000
                 - WEB_SSL=true
-                - SELF_SIGNED=true
+                - SELF_SIGNED=false
                 - NO_DEFAULT=false
         volumes:
             - ./data/logs/nginx/:/var/log/nginx
