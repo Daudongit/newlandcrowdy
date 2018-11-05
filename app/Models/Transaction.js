@@ -35,15 +35,7 @@ class Transaction extends Model {
 
 
     })
-
-    // {
-    //   user_id: user.id,
-    //   message: "Bought Package Through Bank Deposit",
-    //   from: "bank_deposit",
-    //   amount: deposit.amount,
-    //   from_id: deposit.package_id,
-    //   type: Transaction.debit()
-    // }
+ 
 
   }
 

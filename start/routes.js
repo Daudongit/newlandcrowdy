@@ -22,6 +22,7 @@ Route
     Route.get('/contact', 'GuestController.getContact').as('guest.contact')
     Route.post('/contact', 'GuestController.postContact').as('guest.contact')
     Route.get('/chart', 'GuestController.getChart').as('guest.chart')
+    Route.get('/terms', 'GuestController.getTerms').as('guest.terms')
   })
   .middleware(['guest']);
 

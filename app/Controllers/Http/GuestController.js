@@ -33,6 +33,13 @@ class GuestController {
     getAbout ({view}) {
         return view.render('guest.about')
     }
+    
+    getTerms ({view}) {
+        return view.render('guest.terms')
+    }
+    
+
+    
 
     getContact ({view}) {
         return view.render('guest.contact')

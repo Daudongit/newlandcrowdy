@@ -90,6 +90,9 @@
    {{ elIf('<span>$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
  </div>
 
+ <div class="form-group">
+    <input type="checkbox" name="terms" required> Accept <a href="{{ route('guest.terms') }}">Terms and Conditions </a>
+</div>
 
  <div class="form-group">
    <button class="btn btn-primary submit-btn btn-block">Sign Up</button>
