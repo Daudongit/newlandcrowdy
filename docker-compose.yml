@@ -47,17 +47,17 @@ services:
             - "443:443"
         tty: true
 
-    certbot:
-        build:
-            context: ./docker/certbot
-        links:
-            - nginx
-        environment:
-            - CN=digitalcoop.com
-            - EMAIL=jcsonvonyon@gmail.com
-        volumes:
-          - ./docker/certbot/letsencrypt/:/var/www/letsencrypt
-          - ./docker/certbot/certs/:/var/certs
+    # certbot:
+    #     build:
+    #         context: ./docker/certbot
+    #     links:
+    #         - nginx
+    #     environment:
+    #         - CN=digitalcoop.com
+    #         - EMAIL=jcsonvonyon@gmail.com
+    #     volumes:
+    #       - ./docker/certbot/letsencrypt/:/var/www/letsencrypt
+    #       - ./docker/certbot/certs/:/var/certs
 
     redis:
         restart: always
