@@ -8,9 +8,9 @@ const Reference = use('App/Models/Reference');
 const _ = require('lodash');
 
 const {
-    validateAll
-  } = use('Validator');
-  const validationMessages = use('App/Helpers/ValidationMessages');
+  validateAll
+} = use('Validator');
+const validationMessages = use('App/Helpers/ValidationMessages');
 
 class WithdrawalController {
 
@@ -39,19 +39,20 @@ class WithdrawalController {
   }
 
   async create({
-      auth,
-    view  }) {
+    auth,
+    view
+  }) {
 
-    const formHeaders =  (await Reference.query().whereIn('slug',['min_withdrawal', 'max_withdrawal', 'withdrawal_charges']).get())
-    
+    const formHeaders = (await Reference.query().whereIn('slug', ['min_withdrawal', 'max_withdrawal', 'withdrawal_charges']).get())
+
     formHeaders.push({
-        title: "Wallet Balance",
-        type: "money",
-        value: auth.user.wallet
+      title: "Wallet Balance",
+      type: "money",
+      value: auth.user.wallet
     })
 
     return view.render('app.withdrawals.create', {
-        formHeaders
+      formHeaders
     });
   }
 
@@ -96,53 +97,59 @@ class WithdrawalController {
     }
 
     if (!await Hash.verify(request.input('password'), auth.user.password)) {
-        session.flash({
-          error: `Invalid Password.`
-        });
-        return response.redirect('back')
-      }
+      session.flash({
+        error: `Invalid Password.`
+      });
+      return response.redirect('back')
+    }
 
     const amount = request.input('amount');
 
-    if(amount > auth.user.wallet){
-        session.flash({
-            error: "Insufficient Balance"
-        });
-        return response.redirect('back');
+    if (amount > auth.user.wallet) {
+      session.flash({
+        error: "Insufficient Balance"
+      });
+      return response.redirect('back');
     }
 
-    const references =  (await Reference.query().whereIn('slug',['min_withdrawal', 'max_withdrawal', 'withdrawal_charges']).get())
+    const references = (await Reference.query().whereIn('slug', ['min_withdrawal', 'max_withdrawal', 'withdrawal_charges']).get())
 
 
-    if(amount >  parseInt(_.find(references, {slug : 'max_withdrawal'}).value)) {
-        session.flash({
-            error: "Sorry! But you can't exceeded the maximum withdrawal limit"
-        });
-        return response.redirect('back');
+    if (amount > parseInt(_.find(references, {
+        slug: 'max_withdrawal'
+      }).value)) {
+      session.flash({
+        error: "Sorry! But you can't exceeded the maximum withdrawal limit"
+      });
+      return response.redirect('back');
     }
 
 
-    if(amount < parseInt(_.find(references, {slug : 'min_withdrawal'}).value)){
-        session.flash({
-            error: "Sorry! But you need to go above the minimum withdrawal amount",
-        });
-        return response.redirect('back');
+    if (amount < parseInt(_.find(references, {
+        slug: 'min_withdrawal'
+      }).value)) {
+      session.flash({
+        error: "Sorry! But you need to go above the minimum withdrawal amount",
+      });
+      return response.redirect('back');
     }
 
-    const charges = _.find(references, {slug : 'withdrawal_charges'}).value;
+    const charges = _.find(references, {
+      slug: 'withdrawal_charges'
+    }).value;
 
     User.query().where({
-        id: auth.user.id
+      id: auth.user.id
     }).update({
-        wallet: auth.user.wallet - amount
+      wallet: auth.user.wallet - amount
     }).then(() => {})
 
     Transaction.create({
-        user_id : auth.user.id,
-        amount,
-        message: "Withdrawal Request Submitted Successfully",
-        type: Transaction.credit(),
-        from: "withdrawal"
+      user_id: auth.user.id,
+      amount,
+      message: "Withdrawal Request Submitted Successfully",
+      type: Transaction.credit(),
+      from: "withdrawal"
     }).then(() => {})
 
     Withdrawal.create({

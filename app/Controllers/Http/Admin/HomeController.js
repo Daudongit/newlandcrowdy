@@ -2,6 +2,7 @@
 
 const Config = use('Config');
 const Route = use('Route');
+const Package = use('App/Models/Package');
 const Transaction = use('App/Models/Transaction');
 const Withdrawal = use('App/Models/Withdrawal');
 const User = use('App/Models/User');
@@ -14,31 +15,34 @@ class HomeController {
     request
   }) {
 
+
     return view.render('admin.dashboard', {
 
-     sitename: Config.get('app.name'),
+      runningPackages: (await Package.query().where({
+        status: 1,
+      }).count('* as count'))[0].count,
 
-     user: (await User.query().where({
-        id: auth.user.id
-      }).first()).toJSON(),
+      allPackages: (await Package.query().where('status', '>', 0).count('* as count'))[0].count,
 
-      referralLink:  Config.get('app.fullUrl') + Route.url('auth.referral', {
-        referral: auth.user.username
-      }),
+      userCount: (await User.query().where({
+        role: 0,
+        verified: 1
+      }).count('* as count'))[0].count,
+
+      walletBalance: (await User.query().sum('wallet as wallet'))[0].wallet,
+
+      totalInvested: (await Transaction.query().where({
+        type: Transaction.debit()
+      }).sum('amount as amount'))[0].amount,
+
+      totalWithdrawals: (await Withdrawal.query().where({}).sum('amount as amount'))[0].amount +
+        (await Withdrawal.query().where({}).sum('charge as charge'))[0].charge,
 
       // totalPackages: (await Package.query().where({
       //   user_id: auth.user.id
       // }).sum('amount as amount'))[0].amount,
 
-      totalWithdrawals: (await Withdrawal.query().where({
-        user_id: auth.user.id
-      }).sum('amount as amount'))[0].amount,
-
-
-      lastTransactions: (await Transaction.query().where({
-        user_id: auth.user.id
-      }).orderBy('id', 'desc').limit(5).fetch()).toJSON()
-
+      
     });
   }
 }

@@ -1,6 +1,6 @@
 @layout('templates.email')
 @section('title')
-Contact Us Mail
+Transactions
 @endsection
 @section('content')
 <table class="body">
@@ -10,18 +10,18 @@ Contact Us Mail
           <table class="body-text">
             <tr>
               <td class="body-text-cell">
-                Name
+                User
               </td>
               <td class="body-text-cell">
-                {{ name }}
+                {{ user }}
               </td>
             </tr>
             <tr>
               <td class="body-text-cell">
-                Email
+                Amount
               </td>
               <td class="body-text-cell">
-                {{ email }}
+                {{{ moneyFormat(amount) }}}
               </td>
             </tr>
             <tr>
@@ -32,6 +32,14 @@ Contact Us Mail
                 {{ message }}
               </td>
             </tr>
+            <tr>
+                <td class="body-text-cell">
+                  Type
+                </td>
+                <td class="body-text-cell">
+                  {{ type }}
+                </td>
+              </tr>
           </table>
 
 

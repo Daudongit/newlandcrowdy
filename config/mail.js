@@ -1,6 +1,6 @@
 'use strict'
 
-const Env = use('Env')
+const Env = use('Env');
 
 module.exports = {
   /*
@@ -15,6 +15,7 @@ module.exports = {
   connection: Env.get('MAIL_CONNECTION', 'smtp'),
 
   contact: Env.get('CONTACT_EMAIL', 'info@digitalcoop.com'),
+  transaction: Env.get('TRANSACTION_EMAIL', 'admin@digitalcoop.com'),
 
   from: {
     email: Env.get('MAIL_FROM', 'digitalcoop@gmail.com'),
