@@ -5,6 +5,7 @@ const Route = use('Route');
 const Package = use('App/Models/Package');
 const Transaction = use('App/Models/Transaction');
 const Withdrawal = use('App/Models/Withdrawal');
+const Support = use('App/Models/Support');
 const User = use('App/Models/User');
 
 
@@ -17,6 +18,14 @@ class HomeController {
 
 
     return view.render('admin.dashboard', {
+
+      withdrawalsCount: (await Withdrawal.query().where({
+        status: 0
+      }).count('* as count'))[0].count,
+  
+      supportCount: (await Support.query().where({
+        status: 0
+      }).count('* as count'))[0].count,
 
       runningPackages: (await Package.query().where({
         status: 1,
