@@ -30,6 +30,7 @@
     "@adonisjs/shield": "^1.0.6",
     "@adonisjs/validator": "^5.0.3",
     "adonis-cache": "^0.3.2",
+    "adonis-scheduler": "^3.0.2",
     "axios": "^0.18.0",
     "concurrently": "^4.0.1",
     "dateformat": "^3.0.3",

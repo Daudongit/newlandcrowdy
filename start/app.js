@@ -21,7 +21,8 @@ const providers = [
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/validator/providers/ValidatorProvider',
   '@adonisjs/mail/providers/MailProvider',
-  'adonis-cache/providers/CacheProvider'
+  'adonis-cache/providers/CacheProvider',
+  'adonis-scheduler/providers/SchedulerProvider'
 ]
 
 /*
@@ -35,7 +36,8 @@ const providers = [
 */
 const aceProviders = [
   '@adonisjs/lucid/providers/MigrationsProvider',
-  'adonis-cache/providers/CommandsProvider'
+  'adonis-cache/providers/CommandsProvider',
+  'adonis-scheduler/providers/CommandsProvider'
 ]
 
 /*
@@ -51,7 +53,8 @@ const aceProviders = [
 |
 */
 const aliases = {
-  Cache: 'Adonis/Addons/Cache'
+  Cache: 'Adonis/Addons/Cache',
+  Scheduler: 'Adonis/Addons/Scheduler'
 }
 
 /*
