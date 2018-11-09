@@ -11,7 +11,7 @@ class TestimonialsController {
     view,
     auth,
   }) {
-    let testimonial = await Testimonial.query({user_id: auth.user.id}).first() || {
+    let testimonial = await Testimonial.query().where({user_id: auth.user.id}).first() || {
         message : '',
         role: ''
     }
