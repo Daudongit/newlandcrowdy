@@ -10,11 +10,12 @@ class TestimonialsController extends ResourceController {
     this.indexRoute = `${this.resourceRoute}.index`;
     this.singleItem = 'Testimonial';
     this.mutipleItems = 'Testimonials';
-    this.dataFields = ['name', 'role', 'message'];
+    this.dataFields = ['name', 'role', 'message', 'display'];
     this.validationRules = {
       name: 'required',
       role: 'required',
       message: 'required',
+      display: 'required',
     };
 
     this.hasCreate = true;
@@ -28,7 +29,7 @@ class TestimonialsController extends ResourceController {
         type: "text"
       },
       {
-        label: "Role",
+        label: "Profession",
         name: "role",
         type: "text"
       },
@@ -36,6 +37,18 @@ class TestimonialsController extends ResourceController {
         label: "Message",
         name: "message",
         type: "textarea"
+      },
+      {
+        label: "Display",
+        name: "display",
+        type: "select",
+        options: [{
+          value: '0',
+          display: 'Hidden'
+        }, {
+          value: '1',
+          display: 'Live'
+        }]
       },
     ];
 
@@ -46,7 +59,7 @@ class TestimonialsController extends ResourceController {
       value: "name",
     },
     {
-      label: "Role",
+      label: "Profession",
       value: "role",
     },
     {
@@ -57,6 +70,11 @@ class TestimonialsController extends ResourceController {
         label: "Created",
         value: "created_at",
         type: "date"
+      },
+      {
+        label: "Display",
+        value: "fullDisplay",
+        type: "label"
       },
     ];
 

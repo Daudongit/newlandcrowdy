@@ -15,7 +15,7 @@ class GuestController {
     async getIndex ({view}) {
         return view.render('guest.index',{
             plans : (await Plan.query().where({active: 1}).fetch()).toJSON(),
-            testimonials : (await Testimonial.query().fetch()).toJSON(),
+            testimonials : (await Testimonial.query().where({display: 1}).limit(5).fetch()).toJSON(),
             counters : await Reference.query().where({type: 'counter'}).get(),
         })
     }

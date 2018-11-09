@@ -125,7 +125,11 @@ class AuthController {
         .to(email)
         .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
         .subject('Welcome to ' + Config.get('app.name'))
-    }).then(() => {})
+    }).then(() => {
+      console.log("nic3")
+    }).catch(e => {
+      console.log(e)
+    })
 
     session.flash({
       info: 'We just sent you a mail, please check and confirm your email to login.'

@@ -83,7 +83,10 @@ Route
     Route.get('/packages/evidence/:id', 'PackagesController.getEvidence').as('app.packages.evidence')
     Route.post('/packages/evidence/:id', 'PackagesController.doEvidence').as('app.packages.evidence')
     Route.get('/packages/payments/:id', 'PackagesController.payments').as('app.packages.payments')
-    
+
+    Route.get('/testimonials', 'TestimonialsController.get').as('app.testimonials.get')
+    Route.post('/testimonials', 'TestimonialsController.update').as('app.testimonials.update')
+
     Route.get('/transactions', 'TransactionController.index').as('app.transactions.index')
     Route.get('/transactions/filter/:field/:id', 'TransactionController.index').as('app.transactions.filter')
     Route.get(`/transactions/sort/:sort/:order`, `TransactionController.index`).as(`app.transactions.sort`)

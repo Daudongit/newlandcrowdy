@@ -1,0 +1,40 @@
+@layout('templates.main')
+@section('title')
+  Testimonial
+@endsection
+@section('content')
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card support-pane-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="card-title mb-0">Testimonial</h4>
+        </div>
+        <form class="forms-sample" method="POST" action="{{ route('app.testimonials.update') }}">
+          {{ csrfField() }}
+
+          <div class="form-group row">
+            <label for="first_name" class="col-sm-3 col-form-label">Profession</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="role" name="profession" placeholder="Enter Profession" value="{{ testimonial.role }}"/>
+              {{ elIf('<span>$self</span>', getErrorFor('profession'), hasErrorFor('profession')) }}
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="first_name" class="col-sm-3 col-form-label">Message</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" id="message" name="message" placeholder="Enter Message">{{ testimonial.message }}</textarea>
+              {{ elIf('<span>$self</span>', getErrorFor('message'), hasErrorFor('message')) }}
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+@endsection
