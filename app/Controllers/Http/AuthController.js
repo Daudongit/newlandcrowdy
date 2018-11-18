@@ -6,10 +6,13 @@ const {
 const validationMessages = use('App/Helpers/ValidationMessages');
 const Route = use("Route");
 const Mail = use("Mail");
+const Helpers = use('Helpers');
 const Config = use('Config');
 const Hash = use('Hash');
+const uuidv4 = require('uuid/v4');
 const User = use('App/Models/User');
 const Token = use('App/Models/Token');
+const BankDetail = use('App/Models/BankDetail');
 const randomstring = require('randomstring');
 const moment = require("moment");
 
@@ -42,6 +45,12 @@ class AuthController {
         last_name: 'required',
         first_name: 'required',
         password: 'required',
+        address: 'required',
+        city: 'required',
+        state: 'required',
+        bank_name: 'required',
+        account_name: 'required',
+        account_number: 'required'
       },
       validationMessages
     );
@@ -59,7 +68,12 @@ class AuthController {
       first_name,
       last_name,
       phone_number,
-      referral
+      bank_name,
+      account_number,
+      account_name,
+      address,
+      city,
+      state,
     } = request.all();
 
     // let referred_by = 0;
@@ -101,10 +115,53 @@ class AuthController {
     //   .replace('{{email}}', email)
     //   .replace('{{username}}', username)
 
+    const id_card = request.file('id_card')
+    const picture = request.file('picture')
+
+
+    if (picture.size == 0 || id_card.size == 0) {
+      session.flashExcept(['password']).flash({
+        error: "Both the picture and ID Card are required",
+      });
+      return response.redirect('back');
+    }
+
+    if (id_card.type != 'image' && picture.type != 'image') {
+      session.flashExcept(['password']).flash({
+        error: "Only Images Are Allowed",
+      });
+      return response.redirect('back');
+    }
+
+    if (picture.size > 1000000 || id_card.size > 1000000) {
+      session.flashExcept(['password']).flash({
+        error: "Image size too large. Maximum size is 1MB",
+      });
+      return response.redirect('back');
+    }
+
+    const picture_ = 'uploads/picture/' + uuidv4() + '.jpg';
+    const id_card_ = 'uploads/id_card/' + uuidv4() + '.jpg';
+
+    await picture.move(Helpers.publicPath(), {
+      name: picture_
+    })
+
+    await id_card.move(Helpers.publicPath(), {
+      name: id_card_
+    })
+
+    if (!id_card.moved()) {
+      return id_card.error()
+    }
+
+    if (!picture.moved()) {
+      return picture.error()
+    }
 
     const activationCode = randomstring.generate();
 
-    await User.create({
+    const user = await User.create({
       email,
       password,
       username,
@@ -112,7 +169,19 @@ class AuthController {
       last_name,
       first_name,
       verified: activationCode,
+      address,
+      city,
+      state,
+      picture: picture_,
+      id_card: id_card_,
     });
+
+    BankDetail.create({
+       user_id: user.id,
+       bank_name,
+       account_number,
+       account_name
+    }).then(() => {});
 
     Mail.send('emails.activateaccount', {
       name: username,
@@ -183,7 +252,11 @@ class AuthController {
         .to(email)
         .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
         .subject('Password Reset - ' + Config.get('app.name'))
-    }).then(() => {})
+    }).then((kiss) => {
+      console.log('kiss')
+    }).catch(hello => {
+      console.log(hello)
+    });
 
     session.flash({
       info: responseMessage
