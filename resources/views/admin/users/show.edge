@@ -4,7 +4,6 @@
 @endsection 
 @section('content')
 <div class="row">
-  TODO: User include Bank Details
   <div class="col-md-12">
     <div class="card support-pane-card">
       <div class="card-body">
@@ -56,12 +55,23 @@
           </div>
           @endeach
           <div class="t-row">
+            <p class="font-weight-bold mb-2 d-inline-block">Bank Name</p>
+            <p>{{ resourceDatum.bankDetail.bank_name }}</p>
+          </div>
+          <div class="t-row">
+            <p class="font-weight-bold mb-2 d-inline-block">Account Name</p>
+            <p>{{ resourceDatum.bankDetail.account_name }}</p>
+          </div>
+          <div class="t-row">
+            <p class="font-weight-bold mb-2 d-inline-block">Account Number</p>
+            <p>{{ resourceDatum.bankDetail.account_number }}</p>
+          </div>
+          <div class="t-row">
               <p class="font-weight-bold mb-2 d-inline-block">User Links</p>
               <p>
-                    
-                <a href="{{ route('admin.investments.filter', {field: 'user', id: resourceDatum.id}) }}"  class="btn-inverse-primary btn">Packages</a>
-                <a href="{{ route('admin.withdrawals.filter', {field: 'user', id: resourceDatum.id}) }}"  class="btn-inverse-primary btn">Withdrawals</a>
-                <a href="{{ route('admin.transactions.filter', {field: 'user', id: resourceDatum.id}) }}"  class="btn-inverse-primary btn">Transactions</a>
+                <a href="{{ route('admin.packages.filter', {field: 'user', id: resourceDatum.id}) }}"  class="btn-primary btn">Packages</a>
+                <a href="{{ route('admin.withdrawals.filter', {field: 'user', id: resourceDatum.id}) }}"  class="btn-primary btn">Withdrawals</a>
+                <a href="{{ route('admin.transactions.filter', {field: 'user', id: resourceDatum.id}) }}"  class="btn-primary btn">Transactions</a>
             </p>
             </div>
         </div>

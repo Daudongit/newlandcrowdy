@@ -13,6 +13,23 @@ const {
 
 class GuestController {
     async getIndex ({view}) {
+        // console.log("love");
+        // Mail.send('emails.transactions', {
+        //     user:  `Testing`,
+        //     type : 'Debit',
+        //     amount: '50000',
+        //     message: 'Ok Send message'
+        //     }
+        //   , (message) => {
+        //       message
+        //       .to(Config.get('mail.transaction'))
+        //       .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
+        //       .subject(Config.get('app.name') + ' - Transactions')
+        //   }).then((kiss) => {
+        //       console.log('kiss')
+        //       console.log(kiss)
+        //   })
+
         return view.render('guest.index',{
             plans : (await Plan.query().where({active: 1}).fetch()).toJSON(),
             testimonials : (await Testimonial.query().where({display: 1}).limit(5).fetch()).toJSON(),

@@ -23,7 +23,7 @@ class UserController extends ResourceController {
       verified: 'required'
     };
 
-    // this.relationships = [];
+    this.relationships = ['bankDetail'];
 
     this.hasCreate = false;
     this.hasDelete = false;

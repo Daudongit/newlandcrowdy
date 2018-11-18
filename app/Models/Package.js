@@ -39,8 +39,13 @@ class Package extends Model {
         id: 2,
         label: "Ended",
         class: 'primary',
+      },
+      {
+        field: 'status',
+        id: 3,
+        label: "Paused",
+        class: 'danger',
       }
-
     ]
   }
 

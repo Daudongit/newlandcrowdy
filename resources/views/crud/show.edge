@@ -15,6 +15,11 @@
               <i class="mdi mdi-pencil"></i> Edit
             </a>
             @endif
+            @each(showLink in showLinks)
+            <a href="{{ route(showLink.link, {id : resourceDatum.id}) }}" class="btn btn-primary btn-xs">
+              {{ showLink.title }}
+            </a>
+            @endeach
             @if(hasDelete)
             <form class="form-inline" method="POST" action="{{ route(resourceRoute + '.destroy', {id : resourceDatum.id}) }}?_method=DELETE">
               {{ csrfField() }}

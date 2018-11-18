@@ -36,6 +36,10 @@ class User extends Model {
     return this.hasMany('App/Models/Token')
   }
 
+  bankDetail () {
+    return this.hasOne('App/Models/BankDetail')
+  }
+
   isAdmin(){
     return this.role === 1;
   }

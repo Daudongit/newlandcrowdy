@@ -23,6 +23,7 @@ class ResourceController {
     this.filterFields = [];
     this.whereMe = false;
     this.noAction = false;
+    this.showLinks = [];
     this.searchAbles = [];
     this.fileFields = [];
     this.editText = "Edit"
@@ -188,7 +189,8 @@ class ResourceController {
       singleItem: this.singleItem,
       hasEdit: this.hasEdit,
       hasDelete: this.hasDelete,
-      showAbles: this.showAbles
+      showAbles: this.showAbles,
+      showLinks: this.showLinks
     });
   }
 

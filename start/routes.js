@@ -36,12 +36,12 @@ Route
     generateResource('supporttypes', 'SupportTypesController', 'admin.supporttypes')
     generateResource('faqs', 'FaqController', 'admin.faqs')
     generateResource('testimonials', 'TestimonialsController', 'admin.testimonials')
-    
     generateResource('banks', 'BankController', 'admin.banks')
     generateResource('bankoptions', 'BankOptionController', 'admin.bankoptions')
     generateResource('withdrawals', 'WithdrawalController', 'admin.withdrawals') // Notification
-    
     Route.get('/transactions', 'TransactionController.index').as('admin.transactions.index')
+    Route.get('/packages/payment/:id', 'PaymentsController.packages').as('admin.payments.packages')
+    Route.get('/payments', 'PaymentsController.index').as('admin.payments.index')
     Route.get('/transactions/filter/:field/:id', 'TransactionController.index').as(`admin.transactions.filter`)
 
     Route.get('/transactions/from/:from/:id', 'TransactionController.from').as(`admin.transactions.from`)
