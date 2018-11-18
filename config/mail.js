@@ -14,8 +14,8 @@ module.exports = {
   */
   connection: Env.get('MAIL_CONNECTION', 'smtp'),
 
-  contact: Env.get('CONTACT_EMAIL', 'info@digitalcoop.com'),
-  transaction: Env.get('TRANSACTION_EMAIL', 'admin@digitalcoop.com'),
+  contact: Env.get('CONTACT_EMAIL', 'info@digitalcoop.com.ng'),
+  transaction: Env.get('TRANSACTION_EMAIL', 'admin@digitalcoop.com.ng'),
 
   from: {
     email: Env.get('MAIL_FROM', 'digitalcoop@gmail.com'),
