@@ -16,6 +16,7 @@
   <link href="/assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
   <link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
   <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/whatsapp.css" rel="stylesheet" type="text/css">
   <link href="/assets/css/custom.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -79,7 +80,7 @@
   </div><!-- END wrapper -->
   <!-- jQuery  -->
   <script src="/assets/js/jquery-1.12.4.min.js"></script>
-  @if(auth.user.isUser()) 
+  @if(auth.user.isUser())
   <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
@@ -91,6 +92,9 @@
     s0.parentNode.insertBefore(s1,s0);
     })();
   </script>
+
+  @include('includes.whatsapp') 
+
   @endif
   <script src="/assets/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/js/metisMenu.min.js"></script>
