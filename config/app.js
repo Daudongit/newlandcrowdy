@@ -15,8 +15,8 @@ module.exports = {
   */
   appKey: Env.get('APP_KEY'),
   name: Env.get('APP_NAME', 'DigitalCoop'),
-  fullUrl: Env.get('APP_FULL_URL', 'http://digitalcoop.com.ng'),
-  
+  fullUrl: Env.get('APP_FULL_URL', 'https://digitalcoop.com.ng'),
+
   http: {
     /*
     |--------------------------------------------------------------------------

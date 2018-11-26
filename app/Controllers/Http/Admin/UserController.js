@@ -73,7 +73,7 @@ class UserController extends ResourceController {
       }
     ];
 
-    this.showAbles = [{
+    this.indexAbles = [{
         label: "Email",
         value: "email"
       },
@@ -116,7 +116,30 @@ class UserController extends ResourceController {
       // }
     ];
 
-    this.indexAbles = this.showAbles;
+    this.showAbles = this.indexAbles.concat([
+      {
+        label: "Address",
+        value: "address",
+      },
+      {
+        label: "City",
+        value: "city",
+      },
+      {
+        label: "State",
+        value: "state",
+      },
+      {
+        label: "Picture",
+        value: "picture",
+        type: 'image'
+      },
+      {
+        label: "ID card",
+        value: "id_card",
+        type: 'image'
+      },
+    ]);
 
   }
 

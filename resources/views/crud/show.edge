@@ -52,7 +52,7 @@
               N/A
               @endif
               @elseif(showAble.type == 'image')
-              <img src="{{ lodash(resourceDatum, showAble.value) }}" class="img-responsive" />
+              <img src="/{{ lodash(resourceDatum, showAble.value) }}" class="img-responsive" />
               @else
               {{ lodash(resourceDatum, showAble.value) }}
               @endif

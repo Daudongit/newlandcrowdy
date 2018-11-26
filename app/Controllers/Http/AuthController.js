@@ -195,7 +195,7 @@ class AuthController {
         .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
         .subject('Welcome to ' + Config.get('app.name'))
     }).then(() => {
-      console.log("nic3")
+      // console.log("nic3")
     }).catch(e => {
       console.log(e)
     })
