@@ -1,0 +1,51 @@
+@layout('templates.main')
+@section('title')
+Referrals
+@endsection
+@section('content')
+<div class="row">
+  <div class="col-md-12">
+    <div class="card support-pane-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="card-title mb-0"> Referrals </h4>
+          <div class="btn-toolbar mb-0 d-none d-sm-block" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group float-right" role="group" aria-label="First group">
+              <a href="{{ route('auth.referral', {referral: auth.user.username}) }}" class="btn btn-primary">Your Ref
+                Link: {{ fullUrl }}{{ route('auth.referral', {referral: auth.user.username}) }}</a>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive support-pane no-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              @each(referral in referrals)
+              <tr>
+                <td> {{ referral.user.fullName }} </td>
+                <td> {{referral.amount}}</td>
+                <td> 
+                    <label class="badge badge-{{ referral.fullStatus.class }}">
+                  {{referral.fullStatus.label}}
+                  </label>
+                 </td>
+              </tr>
+              @else
+              <tr>
+                <td colspan="100" class="text-center"> You don't have any referrals yet </td>
+              </tr>
+              @endeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

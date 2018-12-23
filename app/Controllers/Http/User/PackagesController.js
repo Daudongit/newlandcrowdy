@@ -9,6 +9,7 @@ const Helpers = use('Helpers');
 const Transaction = use('App/Models/Transaction');
 const Payment = use('App/Models/Payment');
 const Reference = use('App/Models/Reference');
+const ReferralsHelper = use('App/Helpers/Referrals');
 const Plan = use('App/Models/Plan');
 const Package = use('App/Models/Package');
 const _ = require('lodash');
@@ -173,6 +174,8 @@ class PackagesController {
         from_id: _package.id,
         type: Transaction.debit()
       });
+
+      await (new ReferralsHelper).credit(authUser.id, amount);
 
       session.flash({
         info: 'Package Bought Successfully.'

@@ -82,7 +82,7 @@
                      {{ lodash($parent.data, indexAble.value) }} %
                     @elseif(indexAble.type == 'money')
                     {{{ moneyFormat(lodash($parent.data, indexAble.value) ) }}}
-                   @elseif(indexAble.value == 'user.fullName')
+                   @elseif(indexAble.value == 'user.fullName' || indexAble.type == 'user')
                     @if($parent.data.user)
                     <a href="{{ route('admin.users.show', {id: $parent.data.user.id }) }}"> {{ lodash($parent.data, indexAble.value) }} </a>
                     @else

@@ -12,6 +12,7 @@ const Hash = use('Hash');
 const uuidv4 = require('uuid/v4');
 const User = use('App/Models/User');
 const Token = use('App/Models/Token');
+const Referral = use('App/Models/Referral');
 const BankDetail = use('App/Models/BankDetail');
 const randomstring = require('randomstring');
 const moment = require("moment");
@@ -74,50 +75,26 @@ class AuthController {
       address,
       city,
       state,
+      referral
     } = request.all();
 
     // let referred_by = 0;
 
-    // if (referral) {
-    //   const referralUser = await User.query().where('username', request.input('referral')).first();
+    let referralUser = false;
 
-    //   if (!referralUser) {
-    //     session.flash({
-    //       error: 'Referral Doesn\'t exist.'
-    //     }).flashExcept()
-    //     return response.redirect('back');
-    //   }
+    if (referral) {
+      referralUser = await User.query().where('username', referral).first();
 
-    //   referred_by = referralUser.id
-
-    //   emailMessage = emailMessage
-    //     .replace('{{first_name}}', first_name)
-    //     .replace('{{last_name}}', last_name)
-    //     .replace('{{phone_number}}', phone_number)
-    //     .replace('{{email}}', email)
-    //     .replace('{{username}}', username)
-
-    //   Mail.send('emails.referral_notify', {
-    //     name: referralUser.getFullName(),
-    //     message: emailMessage.replace(/(?:\r\n|\r|\n)/g, '<br>')
-    //   }, (message) => {
-    //     message
-    //       .to(referralUser.email)
-    //       .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
-    //       .subject('Referral Registration - ' + Config.get('app.name'))
-    //   }).then(() => {})
-    // }
-
-    // emailMessage = emailMessage
-    //   .replace('{{first_name}}', first_name)
-    //   .replace('{{last_name}}', last_name)
-    //   .replace('{{phone_number}}', phone_number)
-    //   .replace('{{email}}', email)
-    //   .replace('{{username}}', username)
+      if (!referralUser) {
+        session.flash({
+          error: 'Referral Doesn\'t exist.'
+        }).flashExcept()
+        return response.redirect('back');
+      }
+    }
 
     const id_card = request.file('id_card')
     const picture = request.file('picture')
-
 
     if (picture.size == 0 || id_card.size == 0) {
       session.flashExcept(['password']).flash({
@@ -175,6 +152,13 @@ class AuthController {
       picture: picture_,
       id_card: id_card_,
     });
+
+    if(referral){
+      Referral.create({
+        referred_by: referralUser.id,
+        user_id: user.id
+      }).then(() => {})
+    }
 
     BankDetail.create({
        user_id: user.id,

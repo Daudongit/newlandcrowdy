@@ -53,14 +53,13 @@ Route
     Route.get('/announcements', 'AnnouncementController.index').as('admin.announcements.index')
     Route.get('/announcements/create', 'AnnouncementController.create').as('admin.announcements.create')
     Route.post('/announcements', 'AnnouncementController.store').as('admin.announcements.store');
-    
+
     Route.get('/references', 'ReferencesController.index').as('admin.references.index')
     Route.get('/references/:id/edit', 'ReferencesController.edit').as('admin.references.edit')
     Route.put('/references/:id', 'ReferencesController.update').as('admin.references.update')
 
+    Route.get('/referrals', 'ReferralController.index').as('admin.referrals.index')
     Route.put('/user/wallet/:id', 'UserController.wallet').as('admin.user.wallet')
-
-    // Done
 
     generateResource('users', 'UserController', 'admin.users')
 
@@ -111,6 +110,7 @@ Route
     Route.get('/withdrawals/create', 'WithdrawalController.create').as('app.withdrawals.create')
     Route.post('/withdrawals', 'WithdrawalController.store').as('app.withdrawals.store')
 
+    Route.get('/referrals', 'ReferralsController.index').as('app.referrals.index')
 
   })
   .prefix('app')
@@ -184,8 +184,10 @@ Route
 /*
 The must be the last route
 */
-
 Route
   .get('/:referral', 'AuthController.getSignUp')
   .as('auth.referral')
   .middleware(['guest']);
+/*
+The must be the last route
+*/

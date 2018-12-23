@@ -2,6 +2,7 @@
 const User = use('App/Models/User');
 const Transaction = use('App/Models/Transaction');
 const Package = use('App/Models/Package');
+const ReferralsHelper = use('App/Helpers/Referrals');
 const {
   validateAll
 } = use('Validator');
@@ -124,6 +125,7 @@ class DepositController extends ResourceController{
         type: Transaction.debit()
       });
 
+    await (new ReferralsHelper).credit(user.id, deposit.amount);
     }
 
     this.model.query().where({

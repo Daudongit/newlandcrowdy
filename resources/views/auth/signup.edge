@@ -194,6 +194,19 @@ Sign Up
     </div>
 
     <div class="form-group col-sm-12">
+        <label class="label">Referral</label>
+        <div class="input-group">
+          <input type="text" class="form-control" name="referral" value="{{ old('referral') || referral }}">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <i class="mdi mdi-check-circle-outline"></i>
+            </span>
+          </div>
+        </div>
+        {{ elIf('<span>$self</span>', getErrorFor('referral'), hasErrorFor('referral')) }}
+      </div>
+
+    <div class="form-group col-sm-12">
       <input type="checkbox" name="terms" required> Accept <a href="{{ route('guest.terms') }}">Terms and Conditions
       </a>
     </div>

@@ -6,10 +6,9 @@
 <div class="row">
     <div class="col-sm-12">
       <div class="page-title-box pb-0">
-        <h4 class="page-title">Dashboard</h4>
-        <ol class="breadcrumb">
-        </ol>
- 
+        <h4 class="page-title">Dashboard
+            <a href="{{ route('auth.referral', {referral: auth.user.username}) }}" class="referral_link">Your Ref Link: {{ fullUrl }}{{ route('auth.referral', {referral: auth.user.username}) }}</a>
+        </h4>
       </div>
     </div>
   </div><!-- end row -->

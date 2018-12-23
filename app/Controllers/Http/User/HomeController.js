@@ -20,6 +20,8 @@ class HomeController {
 
      sitename: Config.get('app.name'),
 
+     fullUrl: Config.get('app.fullUrl'),
+
      announcementCount: (await UserAnnouncement.query().where({
       user_id: auth.user.id,
       opened: 0

@@ -79,7 +79,6 @@ class ResourceController {
     });
 
     const resourceData = (await query.paginate(page)).toJSON();
-
     return view.render('crud.index', {
       resourceData,
       resourceRoute: this.resourceRoute,
