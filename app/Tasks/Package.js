@@ -1,79 +1,78 @@
-'use strict'
-
 const Task = use('Task')
 const Payment = use('App/Models/Payment');
 const Transaction = use('App/Models/Transaction');
+const Package = use('App/Models/Package');
 const dateFormat = require('dateformat');
 const User = use('App/Models/User');
 const moment = require('moment');
 
-class InvestmentTask extends Task {
-  static get schedule () {
+class PackageTask extends Task {
+  static get schedule() {
     return '0 * * */1 * *'
   }
 
-  async handle () {
-    
-    // const investments = await Investment.query().where({
-    //   status: 1
-    // }).get();
-    
-    // const date = dateFormat(null, "yyyy-mm-dd");
+  async handle() {
+    try {
+      const packages = (await Package.query().where({
+        status: 1
+      }).with('plan').fetch()).toJSON();
 
-    // investments.forEach(investment => {
+      const date = dateFormat(null, "yyyy-mm-dd");
+      const fullNow = dateFormat(null, "yyyy-mm-dd HH:MM:ss");
+      packages.forEach(async (_package) => {
+        var now = moment(date);
+        const last_process = _package.last_process ? _package.last_process : _package.started;
+        var end = moment(last_process);
+        var duration = moment.duration(now.diff(end));
+        var daysSinceLastProcess = Math.floor(duration.asDays());
+        if (daysSinceLastProcess > 30) {
+            const amount = Math.ceil(_package.plan.interest * _package.plan.capital / 100);
+            User.query().where({
+              id: _package.user_id
+            }).increment('wallet', amount).then(() => {});
 
-    //   var now = moment(date); //todays date
-    //   var end = moment(investment.last_process); // another date
-    //   var duration = moment.duration(now.diff(end));
-    //   var paymentsToMake = duration.asDays();
+            Payment.create({
+              user_id: _package.user_id,
+              package_id: _package.id,
+              amount,
+              status: 1,
+              created_at: fullNow
+            }).then(() => {});
 
-    //   if (paymentsToMake > 0) {
+            Transaction.create({
+              user_id: _package.user_id,
+              amount: amount,
+              message: "Package Payment",
+              type: Transaction.credit(),
+              from: 'package_payout',
+              from_id: _package.id
+            }).then(() => {});
 
-    //     let next_interest_days_count = investment.next_interest_days_count + paymentsToMake;
+            Package.query().where({
+              id: _package.id
+            }).update({
+              last_process: date
+            }).then(() => {});
 
-    //     if (next_interest_days_count >= investment.interest_duration) {
+            const paymentsCount = (await Payment.query().where({
+              package_id: _package.id
+            }).count('* as count'))[0].count;
+            if(paymentsCount === 12){
+              Package.query().where({
+                id: _package.id
+              }).update({
+                last_process: date,
+                status: 2
+              }).then(() => {});
+            }
 
-    //        next_interest_days_count = next_interest_days_count - investment.interest_duration;
+          }
 
-    //       const amount = Math.ceil(investment.rate * investment.amount / 100);
-
-    //     //   for (let i = 0; i < paymentsToMake; i++) {
-
-    //         User.query().where({
-    //           id: investment.user_id
-    //         }).increment('wallet', amount).then(() => {});
-
-    //         Payment.create({
-    //           user_id: investment.user_id,
-    //           investment_id: investment.id,
-    //           amount,
-    //           count: 1,
-    //         });
-
-    //         Transaction.create({
-    //           user_id: investment.user_id,
-    //           amount: amount,
-    //           message: "Investment Payment",
-    //           type: "0",
-    //           from: 'investment_payout',
-    //           from_id: investment.id
-    //         }).then(() => {})
-    //       }
-
-    //     // }
-
-    //     Investment.query().where({
-    //       id: investment.id
-    //     }).update({
-    //       next_interest_days_count,
-    //       last_process: date
-    //     }).then(() => {});
-
-    //   }
-
-    // });
-    // this.info('Task Investment handle')
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
 
-module.exports = InvestmentTask
+module.exports = PackageTask

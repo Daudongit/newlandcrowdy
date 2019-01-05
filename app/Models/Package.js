@@ -9,11 +9,13 @@ class Package extends Model {
 
   getNextInterestDays({
     started,
-    status
+    status,
+    last_process
   }){
     if(status === 1){
-      const end = moment(started)
-      const start = moment() 
+      const _last_process = last_process ? last_process : started;
+      const end = moment(_last_process)
+      const start = moment()
       return 30 - (Math.floor(moment.duration(start.diff(end)).asDays()) % 30);
     }
     return 'N/A'
