@@ -8,7 +8,7 @@ const moment = require('moment');
 
 class PackageTask extends Task {
   static get schedule() {
-    return '0 * * */1 * *'
+    return '0 0 * * *';
   }
 
   async handle() {
