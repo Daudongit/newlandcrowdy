@@ -9,12 +9,12 @@
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h4 class="card-title mb-0"> {{ mutipleItems }} </h4>
-          <div class="btn-toolbar mb-0 d-none d-sm-block" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-toolbar mb-0 d-sm-block" role="toolbar" aria-label="Toolbar with button groups">
             @if(hasCreate)
             <div class="btn-group float-right" role="group" aria-label="First group">
               <a class="btn btn-primary" href="{{ route(resourceRoute + '.create') }}">
                 <i class="mdi mdi-plus-circle"></i> 
-                <span class="hidden-xs"> New {{ singleItem }} </span>
+                <span> New {{ singleItem }} </span>
               </a>
             </div>
             @endif
