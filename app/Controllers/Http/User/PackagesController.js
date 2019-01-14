@@ -128,7 +128,7 @@ class PackagesController {
 
     if ('success' == paystackRes['data']['status']) {
 
-      console.log(paystackRes['data']);
+      // console.log(paystackRes['data']);
 
       // TODO
       let {
@@ -365,7 +365,7 @@ class PackagesController {
             resData += chunk;
           });
           res.on('end', () => {
-            console.log(resData);
+            // console.log(resData);
             const jsonData = JSON.parse(resData);
             if (jsonData.status === 400) {
               return reject(new Error(jsonData.message));

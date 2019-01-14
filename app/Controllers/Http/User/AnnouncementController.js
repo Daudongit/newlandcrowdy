@@ -10,10 +10,6 @@ class AnnouncementController {
     request
   }) {
     const page = request.input('page') || 1;
-    console.log( (await UserAnnouncement.query().where({
-      user_id: auth.user.id
-    }).with('announcement')
-    .orderBy('id', 'desc').paginate(page)).toJSON());
     return view.render('app.announcements.index', {
       announcements: (await UserAnnouncement.query().where({
           user_id: auth.user.id
