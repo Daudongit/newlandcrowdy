@@ -1,8 +1,7 @@
-'use strict'
+'use strict';
 
 const ResourceController = require('../ResourceController');
 class PlansController extends ResourceController {
-
   constructor() {
     super();
     this.model = use('App/Models/Plan');
@@ -25,87 +24,90 @@ class PlansController extends ResourceController {
     this.hasShow = false;
     this.hasEdit = true;
 
-    this.createAbles = [{
-        label: "Name",
-        name: "name",
-        type: "text"
+    this.createAbles = [
+      {
+        label: 'Name',
+        name: 'name',
+        type: 'text',
       },
       {
-        label: "Interest",
-        name: "interest",
-        type: "number"
+        label: 'Interest',
+        name: 'interest',
+        type: 'number',
       },
       {
-        label: "Duration",
-        name: "duration",
-        type: "number"
+        label: 'Duration',
+        name: 'duration',
+        type: 'number',
       },
       {
-        label: "Capital",
-        name: "capital",
-        type: "number"
+        label: 'Capital',
+        name: 'capital',
+        type: 'number',
       },
       {
-        label: "Color",
-        name: "color",
-        type: "text"
+        label: 'Color',
+        name: 'color',
+        type: 'text',
       },
       {
-        label: "Active",
-        name: "active",
-        type: "select",
-        options: [{
-          value: '0',
-          display: 'Not Active'
-        }, {
-          value: '1',
-          display: 'Active'
-        }]
+        label: 'Active',
+        name: 'active',
+        type: 'select',
+        options: [
+          {
+            value: '0',
+            display: 'Not Active',
+          },
+          {
+            value: '1',
+            display: 'Active',
+          },
+        ],
       },
     ];
 
     this.editAbles = this.createAbles;
 
-    this.showAbles = [{
-      label: "Name",
-      value: "name",
-    },
-    {
-      label: "Interest",
-      value: "interest",
-      type: "rate",
-    },
-    {
-        label: "Duration",
-        value: "duration",
-        type: "days",
+    this.showAbles = [
+      {
+        label: 'Name',
+        value: 'name',
       },
       {
-        label: "Capital",
-        value: "capital",
-        type: "money"
+        label: 'Interest',
+        value: 'interest',
+        type: 'rate',
       },
       {
-        label: "Active",
-        value: "fullActive",
-        type: "label"
+        label: 'Duration',
+        value: 'duration',
+        type: 'days',
       },
       {
-        label: "Color",
-        value: "color",
-        type: "color"
+        label: 'Capital',
+        value: 'capital',
+        type: 'money',
       },
       {
-        label: "Created",
-        value: "created_at",
-        type: "date"
+        label: 'Active',
+        value: 'fullActive',
+        type: 'label',
+      },
+      {
+        label: 'Color',
+        value: 'color',
+        type: 'color',
+      },
+      {
+        label: 'Created',
+        value: 'created_at',
+        type: 'date',
       },
     ];
 
     this.indexAbles = this.showAbles;
-
   }
-
 }
 
-module.exports = PlansController
+module.exports = PlansController;

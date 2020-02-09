@@ -1,16 +1,14 @@
-'use strict'
+'use strict';
 const _ = require('lodash');
-const Model = use('Model')
+const Model = use('Model');
 
 class Plan extends Model {
   static get computed() {
-    return ['perMonth', 'roi', 'fullActive']
+    return ['perMonth', 'roi', 'fullActive'];
   }
 
-  getFullActive({
-    active
-  }) {
-      return _.find(Plan.getEnums(), {field: 'active', id: active})
+  getFullActive({ active }) {
+    return _.find(Plan.getEnums(), { field: 'active', id: active });
   }
 
   static getEnums() {
@@ -18,34 +16,25 @@ class Plan extends Model {
       {
         field: 'active',
         id: 0,
-        label: "Not Active",
+        label: 'Not Active',
         class: 'warning',
       },
       {
         field: 'active',
         id: 1,
-        label: "Active",
+        label: 'Active',
         class: 'success',
-      }
-    ]
+      },
+    ];
   }
 
-  getPerMonth({
-    interest,
-    capital
-  }){
-    return interest * capital / 100
+  getPerMonth({ interest, capital }) {
+    return (interest * capital) / 100;
   }
 
-  getRoi({
-    interest,
-    capital,
-    duration
-  }) {
-    return interest * capital * duration / 100
+  getRoi({ interest, capital, duration }) {
+    return (interest * capital * duration) / 100;
   }
-
-
 }
 
-module.exports = Plan
+module.exports = Plan;

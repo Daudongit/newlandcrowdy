@@ -1,8 +1,7 @@
-'use strict'
+'use strict';
 
 const ResourceController = require('../ResourceController');
 class FaqsController extends ResourceController {
-
   constructor() {
     super();
     this.model = use('App/Models/Faq');
@@ -21,39 +20,39 @@ class FaqsController extends ResourceController {
     this.hasShow = true;
     this.hasEdit = true;
 
-    this.createAbles = [{
-        label: "Question",
-        name: "question",
-        type: "text"
+    this.createAbles = [
+      {
+        label: 'Question',
+        name: 'question',
+        type: 'text',
       },
       {
-        label: "Answer",
-        name: "answer",
-        type: "textarea"
+        label: 'Answer',
+        name: 'answer',
+        type: 'textarea',
       },
     ];
 
     this.editAbles = this.createAbles;
 
-    this.showAbles = [{
-      label: "Question",
-      value: "question",
-    },
-    {
-      label: "Answer",
-      value: "answer",
-    },
+    this.showAbles = [
       {
-        label: "Created",
-        value: "created_at",
-        type: "date"
+        label: 'Question',
+        value: 'question',
+      },
+      {
+        label: 'Answer',
+        value: 'answer',
+      },
+      {
+        label: 'Created',
+        value: 'created_at',
+        type: 'date',
       },
     ];
 
     this.indexAbles = this.showAbles;
-
   }
-
 }
 
-module.exports = FaqsController
+module.exports = FaqsController;

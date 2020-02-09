@@ -1,8 +1,7 @@
 'use strict';
 
 const ResourceController = require('../ResourceController');
-class BankController extends ResourceController{
-
+class BankController extends ResourceController {
   constructor() {
     super();
     this.model = use('App/Models/Bank');
@@ -13,7 +12,7 @@ class BankController extends ResourceController{
     this.dataFields = ['name'];
 
     this.validationRules = {
-        name: 'required',
+      name: 'required',
     };
 
     this.relationships = [];
@@ -24,31 +23,30 @@ class BankController extends ResourceController{
     this.hasShow = false;
     this.hasEdit = true;
 
+    this.createAbles = [
+      {
+        label: 'Name',
+        name: 'name',
+        type: 'text',
+      },
+    ];
 
-    this.createAbles = [{
-      label: "Name",
-      name: "name",
-      type: "text"
-    }
-  ];
+    this.editAbles = this.createAbles;
 
-  this.editAbles = this.createAbles;
+    this.showAbles = [
+      {
+        label: 'Name',
+        value: 'name',
+      },
+      {
+        label: 'Created',
+        value: 'created_at',
+        type: 'date',
+      },
+    ];
 
-  this.showAbles = [{
-      label: "Name",
-      value: "name"
-    },
-    {
-      label: "Created",
-      value: "created_at",
-      type: "date"
-    },
-  ];
-
-  this.indexAbles = this.showAbles;
-
-  } 
-
+    this.indexAbles = this.showAbles;
+  }
 }
 
-module.exports = BankController
+module.exports = BankController;

@@ -1,13 +1,11 @@
-'use strict'
+'use strict';
 
-const Model = use('Model')
+const Model = use('Model');
 
 class Payment extends Model {
-
-    user() {
-        return this.belongsTo('App/Models/User')
-      }
-
+  user() {
+    return this.belongsTo('App/Models/User');
+  }
 }
 
-module.exports = Payment
+module.exports = Payment;

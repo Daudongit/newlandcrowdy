@@ -7,6 +7,7 @@
   "scripts": {
     "start": "concurrently \"node server.js\" \"node ace run:scheduler\"",
     "test": "node ace test",
+    "prettify": "prettier --write \"app/**/*.js\"",
     "migrate": "node ace migration:run --force"
   },
   "keywords": [
@@ -42,7 +43,9 @@
     "url-parse": "^1.4.3",
     "uuid": "^3.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  },
   "autoload": {
     "App": "./app"
   }

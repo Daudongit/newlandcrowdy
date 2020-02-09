@@ -1,7 +1,6 @@
-'use strict'
-const Model = use('Model')
+'use strict';
+const Model = use('Model');
 
-class SupportType extends Model {
-}
+class SupportType extends Model {}
 
 module.exports = SupportType;

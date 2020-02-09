@@ -1,8 +1,7 @@
 'use strict';
 
 const ResourceController = require('../ResourceController');
-class SupportTypesController extends ResourceController{
-
+class SupportTypesController extends ResourceController {
   constructor() {
     super();
     this.model = use('App/Models/SupportType');
@@ -12,7 +11,7 @@ class SupportTypesController extends ResourceController{
     this.mutipleItems = 'Support Types';
     this.dataFields = ['name'];
     this.validationRules = {
-      name: 'required'
+      name: 'required',
     };
     this.relationships = [];
 
@@ -22,24 +21,23 @@ class SupportTypesController extends ResourceController{
     this.hasShow = false;
     this.hasEdit = true;
 
+    this.createAbles = [
+      {
+        label: 'Name',
+        name: 'name',
+        type: 'text',
+      },
+    ];
 
-    this.createAbles = [{
-      label: "Name",
-      name: "name",
-      type: "text"
-    }
-  ];
+    this.editAbles = this.createAbles;
 
-  this.editAbles = this.createAbles;
-
-  this.indexAbles = [{
-      label: "Name",
-      value: "name"
-    }
-  ];
-
-  } 
-
+    this.indexAbles = [
+      {
+        label: 'Name',
+        value: 'name',
+      },
+    ];
+  }
 }
 
-module.exports = SupportTypesController
+module.exports = SupportTypesController;

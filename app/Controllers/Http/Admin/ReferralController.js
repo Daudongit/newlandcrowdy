@@ -1,8 +1,7 @@
-'use strict'
+'use strict';
 
 const ResourceController = require('../ResourceController');
-class ReferralController extends ResourceController{
-
+class ReferralController extends ResourceController {
   constructor() {
     super();
     this.model = use('App/Models/Referral');
@@ -15,30 +14,28 @@ class ReferralController extends ResourceController{
 
     this.relationships = ['user', 'referred_by_user'];
 
-    this.indexAbles = [{
-        label: "User",
-        value: "user.fullName"
+    this.indexAbles = [
+      {
+        label: 'User',
+        value: 'user.fullName',
       },
       {
-        label: "Reffered By",
-        value: "referred_by_user.fullName",
-        type: 'user'
+        label: 'Reffered By',
+        value: 'referred_by_user.fullName',
+        type: 'user',
       },
       {
-        label: "Amount",
-        value: "amount",
-        type: 'money'
+        label: 'Amount',
+        value: 'amount',
+        type: 'money',
       },
       {
-        label: "Status",
-        value: "fullStatus",
-        type: 'label'
+        label: 'Status',
+        value: 'fullStatus',
+        type: 'label',
       },
-
     ];
   }
-
 }
 
-module.exports = ReferralController
-
+module.exports = ReferralController;
