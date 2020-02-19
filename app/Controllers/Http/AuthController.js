@@ -13,7 +13,6 @@ const Token = use('App/Models/Token');
 const Referral = use('App/Models/Referral');
 const BankDetail = use('App/Models/BankDetail');
 const randomstring = require('randomstring');
-const moment = require('moment');
 
 class AuthController {
   getSignUp({ view, params }) {

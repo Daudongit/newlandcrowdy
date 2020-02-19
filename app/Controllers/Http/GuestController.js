@@ -11,27 +11,9 @@ const validationMessages = use('App/Helpers/ValidationMessages');
 
 class GuestController {
   async getIndex({ view }) {
-    // console.log("love");
-    // Mail.send('emails.transactions', {
-    //     user:  `Testing`,
-    //     type : 'Debit',
-    //     amount: '50000',
-    //     message: 'Ok Send message'
-    //     }
-    //   , (message) => {
-    //       message
-    //       .to(Config.get('mail.transaction'))
-    //       .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
-    //       .subject(Config.get('app.name') + ' - Transactions')
-    //   }).then((kiss) => {
-    //       console.log('kiss')
-    //       console.log(kiss)
-    //   })
-
     return view.render('guest.index', {
-      plans: (
-        await Plan.query()
-          .where({ active: 1 })
+      faqs: (
+        await Faq.query()
           .fetch()
       ).toJSON(),
       testimonials: (
@@ -56,8 +38,24 @@ class GuestController {
     });
   }
 
+  getTeams({ view }) {
+    return view.render('guest.teams');
+  }
+
+  getCompany({ view }) {
+    return view.render('guest.company');
+  }
+
   getAbout({ view }) {
     return view.render('guest.about');
+  }
+
+  getBlog({ view }) {
+    return view.render('guest.blog');
+  }
+
+  getProperty({ view }) {
+    return view.render('guest.property');
   }
 
   getTerms({ view }) {

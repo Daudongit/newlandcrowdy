@@ -3,58 +3,142 @@
   Contact Us
 @endsection
 @section('content')
-	<section class="aboutus" id="about">
-		<div class="container">
-			<div class="row">
-				<!-- Section title start -->
-				<div class="col-md-12">
-					<div class="section-title">
-						<h2>Contact us</h2>
-					</div>
-				</div>
-				<!-- Section title end -->
-			</div>
-			
-			<div class="row">
-				<div class="col-md-12">
 
-					<!-- Contact us Form start -->
-					<div class="contact-form wow fadeInUp" data-wow-delay="0.2s">
-							@include('includes.alert')
+  <!-- CONTACT -->
+  <div class="container-fluid text-center py-5 bg-light">
+    <div class="row">
+      <div class="col-md-12">
+        <h3> <b>Contact Us</b> </h3>
+        <h6>Please contact us using this form if you <br> have any questions or comments about Landcrowdy.</h6>
+      </div>
+    </div>
+  </div>
 
-							<form action="{{ route('guest.contact') }}" method="post">
-							{{ csrfField() }}
-							<div class="row">
-								<div class="form-group col-md-12">
-									<input type="text" class="form-control" placeholder="Your Name" name="name" required>
-									<div class="help-block with-errors">
-											{{ elIf('<span>$self</span>', getErrorFor('name'), hasErrorFor('name')) }}
-									</div>
-								</div>
-								
-								<div class="form-group col-md-12">
-									<input type="email" class="form-control" placeholder="Your Email" name="email" required>
-									<div class="help-block with-errors">
-											{{ elIf('<span>$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
-									</div>
-								</div>
-								
-								<div class="form-group col-md-12 col-sm-12">
-									<textarea rows="4" class="form-control" placeholder="Write Message Here..." name="message" required></textarea>
-									<div class="help-block with-errors">
-											{{ elIf('<span>$self</span>', getErrorFor('message'), hasErrorFor('message')) }}
-									</div>
-									<button type="submit" name="support" class="btn-contact" title="Submit Your Message!">Submit</button>
-									<div id="msgSubmit" class="h3 text-left hidden"></div>
-								</div>
-							</div>
-						</form>
-					</div>
-					<!-- Contact us Form end -->
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Contact us section ends -->
-	 
+  <div class="container-fluid bg-light contact-padding">
+    <div class="row">
+      <div class="col-md-3 pb-5">
+        <h5 class="text-success"> <b>Helplines</b> </h5>
+        <h6>Our phone lines will be on <br> from 8:30am to 4pm, Mondays <br> to Fridays</h6>
+        <p class="my-3"> <b>+234 909 999 9830</b> </p>
+        <h6>support@landcrowdy.com.ng</h6>
+      </div>
+      <div class="col-md-3 pb-5">
+        <h5 class="text-success"> <b>Email Address</b> </h5>
+        <h6>All official correspondence and <br> enquiries should be forwared to</h6>
+        <p class="my-3"> <b>info@landcrowdy.com.ng</b> </p>
+        <h4 class="text-success">Connect with us</h4>
+        <a href="#"><i class="fa fa-facebook fa-2x  mx-1 text-dark"></i></a>
+        <a href="#"><i class="fa fa-twitter fa-2x mx-1 text-dark"></i></a>
+        <a href="#"><i class="fa fa-instagram fa-2x  mx-1 text-dark"></i></a>
+        <a href="#"><i class="fa fa-linkedin fa-2x  mx-1 text-dark"></i></a>
+      </div>
+      <div class="col-md-6">
+        <!--Section: Contact v.2-->
+        <section class="mb-4">
+
+          <!--Section heading-->
+          <!--Section description-->
+
+          <div class="row">
+
+            <!--Grid column-->
+            <div class="col-md-12 mb-md-0 mb-5">
+              <form id="contact-form" name="contact-form" action="" method="POST">
+
+                <!--Grid row-->
+                <div class="row">
+
+                  <!--Grid column-->
+                  <div class="col-md-6">
+                    <div class="md-form mb-0">
+                      <input type="text" id="name" name="name" class="form-control">
+                      <label for="name" class="">Your name</label>
+                    </div>
+                  </div>
+                  <!--Grid column-->
+
+                  <!--Grid column-->
+                  <div class="col-md-6">
+                    <div class="md-form mb-0">
+                      <input type="text" id="email" name="email" class="form-control">
+                      <label for="email" class="">Your email</label>
+                    </div>
+                  </div>
+                  <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="md-form mb-0">
+                      <input type="text" id="subject" name="subject" class="form-control">
+                      <label for="subject" class="">Subject</label>
+                    </div>
+                  </div>
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+
+                  <!--Grid column-->
+                  <div class="col-md-12">
+
+                    <div class="md-form">
+                      <textarea type="text" id="message" name="message" rows="2"
+                        class="form-control md-textarea"></textarea>
+                      <label for="message">Your message</label>
+                    </div>
+
+                  </div>
+                </div>
+                <!--Grid row-->
+
+              </form>
+
+              <div class="text-center text-md-left">
+                <a href="#"><button class="btn btn-rounded text-white  my-1 waves-effect tnav2 " name="submit" type="submit"><b>Send
+                      Message</b></button></a> </div>
+              <div class="status"></div>
+            </div>
+            <!--Grid column-->
+
+
+
+          </div>
+
+        </section>
+        <!--Section: Contact v.2-->
+      </div>
+    </div>
+	</div>
+	
+  <!--/CONTACT -->
+
+  <a href="https://api.whatsapp.com/send?phone=2349028064264"><button type="button" class="btn btn-info btn-rounded fixed-bottom"> <i class="fa fa-whatsapp "> </i> <b> Chat Now On WhatsApp</b></button></a>
+
+
+  <!-- BOOTSTRAP JS -->
+  <script src="js/jquery3.4.1.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/58a30be31919dc09f9ef7916/default';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+  <!-- /BOOTSTRAP JS -->
+</body>
+
+</html>	 
 @endsection

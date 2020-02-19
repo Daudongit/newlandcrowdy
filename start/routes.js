@@ -23,6 +23,10 @@ Route
     Route.post('/contact', 'GuestController.postContact').as('guest.contact')
     Route.get('/chart', 'GuestController.getChart').as('guest.chart')
     Route.get('/terms', 'GuestController.getTerms').as('guest.terms')
+    Route.get('/teams', 'GuestController.getTeams').as('guest.teams')
+    Route.get('/company', 'GuestController.getCompany').as('guest.company')
+    Route.get('/blog', 'GuestController.getBlog').as('guest.blog')
+    Route.get('/property', 'GuestController.getProperty').as('guest.property')
   })
   .middleware(['guest']);
 
