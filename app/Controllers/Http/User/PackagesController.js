@@ -10,7 +10,7 @@ const Transaction = use('App/Models/Transaction');
 const Payment = use('App/Models/Payment');
 const Reference = use('App/Models/Reference');
 const ReferralsHelper = use('App/Helpers/Referrals');
-const Plan = use('App/Models/Plan');
+const Project = use('App/Models/Project');
 const Package = use('App/Models/Package');
 const _ = require('lodash');
 const moment = require('moment');
@@ -68,8 +68,8 @@ class PackagesController {
       return response.redirect('back');
     }
     return view.render('app.packages.choose', {
-      plans: (
-        await Plan.query()
+      projects: (
+        await Project.query()
           .where({ active: 1 })
           .fetch()
       ).toJSON(),
@@ -132,7 +132,7 @@ class PackagesController {
       amount = amount / 100;
 
       const plan_id = (
-        await Plan.query()
+        await Project.query()
           .where({
             capital: amount,
           })
@@ -276,7 +276,7 @@ class PackagesController {
 
   async invoice({ params, view }) {
     return view.render('app.packages.invoice', {
-      plan: await Plan.query()
+      plan: await Project.query()
         .where({
           id: params.id,
         })
@@ -317,7 +317,7 @@ class PackagesController {
 
     const { plan_id, method } = request.all();
 
-    const plan = await Plan.query()
+    const plan = await Project.query()
       .where({
         id: plan_id,
       })

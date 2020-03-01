@@ -55,7 +55,7 @@ hooks.after.providersBooted(() => {
   });
 
   View.global('siteTitle', function () {
-    return 'DigitalCoop'
+    return 'Landcrowdy'
   });
 
   View.global('excerpt', function (message) {

@@ -8,7 +8,7 @@ class PackagesSchema extends Schema {
     this.create('packages', (table) => {
       table.increments()
       table.integer('user_id').unsigned().references('id').inTable('users')
-      table.integer('plan_id').unsigned().references('id').inTable('plans')
+      table.integer('plan_id').unsigned().references('id').inTable('projects')
       table.boolean('status').defaultTo(false)
       table.datetime('started')
       table.timestamps()

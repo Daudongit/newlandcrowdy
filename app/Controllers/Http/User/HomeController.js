@@ -3,7 +3,6 @@
 const Config = use('Config');
 const Route = use('Route');
 const Transaction = use('App/Models/Transaction');
-// const Package = use('App/Models/Package');
 const Withdrawal = use('App/Models/Withdrawal');
 const UserAnnouncement = use('App/Models/UserAnnouncement');
 const User = use('App/Models/User');

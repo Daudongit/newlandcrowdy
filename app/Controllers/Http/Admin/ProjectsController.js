@@ -1,22 +1,23 @@
 'use strict';
 
 const ResourceController = require('../ResourceController');
-class PlansController extends ResourceController {
+class ProjectsController extends ResourceController {
   constructor() {
     super();
-    this.model = use('App/Models/Plan');
-    this.resourceRoute = 'admin.plans';
+    this.model = use('App/Models/Project');
+    this.resourceRoute = 'admin.projects';
     this.indexRoute = `${this.resourceRoute}.index`;
-    this.singleItem = 'Plan';
-    this.mutipleItems = 'Plans';
-    this.dataFields = ['name', 'interest', 'duration', 'capital', 'active', 'color'];
+    this.singleItem = 'Project';
+    this.mutipleItems = 'Projects';
+    this.dataFields = ['name', 'interest', 'duration', 'capital', 'active', 'flats', 'slots'];
     this.validationRules = {
       name: 'required',
       interest: 'required',
       duration: 'required',
       capital: 'required',
       active: 'required',
-      color: 'required',
+      flats: 'required',
+      slots: 'required',
     };
 
     this.hasCreate = true;
@@ -46,9 +47,14 @@ class PlansController extends ResourceController {
         type: 'number',
       },
       {
-        label: 'Color',
-        name: 'color',
+        label: 'Flats',
+        name: 'flats',
         type: 'text',
+      },
+      {
+        label: 'Slots',
+        name: 'slots',
+        type: 'number',
       },
       {
         label: 'Active',
@@ -95,9 +101,14 @@ class PlansController extends ResourceController {
         type: 'label',
       },
       {
-        label: 'Color',
-        value: 'color',
-        type: 'color',
+        label: 'Flats',
+        value: 'flats',
+        type: 'flats',
+      },
+      {
+        label: 'Slots',
+        value: 'slots',
+        type: 'slots',
       },
       {
         label: 'Created',
@@ -110,4 +121,4 @@ class PlansController extends ResourceController {
   }
 }
 
-module.exports = PlansController;
+module.exports = ProjectsController;

@@ -35,7 +35,7 @@ Route
     Route.get('/', 'HomeController.getDashboard').as('admin.dashboard')
 
     generateResource('deposits', 'DepositController', 'admin.deposits')
-    generateResource('plans', 'PlansController', 'admin.plans')
+    generateResource('projects', 'ProjectsController', 'admin.projects')
     generateResource('packages', 'PackagesController', 'admin.packages')
     generateResource('supporttypes', 'SupportTypesController', 'admin.supporttypes')
     generateResource('faqs', 'FaqController', 'admin.faqs')

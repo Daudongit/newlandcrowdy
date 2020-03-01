@@ -19,9 +19,9 @@
             </h1>
             <h5 class="text-dark pb-5"> <b>A transformative affordable housing<br> solution for
                 everyone by everyone.</b> </h5>
-            <a class="btn wrp1 waves-effect text-white mx-1" href="login.html" role="button"><b>Sponsor A
+            <a class="btn wrp1 waves-effect text-white mx-1" href="{{ route('app.signin') }}" role="button"><b>Sponsor A
                 Property</b></a>
-            <a class="btn wrp2 waves-effect text-white mx-1" href="login.html" role="button"><b>Create A
+            <a class="btn wrp2 waves-effect text-white mx-1" href="{{ route('app.signup') }}" role="button"><b>Create A
                 Free Account</b></a>
           </div>
         </div>
@@ -34,22 +34,12 @@
   <!--MileStones-->
   <div class="container-fluid mile">
     <div class="row text text-center">
+			@each(counter in counters)
       <div class="col-md-3 col-sm-6 border-right">
-        <h5> <i class="fa fa-building-o fa-3x text-white" aria-hidden="true"></i> <span class="text-white h1">
-          </span><br> <span class="text-white">12 Properties</span> </h5>
+        <h5> <i class="fa fa-{{ ['building-o', 'users', 'globe', 'space-shuttle'][counter.id - 1] }} fa-3x text-white" aria-hidden="true"></i> <span class="text-white h1">
+        </span><br> <span class="text-white">{{ counter.value }} {{ counter.title }}</span> </h5>
       </div>
-      <div class="col-md-3 col-sm-6 border-right">
-        <h5> <i class="fa fa-users fa-3x text-white" aria-hidden="true"></i> <span class="text-white h1">
-          </span><br> <span class="text-white">50 Subscribers</span> </h5>
-      </div>
-      <div class="col-md-3 col-sm-6 border-right">
-        <h5> <i class="fa fa-globe fa-3x  text-white" aria-hidden="true"></i> <span class="text-white h1">
-          </span><br> <span class="text-white"> 3 Communities</span> </h5>
-      </div>
-      <div class="col-md-3 col-sm-6 ">
-        <h5> <i class="fa fa-space-shuttle fa-3x  text-white" aria-hidden="true"></i> <span class="text-white h1">
-          </span><br> <span class="text-white">Founded 2019</span> </h5>
-      </div>
+      @endeach
     </div>
   </div>
 
@@ -70,15 +60,14 @@
   <!-- Card -->
   <div class="container-fluid bg-light">
     <div class="row">
-
-      <!-- Card 1-->
+      @each(project in projects)
       <div class="col-md-3">
         <div class="card">
           <!-- Card image -->
           <div class="view overlay">
-            <img class="card-img-top" src="/assets/images/properties/1.jpg" alt="Card image cap">
-            <a class=" bt1 btn wrp2 waves-effect text-white" href="login.html" role="button"><b>
-                Coming Soon</b></a> <a>
+            <img class="card-img-top" src="/assets/images/properties/{{ $loop.index + 1 }}.jpg" alt="Card image cap">
+            <a class=" bt1 btn wrp{{ project.active === 0 ? '3' : '2' }} waves-effect text-white"  href="{{ route('app.signin') }}" role="button"><b>
+              {{ project.active === 0 ? 'Coming Soon' : 'Active' }}</b></a> <a>
               <div class="mask rgba-white-slight"></div>
             </a>
           </div>
@@ -87,174 +76,36 @@
           <div class="card-body rotate-btn float-right">
             <!-- Title -->
 
-            <h5 class="  card-title text-center"><b>16 Block of Flats</b></h5>
+          <h5 class="  card-title text-center"><b>{{ project.flats }}</b></h5>
             <hr>
             <!-- Text -->
             <table class="table table-borderless ">
               <thead>
                 <tr>
                   <th scope="col"> <i class="fa fa-map-marker" aria-hidden="true"></i> Location</th>
-                  <td scope="col">Fadeyi, Lagos</td>
+                <td scope="col">{{ project.name }}</td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row"><i class="fa fa-building-o" aria-hidden="true"></i> Slot(s)</th>
-                  <td>300 units</td>
+                  <td>{{ project.slots }} units</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           <!-- Card footer -->
-          <div class="rounded-bottom cdf text-center pt-3">
+          <div class="rounded-bottom cdf{{ project.active === 0 ? '2' : '' }} text-center pt-3">
             <ul class="list-unstyled list-inline font-small">
-              <li class="list-inline-item pr-1 "> <b> ₦100,000</b><span class="small">/unit</span></li>
-              <li class="list-inline-item pr-1 "><i class="fa fa-bar-chart pr-1 "></i>30%</a></li>
-              <li class="list-inline-item pr-1"><i class="fa fa-users pr-1 "></i>0 Investors </a></li>
+              <li class="list-inline-item pr-1 "> <b> {{ project.capital }}</b><span class="small">/unit</span></li>
+            <li class="list-inline-item pr-1 "><i class="fa fa-bar-chart pr-1 "></i>{{ project.interest }}%</a></li>
+              <li class="list-inline-item pr-1"><i class="fa fa-users pr-1 "></i>{{ project.duration }} Investors </a></li>
             </ul>
           </div>
         </div>
       </div>
-      <!-- /Card 1 -->
-
-      <!-- Card 2-->
-      <div class="col-md-3">
-        <div class="card">
-          <!-- Card image -->
-          <div class="view overlay">
-            <img class="card-img-top" src="/assets/images/properties/2.jpg" alt="Card image cap">
-            <a class=" bt1 btn wrp3 waves-effect text-white" href="login.html" role="button"><b>
-                Sold Out</b></a> <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-          <!-- Button -->
-          <!-- Card content -->
-          <div class="card-body">
-            <!-- Title -->
-            <h5 class="  card-title text-center"><b>14 Block of Flats</b></h5>
-            <hr>
-            <!-- Text -->
-            <table class="table table-borderless ">
-              <thead>
-                <tr>
-                  <th scope="col"> <i class="fa fa-map-marker" aria-hidden="true"></i> Location</th>
-                  <td scope="col">Maryland, Lagos</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row"><i class="fa fa-building-o" aria-hidden="true"></i> Slot(s)</th>
-                  <td>220 Units</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Card footer -->
-          <div class="rounded-bottom cdf2 text-center pt-3">
-            <ul class="list-unstyled list-inline font-small">
-              <li class="list-inline-item pr-1 "> <b> ₦100,000</b><span class="small">/unit</span></li>
-              <li class="list-inline-item pr-1 "><i class="fa fa-bar-chart pr-1 "></i>30%</a></li>
-              <li class="list-inline-item pr-1"><i class="fa fa-clock-o pr-1 "></i>24 Months </a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!-- /Card 2 -->
-
-      <!-- Card 3-->
-      <div class="col-md-3">
-        <div class="card">
-          <!-- Card image -->
-          <div class="view overlay">
-            <img class="card-img-top" src="/assets/images/properties/4.jpg" alt="Card image cap">
-            <a class=" bt1 btn wrp2 waves-effect text-white" href="login.html" role="button"><b>
-                Coming Soon</b></a> <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-          <!-- Button -->
-          <!-- Card content -->
-          <div class="card-body">
-            <!-- Title -->
-            <h5 class="  card-title text-center"><b>12 Block of Flats</b></h5>
-            <hr>
-            <!-- Text -->
-            <table class="table table-borderless ">
-              <thead>
-                <tr>
-                  <th scope="col"> <i class="fa fa-map-marker" aria-hidden="true"></i> Location</th>
-                  <td scope="col">Surulere, Lagos</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row"><i class="fa fa-building-o" aria-hidden="true"></i> Slot(s)</th>
-                  <td>300 Units</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Card footer -->
-          <div class="rounded-bottom cdf text-center pt-3">
-            <ul class="list-unstyled list-inline font-small">
-              <li class="list-inline-item pr-1 "> <b> ₦100,000</b><span class="small">/unit</span></li>
-              <li class="list-inline-item pr-1 "><i class="fa fa-bar-chart pr-1 "></i>30%</a></li>
-              <li class="list-inline-item pr-1"><i class="fa fa-users pr-1 "></i>0 Investors </a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!-- /Card 3 -->
-
-      <!-- Card 4-->
-      <div class="col-md-3 mb-3">
-        <div class="card">
-          <!-- Card image -->
-          <div class="view overlay">
-            <img class="card-img-top" src="/assets/images/properties/3.jpg" alt="Card image cap">
-            <a class=" bt1 btn wrp3 waves-effect text-white" href="login.html" role="button"><b>
-                Sold Out</b></a> <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-          <!-- Button -->
-          <!-- Card content -->
-          <div class="card-body">
-            <!-- Title -->
-            <h5 class="  card-title text-center"><b>18 Block of Flats</b></h5>
-            <hr>
-            <!-- Text -->
-            <table class="table table-borderless ">
-              <thead>
-                <tr>
-                  <th scope="col"> <i class="fa fa-map-marker" aria-hidden="true"></i> Location</th>
-                  <td scope="col">Yaba, Lagos</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row"><i class="fa fa-building-o" aria-hidden="true"></i> Slot(s)</th>
-                  <td>300 Units</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Card footer -->
-          <div class="rounded-bottom cdf2 text-center pt-3">
-            <ul class="list-unstyled list-inline font-small">
-              <li class="list-inline-item pr-1 "> <b> ₦100,000</b><span class="small">/unit</span></li>
-              <li class="list-inline-item pr-1 "><i class="fa fa-bar-chart pr-1 "></i>30%</a></li>
-              <li class="list-inline-item pr-1"><i class="fa fa-clock-o pr-1 "></i>12 Months </a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!-- /Card 4 -->
+      @endeach
     </div>
   </div>
   <!--/.Properties Cards-->
@@ -373,7 +224,7 @@
         </div>
       </div>
       <div class="col-md-12 text-center mt-5">
-        <a class="btn tnav4 waves-effect text-white " href="login.html" role="button"><b>Any Further Questions?</b></a>
+        <a class="btn tnav4 waves-effect text-white " href="/" role="button"><b>Any Further Questions?</b></a>
       </div>
     </div>
   </div>

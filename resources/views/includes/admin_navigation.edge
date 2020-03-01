@@ -1,26 +1,33 @@
-<ul class="metismenu" id="side-menu">
-    <li><a href="{{ route('admin.dashboard') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Dashboard</span></a></li>
-    <li><a href="{{ route('admin.plans.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Plans</span></a></li>
-    <li><a href="{{ route('admin.packages.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Packages</span></a></li>
-    <li><a href="{{ route('admin.deposits.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Deposits</span></a></li>
+<ul class="nk-menu nk-menu-main">
     <li><a href="{{ route('admin.supports.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Support
       @if(supportCount && supportCount > 0)
       <span class="badge badge-primary badge-pill float-right"> {{ supportCount }}</span>
       @endif
     </span></a></li>
-    <li><a href="{{ route('admin.announcements.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Announcements</span></a></li>
-    <li><a href="{{ route('admin.transactions.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Transactions</span></a></li>
-    <li><a href="{{ route('admin.faqs.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> FAQs</span></a></li>
-    <li><a href="{{ route('admin.testimonials.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Testimonials</span></a></li>
-    <li><a href="{{ route('admin.users.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Users</span></a></li>
     <li><a href="{{ route('admin.withdrawals.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Withdrawals
       @if(withdrawalsCount && withdrawalsCount > 0)
       <span class="badge badge-primary badge-pill float-right"> {{ withdrawalsCount }}</span>
       @endif
     </span></a></li>
-    <li><a href="{{ route('admin.referrals.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Referrals</span></a></li>
-    <li><a href="{{ route('admin.references.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> References</span></a></li>
-    <li><a href="{{ route('admin.payments.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Payments</span></a></li>
-    <li><a href="{{ route('admin.banks.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Banks</span></a></li>
-    <li><a href="{{ route('admin.bankoptions.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Bank Options</span></a></li>
+  </ul>
+
+  <ul class="nk-menu nk-menu-main">
+    <li class="nk-menu-item"><a href="{{ route('admin.dashboard') }}" class="nk-menu-link"><span  class="nk-menu-text">Dashboard</span></a></li>
+    <li class="nk-menu-item"><a href="{{ route('admin.projects.index') }}" class="nk-menu-link"><span  class="nk-menu-text">Projects</span></a></li>
+    <li class="nk-menu-item"><a href="{{ route('admin.deposits.index') }}" class="nk-menu-link"><span  class="nk-menu-text">Deposits</span></a></li>
+    <li class="nk-menu-item"><a href="{{ route('admin.packages.index') }}" class="nk-menu-link"><span  class="nk-menu-text">Packages</span></a></li>
+    <li class="nk-menu-item"><a href="{{ route('admin.users.index') }}" class="nk-menu-link"><span  class="nk-menu-text">Users</span></a></li>
+    <li class="nk-menu-item has-sub"><a href="#"  class="nk-menu-link nk-menu-toggle"><span class="nk-menu-text">Pages</span></a>
+        <ul class="nk-menu-sub">
+          <li class="nk-menu-item"><a href="{{ route('admin.payments.index') }}" class="nk-menu-link"><span class="nk-menu-text"> Payments</span></a></li>
+          <li class="nk-menu-item"><a href="{{ route('admin.announcements.index') }}" class="nk-menu-link"><span class="nk-menu-text"> Announcements</span></a></li>
+          <li class="nk-menu-item"><a href="{{ route('admin.transactions.index') }}" class="nk-menu-link"><span class="nk-menu-text"> Transactions</span></a></li>
+          <li class="nk-menu-item"><a href="{{ route('admin.testimonials.index') }}" class="nk-menu-link"><span class="nk-menu-text"> Testimonials</span></a></li>
+          <li class="nk-menu-item"><a href="{{ route('admin.faqs.index') }}" class="nk-menu-link"><span class="nk-menu-text"> FAQs</span></a></li>
+          <li class="nk-menu-item"><a href="{{ route('admin.referrals.index') }}" class="nk-menu-link"><span class="nk-menu-text"> Referrals</span></a></li>
+          <li class="nk-menu-item"><a href="{{ route('admin.references.index') }}" class="nk-menu-link"><span class="nk-menu-text"> References</span></a></li>
+          <li class="nk-menu-item"><a href="{{ route('admin.banks.index') }}" class="nk-menu-link"><span class="nk-menu-text"> Bank</span></a></li>
+          <li class="nk-menu-item"><a href="{{ route('admin.bankoptions.index') }}" class="nk-menu-link"><span class="nk-menu-text"> Bank Options</span></a></li>
+        </ul>
+    </li>
   </ul>

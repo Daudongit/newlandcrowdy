@@ -1,108 +1,220 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx" class="js">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
-  <title>
-    {{ siteTitle() }} -
-    @!section('title')
-  </title>
-  <meta content="Admin Dashboard" name="description">
-  <meta content="Themesbrand" name="author">
-  <link rel="shortcut icon" href="/assets/images/favicon.ico?hello=1">
-  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="/assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
-  <link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
-  <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="/assets/images/favicon.png">
+    <title>
+      {{ siteTitle() }} -
+      @!section('title')
+    </title>
+    <link rel="stylesheet" href="/assets/css/dashlite.css?ver=1.1.0">
+    <link rel="stylesheet" href="/assets/css/app.theme.css?ver=1.1.0">
   <link href="/assets/css/whatsapp.css" rel="stylesheet" type="text/css">
-  <link href="/assets/css/custom.css" rel="stylesheet" type="text/css">
+
 </head>
 
-<body>
-  <!-- Begin page -->
-  <div id="wrapper">
-    <!-- Top Bar Start -->
-    <div class="topbar">
-      <!-- LOGO -->
-      <div class="topbar-left"><a href="/" class="logo"><span><img src="/assets/images/logo-light.png" alt=""
-              height="50"> </span><i><img src="/assets/images/logo-sm.png" alt="" height="50"></i></a></div>
-      <nav class="navbar-custom">
-        <ul class="navbar-right d-flex list-inline float-right mb-0">
-          <li class="dropdown notification-list">
-            <div class="dropdown notification-list nav-pro-img"><a class="dropdown-toggle nav-link arrow-none waves-effect nav-user"
-                data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">{{ auth.user.getFullName() }}</a>
-              <div class="dropdown-menu dropdown-menu-right profile-dropdown">
-                <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="{{ route('logout') }}"><i class="mdi mdi-power text-danger"></i>
-                  Logout</a>
-              </div>
+<body class="nk-body bg-lighter npc-invest ">
+    <div class="nk-app-root">
+        <div class="nk-wrap ">
+            <div class="nk-header nk-header-fluid is-dark">
+                <div class="container-xl wide-lg">
+                    <div class="nk-header-wrap">
+                        <div class="nk-menu-trigger mr-sm-2 d-lg-none"><a href="#"
+                                class="nk-nav-toggle nk-quick-nav-icon" data-target="headerNav"><em
+                                    class="icon ni ni-menu"></em></a></div>
+                        <div class="nk-header-brand"><a href="/index.html" class="logo-link"><img
+                                    class="logo-light logo-img" src="/assets/images/logo12.png" srcset="/assets/images/logo12.png 2x"
+                                    alt="logo"><img class="logo-dark logo-img" src="/assets/images/logo12.png"
+                                    srcset="/assets/images/logo12.png 2x" alt="logo-dark"></a></div>
+                        <div class="nk-header-menu" data-content="headerNav">
+                            <div class="nk-header-mobile">
+                                <div class="nk-header-brand"><a href="/index.html" class="logo-link"><img
+                                            class="logo-light logo-img" src="/assets/images/logo.png"
+                                            srcset="/assets/images/logo12.png 2x" alt="logo"><img class="logo12 logo-img"
+                                            src="/assets/images/logo12.png" srcset="/assets/images/logo12.png 2x"
+                                            alt="logo-dark"><span class="nio-version">Invest</span></a></div>
+                                <div class="nk-menu-trigger mr-n2"><a href="#" class="nk-nav-toggle nk-quick-nav-icon"
+                                        data-target="headerNav"><em class="icon ni ni-arrow-left"></em></a></div>
+                            </div>
+                            @if(auth.user.isUser())
+                            @include('includes.app_navigation')
+                           @else
+                            @include('includes.admin_navigation')
+                           @endif
+                        </div>
+                        <div class="nk-header-tools">
+                            <ul class="nk-quick-nav">
+                                <li class="dropdown notification-dropdown"><a href="#"
+                                        class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
+                                        <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
+                                        <div class="dropdown-head"><span
+                                                class="sub-title nk-dropdown-title">Notifications</span><a href="#">Mark
+                                                All as Read</a></div>
+                                        <div class="dropdown-body">
+                                            <div class="nk-notification">
+                                                <div class="nk-notification-item dropdown-inner">
+                                                    <div class="nk-notification-icon"><em
+                                                            class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                    </div>
+                                                    <div class="nk-notification-content">
+                                                        <div class="nk-notification-text">You have requested to
+                                                            <span>Widthdrawl</span></div>
+                                                        <div class="nk-notification-time">2 hrs ago</div>
+                                                    </div>
+                                                </div>
+                                                <div class="nk-notification-item dropdown-inner">
+                                                    <div class="nk-notification-icon"><em
+                                                            class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                    </div>
+                                                    <div class="nk-notification-content">
+                                                        <div class="nk-notification-text">Your <span>Deposit
+                                                                Order</span> is placed</div>
+                                                        <div class="nk-notification-time">2 hrs ago</div>
+                                                    </div>
+                                                </div>
+                                                <div class="nk-notification-item dropdown-inner">
+                                                    <div class="nk-notification-icon"><em
+                                                            class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                    </div>
+                                                    <div class="nk-notification-content">
+                                                        <div class="nk-notification-text">You have requested to
+                                                            <span>Widthdrawl</span></div>
+                                                        <div class="nk-notification-time">2 hrs ago</div>
+                                                    </div>
+                                                </div>
+                                                <div class="nk-notification-item dropdown-inner">
+                                                    <div class="nk-notification-icon"><em
+                                                            class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                    </div>
+                                                    <div class="nk-notification-content">
+                                                        <div class="nk-notification-text">Your <span>Deposit
+                                                                Order</span> is placed</div>
+                                                        <div class="nk-notification-time">2 hrs ago</div>
+                                                    </div>
+                                                </div>
+                                                <div class="nk-notification-item dropdown-inner">
+                                                    <div class="nk-notification-icon"><em
+                                                            class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                    </div>
+                                                    <div class="nk-notification-content">
+                                                        <div class="nk-notification-text">You have requested to
+                                                            <span>Widthdrawl</span></div>
+                                                        <div class="nk-notification-time">2 hrs ago</div>
+                                                    </div>
+                                                </div>
+                                                <div class="nk-notification-item dropdown-inner">
+                                                    <div class="nk-notification-icon"><em
+                                                            class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                    </div>
+                                                    <div class="nk-notification-content">
+                                                        <div class="nk-notification-text">Your <span>Deposit
+                                                                Order</span> is placed</div>
+                                                        <div class="nk-notification-time">2 hrs ago</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-foot center"><a href="#">View All</a></div>
+                                    </div>
+                                </li>
+                                <li class="dropdown user-dropdown order-sm-first"><a href="#" class="dropdown-toggle"
+                                        data-toggle="dropdown">
+                                        <div class="user-toggle">
+                                            <div class="user-avatar sm"><em class="icon ni ni-user-alt"></em></div>
+                                            <div class="user-info d-none d-xl-block">
+                                            <div class="user-name dropdown-indicator">{{ auth.user.username }}</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-md dropdown-menu-right dropdown-menu-s1 is-light">
+                                        <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                            <div class="user-card">
+                                                <div class="user-avatar"><span>AB</span></div>
+                                            <div class="user-info"><span class="lead-text">{{ auth.user.getFullName() }}</span><span class="sub-text">{{ auth.user.email }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @if(auth.user.isUser())
+                                        <div class="dropdown-inner user-account-info">
+                                            <h6 class="overline-title-alt">Account Balance</h6>
+                                            <div class="user-balance">1,494.23 <small
+                                                    class="currency currency-usd">USD</small></div>
+                                            <div class="user-balance-sub">Locked <span>15,495.39 <span
+                                                        class="currency currency-usd">USD</span></span></div><a href="#"
+                                                class="link"><span>Withdraw Balance</span> <em
+                                                    class="icon ni ni-wallet-out"></em></a>
+                                        </div>
+                                        <div class="dropdown-inner">
+                                            <ul class="link-list">
+                                                <li><a href="{{ route('app.account.settings') }}"><em
+                                                            class="icon ni ni-setting-alt"></em><span>Account
+                                                            Setting</span></a></li>
+                                            </ul>
+                                        </div>
+                                        @endif
+                                        <div class="dropdown-inner">
+                                            <ul class="link-list">
+                                                <li><a href="{{ route('logout') }}"><em class="icon ni ni-signout"></em><span>Sign
+                                                            out</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </li>
-        </ul>
-        <ul class="list-inline menu-left mb-0">
-          <li class="float-left"><button class="button-menu-mobile open-left waves-effect"><i class="mdi mdi-menu"></i></button></li>
-        </ul>
-      </nav>
-    </div><!-- Top Bar End -->
-    <!-- ========== Left Sidebar Start ========== -->
-    <div class="left side-menu">
-      <div class="slimscroll-menu" id="remove-scroll">
-        <!--- Sidemenu -->
-        <div id="sidebar-menu">
-          <!-- Left Menu Start -->
-      
-          @if(auth.user.isUser()) 
-          @include('includes.app_navigation') 
-         @else 
-          @include('includes.admin_navigation')
-         @endif
-
-        </div><!-- Sidebar -->
-        <div class="clearfix"></div>
-      </div><!-- Sidebar -left -->
-    </div><!-- Left Sidebar End -->
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
-    <div class="content-page">
-      <!-- Start content -->
-      <div class="content">
-        <div class="container-fluid">
-            @include('includes.alert')
-            @!section('content')
-        </div><!-- container-fluid -->
-      </div><!-- content -->
-      <!-- <footer class="footer">Copyright © {{ currentYear() }} - {{ siteTitle() }} - <span class="d-none d-sm-inline-block">Crafted by </span>  <a href="https://fuzzy-hunter.herokuapp.com/" target="_blank">Fuzzy Hunter</a>.</footer> -->
-    </div><!-- ============================================================== -->
-    <!-- End Right content here -->
-    <!-- ============================================================== -->
-  </div><!-- END wrapper -->
-  <!-- jQuery  -->
+            <div class="nk-content nk-content-lg nk-content-fluid">
+                <div class="container-xl wide-lg">
+                  @include('includes.alert')
+                  @!section('content')
+                </div>
+            </div>
+            <div class="nk-footer nk-footer-fluid bg-lighter">
+                <div class="container-xl wide-lg">
+                    <div class="nk-footer-wrap">
+                        <div class="nk-footer-copyright"> &copy; {{ currentYear() }}  {{ siteTitle() }}.
+                        </div>
+                        <div class="nk-footer-links">
+                            <ul class="nav nav-sm">
+                                <li class="nav-item"><a class="nav-link" href="#">Terms</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   <script src="/assets/js/jquery-1.12.4.min.js"></script>
-  @if(auth.user.isUser())
-  <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/58d8e2a3f97dd14875f5a4cd/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-  </script>
-
-  @include('includes.whatsapp') 
-
-  @endif
   <script src="/assets/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/js/metisMenu.min.js"></script>
-  <script src="/assets/js/jquery.slimscroll.js"></script>
-  <script src="/assets/js/waves.min.js"></script>
+
+    @if(auth.user.isUser())
+    <script type="text/javascript">
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/58d8e2a3f97dd14875f5a4cd/default';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+      })();
+    </script>
+    @include('includes.whatsapp')
+    @endif
   @!section('scripts')
-  <script src="/assets/js/app.js"></script>
-  <script src="/assets/js/custom.js"></script>
+    <script src="/assets/js/custom.js"></script>
+
 </body>
 
 </html>

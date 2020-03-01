@@ -56,8 +56,8 @@ class Package extends Model {
     return this.belongsTo('App/Models/User');
   }
 
-  plan() {
-    return this.belongsTo('App/Models/Plan');
+  project() {
+    return this.belongsTo('App/Models/Project');
   }
 
   payments() {

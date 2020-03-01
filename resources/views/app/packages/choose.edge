@@ -12,22 +12,22 @@ New Package
 </div>
 
 <div class="row">
-  @each(plan in plans)
+  @each(project in projects)
   <div class="col-xl-3 col-md-6">
-    <div class="card mini-stat choose-package pick-package" style="background: {{ plan.color }}" data-id="{{ plan.id }}">
-
+    <div class="card mini-stat choose-package pick-package" data-id="{{ project.id }}">
         <div class="card-body mini-stat-img">
           <div class="text-white">
-            <h6 class="text-uppercase mb-3">{{ plan.name }}</h6>
-            <h4 class="mb-4">Fee: {{{ moneyFormat(plan.capital) }}}</h4>
-            <h4 class="mb-4">@ {{plan.interest}}% </h4>
-            <h6 class="mb-4">{{{ moneyFormat(plan.perMonth) }}} monthly</h6>
-            <h6 class="mb-4">for {{plan.duration}} months</h6>
-            <h4 class="mb-4">ROI: {{{ moneyFormat(plan.roi) }}}</h4>
+            <h6 class="text-uppercase mb-3">{{ project.name }}</h6>
+            <h6 class="text-uppercase mb-3">{{ project.flats }}</h6>
+            <h6 class="text-uppercase mb-3">{{ project.slots }} Slots</h6>
+            <h4 class="mb-4">Fee: {{{ moneyFormat(project.capital) }}}</h4>
+            <h4 class="mb-4">@ {{project.interest}}% </h4>
+            <h6 class="mb-4">{{{ moneyFormat(project.perMonth) }}} monthly</h6>
+            <h6 class="mb-4">for {{project.duration}} months</h6>
+            <h4 class="mb-4">ROI: {{{ moneyFormat(project.roi) }}}</h4>
             <a href="#" class="btn">Choose</a>
           </div>
         </div>
-
     </div>
   </div>
   @endeach

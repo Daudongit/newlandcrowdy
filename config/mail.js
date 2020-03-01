@@ -14,12 +14,12 @@ module.exports = {
   */
   connection: Env.get('MAIL_CONNECTION', 'smtp'),
 
-  contact: Env.get('CONTACT_EMAIL', 'info@digitalcoop.com.ng'),
-  transaction: Env.get('TRANSACTION_EMAIL', 'admin@digitalcoop.com.ng'),
+  contact: Env.get('CONTACT_EMAIL', 'info@landcrowdy.com.ng'),
+  transaction: Env.get('TRANSACTION_EMAIL', 'admin@landcrowdy.com.ng'),
 
   from: {
-    email: Env.get('MAIL_FROM', 'digitalcoop@gmail.com'),
-    name: Env.get('MAIL_NAME', 'DigitalCoop')
+    email: Env.get('MAIL_FROM', 'landcrowdy@gmail.com'),
+    name: Env.get('MAIL_NAME', 'LandCrowdy')
   },
   /*
   |--------------------------------------------------------------------------

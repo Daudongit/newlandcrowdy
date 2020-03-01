@@ -223,3 +223,13 @@ padding: 25px;
 #myModal{
 z-index: 9999
 }
+
+.form-group span{
+  color: red;
+  font-size: 14px;
+}
+
+.form-group label {
+  color:  #222;
+  tes
+}

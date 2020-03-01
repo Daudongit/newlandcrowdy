@@ -1,5 +1,5 @@
 'use strict';
-const Plan = use('App/Models/Plan');
+const Project = use('App/Models/Project');
 const Faq = use('App/Models/Faq');
 const Testimonial = use('App/Models/Testimonial');
 const Reference = use('App/Models/Reference');
@@ -14,6 +14,10 @@ class GuestController {
     return view.render('guest.index', {
       faqs: (
         await Faq.query()
+          .fetch()
+      ).toJSON(),
+      projects: (
+        await Project.query()
           .fetch()
       ).toJSON(),
       testimonials: (

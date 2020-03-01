@@ -29,27 +29,27 @@ class IsUser {
       }
     }
 
-    if (
-      [
-        Route.url('app.account.settings'),
-        Route.url('app.account.profile'),
-        Route.url('app.wallet.voucher'),
-        Route.url('app.wallet.index'),
-      ].indexOf(request.url()) === -1 &&
-      request.url().indexOf('deposits') === -1
-    ) {
-      if (auth.user.active == 0) {
-        const amount = (
-          await Reference.query()
-            .where('slug', 'activation_amount')
-            .first()
-        ).value;
-        session.flash({
-          info: `Please, Make a deposit equal or greater than ${amount} to activate your account.`,
-        });
-        return response.route('app.wallet.index');
-      }
-    }
+    // if (
+    //   [
+    //     Route.url('app.account.settings'),
+    //     Route.url('app.account.profile'),
+    //     Route.url('app.wallet.voucher'),
+    //     Route.url('app.wallet.index'),
+    //   ].indexOf(request.url()) === -1 &&
+    //   request.url().indexOf('deposits') === -1
+    // ) {
+    //   if (auth.user.active == 0) {
+    //     const amount = (
+    //       await Reference.query()
+    //         .where('slug', 'activation_amount')
+    //         .first()
+    //     ).value;
+    //     session.flash({
+    //       info: `Please, Make a deposit equal or greater than ${amount} to activate your account.`,
+    //     });
+    //     return response.route('app.wallet.index');
+    //   }
+    // }
 
     await next();
   }

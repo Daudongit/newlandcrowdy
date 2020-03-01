@@ -184,7 +184,7 @@ class AuthController {
       });
 
     session.flash({
-      info: 'We just sent you a mail, please check and confirm your email to login.',
+      info: 'Registration Successfull, We just sent you a mail, please check and confirm your email to login.',
     });
     return response.redirect('back');
   }
@@ -415,7 +415,7 @@ class AuthController {
     } catch (e) {
       console.log(e);
       session.flash({
-        error: 'Invalid Login3.',
+        error: 'Invalid Login.',
       });
       return response.redirect('back');
     }

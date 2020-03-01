@@ -2,13 +2,13 @@
 const _ = require('lodash');
 const Model = use('Model');
 
-class Plan extends Model {
+class Project extends Model {
   static get computed() {
     return ['perMonth', 'roi', 'fullActive'];
   }
 
   getFullActive({ active }) {
-    return _.find(Plan.getEnums(), { field: 'active', id: active });
+    return _.find(Project.getEnums(), { field: 'active', id: active });
   }
 
   static getEnums() {
@@ -16,7 +16,7 @@ class Plan extends Model {
       {
         field: 'active',
         id: 0,
-        label: 'Not Active',
+        label: 'Coming Soon',
         class: 'warning',
       },
       {
@@ -24,6 +24,12 @@ class Plan extends Model {
         id: 1,
         label: 'Active',
         class: 'success',
+      },
+      {
+        field: 'active',
+        id: 2,
+        label: 'Sold Out',
+        class: 'default',
       },
     ];
   }
@@ -37,4 +43,4 @@ class Plan extends Model {
   }
 }
 
-module.exports = Plan;
+module.exports = Project;
