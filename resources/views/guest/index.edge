@@ -203,9 +203,10 @@
         <div class="bd mb-1"></div>
       </div>
 
-      <div class="col-md-12 mt-5">
+      <div class="col-md-6 mt-5">
         <div class="accordion" id="accordionExample">
-					@each(faq in faqs)
+          @each(faq in faqs)
+          @if($loop.index % 2 === 0)
           <div class="card z-depth-0 bordered">
             <div class="card-header" id="headingOne">
               <h5 class="mb-0">
@@ -219,7 +220,30 @@
               <div class="card-body"> {{ faq.answer }}
               </div>
             </div>
-					</div>
+          </div>
+          @endif
+					@endeach
+        </div>
+      </div>
+      <div class="col-md-6 mt-5">
+        <div class="accordion" id="accordionExample1">
+          @each(faq in faqs)
+          @if($loop.index % 2 === 1)
+          <div class="card z-depth-0 bordered">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link faq1" type="button" data-toggle="collapse" data-target="#collapse{{faq.id}}"
+                  aria-expanded="true" aria-controls="collapseOne">{{ faq.question }}
+
+                </button>
+              </h5>
+            </div>
+            <div id="collapse{{faq.id}}" class="collapse {{ $loop.index === 0 ? 'show' : '' }}" aria-labelledby="headingOne" data-parent="#accordionExample1">
+              <div class="card-body"> {{ faq.answer }}
+              </div>
+            </div>
+          </div>
+          @endif
 					@endeach
         </div>
       </div>

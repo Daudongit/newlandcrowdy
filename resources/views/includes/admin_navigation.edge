@@ -1,24 +1,23 @@
-<ul class="nk-menu nk-menu-main">
-    <li><a href="{{ route('admin.supports.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Support
-      @if(supportCount && supportCount > 0)
-      <span class="badge badge-primary badge-pill float-right"> {{ supportCount }}</span>
-      @endif
-    </span></a></li>
-    <li><a href="{{ route('admin.withdrawals.index') }}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Withdrawals
-      @if(withdrawalsCount && withdrawalsCount > 0)
-      <span class="badge badge-primary badge-pill float-right"> {{ withdrawalsCount }}</span>
-      @endif
-    </span></a></li>
-  </ul>
-
   <ul class="nk-menu nk-menu-main">
     <li class="nk-menu-item"><a href="{{ route('admin.dashboard') }}" class="nk-menu-link"><span  class="nk-menu-text">Dashboard</span></a></li>
     <li class="nk-menu-item"><a href="{{ route('admin.projects.index') }}" class="nk-menu-link"><span  class="nk-menu-text">Projects</span></a></li>
-    <li class="nk-menu-item"><a href="{{ route('admin.deposits.index') }}" class="nk-menu-link"><span  class="nk-menu-text">Deposits</span></a></li>
     <li class="nk-menu-item"><a href="{{ route('admin.packages.index') }}" class="nk-menu-link"><span  class="nk-menu-text">Packages</span></a></li>
-    <li class="nk-menu-item"><a href="{{ route('admin.users.index') }}" class="nk-menu-link"><span  class="nk-menu-text">Users</span></a></li>
+    <li class="nk-menu-item"><a href="{{ route('admin.supports.index') }}" class="nk-menu-link">
+      <span  class="nk-menu-text">Support</span>
+      @if(supportCount && supportCount > 0)
+      <span class="badge badge-primary badge-pill float-right"> {{ supportCount }}</span>
+      @endif
+    </a></li>
+    <li class="nk-menu-item"><a href="{{ route('admin.withdrawals.index') }}" class="nk-menu-link">
+      <span  class="nk-menu-text">Withdrawals</span>
+      @if(withdrawalsCount && withdrawalsCount > 0)
+      <span class="badge badge-primary badge-pill float-right"> {{ withdrawalsCount }}</span>
+      @endif
+    </a></li>
     <li class="nk-menu-item has-sub"><a href="#"  class="nk-menu-link nk-menu-toggle"><span class="nk-menu-text">Pages</span></a>
         <ul class="nk-menu-sub">
+          <li class="nk-menu-item"><a href="{{ route('admin.deposits.index') }}" class="nk-menu-link"><span  class="nk-menu-text">Deposits</span></a></li>
+          <li class="nk-menu-item"><a href="{{ route('admin.users.index') }}" class="nk-menu-link"><span  class="nk-menu-text">Users</span></a></li>
           <li class="nk-menu-item"><a href="{{ route('admin.payments.index') }}" class="nk-menu-link"><span class="nk-menu-text"> Payments</span></a></li>
           <li class="nk-menu-item"><a href="{{ route('admin.announcements.index') }}" class="nk-menu-link"><span class="nk-menu-text"> Announcements</span></a></li>
           <li class="nk-menu-item"><a href="{{ route('admin.transactions.index') }}" class="nk-menu-link"><span class="nk-menu-text"> Transactions</span></a></li>
