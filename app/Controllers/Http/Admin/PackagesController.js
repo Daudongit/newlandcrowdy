@@ -58,9 +58,9 @@ module.exports = class PackagesController extends ResourceController {
         value: 'user.fullName',
       },
       {
-        label: 'Interest',
-        value: 'plan.interest',
-        type: 'rate',
+        label: 'Annum Return',
+        value: 'plan.annum_return',
+        type: 'money',
       },
       {
         label: 'Next Interest Days',

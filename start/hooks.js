@@ -29,10 +29,6 @@ hooks.after.providersBooted(() => {
     return dateFormat(null, "yyyy");
   });
 
-  // View.global('changeOrder', function(order){
-  //   if(order)
-  // });
-
   View.global('moneyFormat', function (money) {
     if(money){
       money = Number(money);

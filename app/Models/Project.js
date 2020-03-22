@@ -34,12 +34,8 @@ class Project extends Model {
     ];
   }
 
-  getPerMonth({ interest, capital }) {
-    return (interest * capital) / 100;
-  }
-
-  getRoi({ interest, capital, duration }) {
-    return (interest * capital * duration) / 100;
+  getRoi({ annum_return, duration }) {
+    return (annum_return, duration) / 100;
   }
 }
 

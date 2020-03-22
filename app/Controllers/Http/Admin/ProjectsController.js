@@ -9,10 +9,10 @@ class ProjectsController extends ResourceController {
     this.indexRoute = `${this.resourceRoute}.index`;
     this.singleItem = 'Project';
     this.mutipleItems = 'Projects';
-    this.dataFields = ['name', 'interest', 'duration', 'capital', 'active', 'flats', 'slots'];
+    this.dataFields = ['name', 'annum_return', 'duration', 'capital', 'active', 'flats', 'slots'];
     this.validationRules = {
       name: 'required',
-      interest: 'required',
+      annum_return: 'required',
       duration: 'required',
       capital: 'required',
       active: 'required',
@@ -32,8 +32,8 @@ class ProjectsController extends ResourceController {
         type: 'text',
       },
       {
-        label: 'Interest',
-        name: 'interest',
+        label: 'Annum Return',
+        name: 'annum_return',
         type: 'number',
       },
       {
@@ -81,9 +81,9 @@ class ProjectsController extends ResourceController {
         value: 'name',
       },
       {
-        label: 'Interest',
-        value: 'interest',
-        type: 'rate',
+        label: 'Annum Return',
+        value: 'annum_return',
+        type: 'money',
       },
       {
         label: 'Duration',

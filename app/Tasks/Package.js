@@ -31,7 +31,7 @@ class PackageTask extends Task {
         var duration = moment.duration(now.diff(end));
         var daysSinceLastProcess = Math.floor(duration.asDays());
         if (daysSinceLastProcess > 30) {
-          const amount = Math.ceil((_package.plan.interest * _package.plan.capital) / 100);
+          const amount = _package.annum_return;
           User.query()
             .where({
               id: _package.user_id,

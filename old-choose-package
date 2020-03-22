@@ -1,0 +1,64 @@
+@layout('templates.main')
+@section('title')
+New Package
+@endsection
+@section('content')
+
+
+<div id="paystackEmbedContainer"></div>
+<div class="page-title-box" style="padding-bottom: 0px">
+  <h4 class="page-title">Choose Plan</h4>
+      {{ elIf('<span class="validation">$self</span>', getErrorFor('plan_id'), hasErrorFor('plan_id')) }}
+</div>
+
+<div class="row">
+  @each(project in projects)
+  <div class="col-xl-3 col-md-6">
+    <div class="card mini-stat choose-package pick-package" data-id="{{ project.id }}">
+        <div class="card-body mini-stat-img">
+          <div class="text-white">
+            <h6 class="text-uppercase mb-3">{{ project.name }}</h6>
+            <h6 class="text-uppercase mb-3">{{ project.flats }}</h6>
+            <h6 class="text-uppercase mb-3">{{ project.slots }} Slots</h6>
+            <h4 class="mb-4">Fee: {{{ moneyFormat(project.capital) }}}</h4>
+            <h4 class="mb-4">@ {{project.interest}}% </h4>
+            <h6 class="mb-4">{{{ moneyFormat(project.perMonth) }}} monthly</h6>
+            <h6 class="mb-4">for {{project.duration}} months</h6>
+            <h4 class="mb-4">ROI: {{{ moneyFormat(project.roi) }}}</h4>
+            <a href="#" class="btn">Choose</a>
+          </div>
+        </div>
+    </div>
+  </div>
+  @endeach
+</div>
+<div class="page-title-box" style="padding-bottom: 0px">
+    <h4 class="page-title">Choose Payment Method</h4>
+        {{ elIf('<span class="validation">$self</span>', getErrorFor('method'), hasErrorFor('method')) }}
+  </div>
+
+  <div class="row">
+
+    <div class="col-xl-6 col-md-6">
+      <div class="card choose-payment cursor" data-method="Paystack">
+        <div class="card-body">
+          <h6>Online Payment (Paystack)</h6>
+        </div><!-- end row -->
+      </div><!-- end row -->
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card choose-payment cursor" data-method="Bank Deposit">
+          <div class="card-body">
+            <h6>Bank Deposit</h6>
+          </div><!-- end row -->
+        </div><!-- end row -->
+      </div>
+</div>
+<form action="{{ route('app.packages.store') }}" method="POST">
+    <input type="hidden" name="plan_id" id="plan_id">
+    <input type="hidden" name="method" id="method">
+    {{ csrfField() }}
+  <button type="submit" class="btn btn-primary btn-block btn-lg cursor">Proceed</button>
+</form>
+@endsection
+

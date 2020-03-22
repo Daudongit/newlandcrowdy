@@ -88,8 +88,8 @@
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row"><i class="fa fa-building-o" aria-hidden="true"></i> Slot(s)</th>
-                  <td>{{ project.slots }} units</td>
+                  <th scope="row"><i class="fa fa-building-o" aria-hidden="true"></i> Price</th>
+                <td>{{{ moneyFormat(project.capital) }}} <span class="font-{{ project.active === 1 ? 'selling' : 'sold' }}">per units</span></td>
                 </tr>
               </tbody>
             </table>
@@ -98,9 +98,9 @@
           <!-- Card footer -->
           <div class="rounded-bottom cdf{{ project.active === 0 ? '2' : '' }} text-center pt-3">
             <ul class="list-unstyled list-inline font-small">
-              <li class="list-inline-item pr-1 "> <b> {{ project.capital }}</b><span class="small">/unit</span></li>
-            <li class="list-inline-item pr-1 "><i class="fa fa-bar-chart pr-1 "></i>{{ project.interest }}%</a></li>
-              <li class="list-inline-item pr-1"><i class="fa fa-users pr-1 "></i>{{ project.duration }} Investors </a></li>
+              <li class="list-inline-item pr-1 "> <b> <i class="fa fa-recycle pr-1" ></i> {{{ moneyFormat(project.annum_return) }}}</b><span class="small">/annum</span></li>
+            <li class="list-inline-item pr-1 "><i class="fa fa-hourglass-half pr-1 "></i><b>{{ project.duration }}</b> years</a></li>
+              <li class="list-inline-item pr-1"><i class="fa fa-users pr-1 "></i>{{ project.slots }} </a></li>
             </ul>
           </div>
         </div>
