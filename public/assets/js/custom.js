@@ -30,7 +30,7 @@
       $('#name_of_scheme').text($(this).find('.coin-name').text());
       $('#duration_of_scheme').text($(this).find('.duration').text());
       $('#annual_return').text($(this).find('.annual_return').text());
-      $('#capital').text(presentMoney($(this).find('.capital').text()));
+      $('#capital').html(presentMoney($(this).find('.capital').text()));
       $('#plan_id').val(value);
     });
 
@@ -42,10 +42,15 @@
       });
 
       $('.invest-amount-item').click(function() {
-        console.log($(this));
         $('#amount_to_invest').html(presentMoney($(this).data('amount')));
         $('#form_amount_to_invest').val($(this).data('amount'));
         $('#custom-amount').val($(this).data('amount'));
+      });
+
+      $('#custom-amount').change(function(){
+        console.log();
+        $('#amount_to_invest').html(presentMoney($(this).val()));
+        $('#form_amount_to_invest').val($(this).val());
       });
 
       $('.select-payment-mode').click(function(){
@@ -56,7 +61,9 @@
           $('#form_amount_to_invest').val($('#capital').text());
         }
         if(value != 'Full Payment'){
-          $('#amount_to_invest').html($('#capital').text());
+          $('#minute-payment').removeClass('hidden');
+        }else{
+          $('#minute-payment').addClass('hidden');
         }
         $('#paymentMode').text(value);
         $('#form_payment_mode').val(value);
