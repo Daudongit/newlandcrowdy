@@ -27,32 +27,35 @@ New Package
                         </div>
                         <input type="hidden" value="silver"
                               name="iv-plan" id="invest-choose-plan">
-                          <div class="dropdown invest-cc-dropdown"><a href="#"
-                                  class="invest-cc-choosen dropdown-indicator"
+                          <div class="dropdown invest-cc-dropdown"><a href="javascript:void(0)"
+                                  class="invest-cc-choosen dropdown-indicator" id="select-package"
                                   data-toggle="dropdown">
                                   <div class="coin-item">
                                       <div class="coin-icon"><em
                                               class="icon ni ni-offer-fill"></em></div>
                                               <div class="coin-info"><span
-                                                class="coin-name">{{ projects[0].name }}</span><span
+                                                class="coin-name">{{ projects[0].name }}</span>
+                                                <span
                                                         class="coin-text">Invest for {{ projects[0].duration }} years and
-                                                get annual return of {{{ moneyFormat(projects[0].annum_return) }}}</span></div>
+                                                get annual return of {{{ moneyFormat(projects[0].annum_return) }}}</div>
                                   </div>
                               </a>
                               <div class="dropdown-menu dropdown-menu-auto dropdown-menu-mxh">
                                   <ul class="invest-cc-list">
 						            @each(project in projects)
-                                      <li class="invest-cc-item">
-                                          <a href="#"
+                                      <li class="invest-cc-item select-package" data-id={{ project.id }}>
+                                          <a href="javascript:void(0)"
                                               class="invest-cc-opt" data-plan="silver">
                                               <div class="coin-item">
                                                   <div class="coin-icon"><em
                                                           class="icon ni ni-offer-fill"></em>
                                                   </div>
-                                                  <div class="coin-info"><span
+                                                  <div class="coin-info">
+                                                <span class="hidden capital"> {{ project.capital }} </span>
+                                                    <span
                                                   class="coin-name">{{ project.name }}</span><span
-                                                          class="coin-text">Invest for {{ project.duration }} years and
-                                                  get annual return of {{{ moneyFormat(project.annum_return) }}}</span></div>
+                                                          class="coin-text">Invest for <span class="duration">{{ project.duration }}</span> years and
+                                                  get annual return of <span class="annual_return">{{{ moneyFormat(project.annum_return) }}}</span></span></div>
                                               </div>
                                           </a>
                                         </li>
@@ -63,11 +66,11 @@ New Package
                       </div>
 
                       <div class="invest-field form-group">
-                        <div class="form-label-group"><label class="form-label">Full or Part Payment</label>
+                        <div class="form-label-group"><label class="form-label">Payment Mode</label>
                         </div>
                         <input type="hidden" value="wallet"
                             name="iv-wallet" id="invest-choose-wallet">
-                        <div class="dropdown invest-cc-dropdown"><a href="#"
+                        <div class="dropdown invest-cc-dropdown" > <a href="javascript:void(0)" id="select-payment-mode"
                                 class="invest-cc-choosen dropdown-indicator"
                                 data-toggle="dropdown">
                                 <div class="coin-item">
@@ -80,7 +83,7 @@ New Package
                             </a>
                             <div class="dropdown-menu dropdown-menu-auto dropdown-menu-mxh">
                                 <ul class="invest-cc-list">
-                                    <li class="invest-cc-item selected"><a href="#"
+                                    <li class="invest-cc-item selected select-payment-mode"><a href="javascript:void(0)"
                                             class="invest-cc-opt" data-plan="silver">
                                             <div class="coin-item">
                                                 <div class="coin-icon"><em
@@ -91,11 +94,10 @@ New Package
                                                         class="coin-text">Pay full amount for project and get started immediately</span></div>
                                             </div>
                                         </a></li>
-                                    <li class="invest-cc-item selected"><a href="#"
+                                    <li class="invest-cc-item selected select-payment-mode"><a href="javascript:void(0)"
                                             class="invest-cc-opt" data-plan="starter">
                                             <div class="coin-item">
-                                                <div class="coin-icon"><em
-                                                        class="icon ni ni-sign-btc"></em></div>
+                                                <div class="coin-icon"><em class="icon ni ni-sign-btc"></em></div>
                                                 <div class="coin-info"><span
                                                         class="coin-name">Crowd Payment</span><span
                                                         class="coin-text">Pay what you have and the project starts the slot is filled</span></div>
@@ -105,35 +107,17 @@ New Package
                             </div>
                         </div>
                     </div>
-
+                    <div id="minute-payment" class="hidden">
                       <div class="invest-field form-group">
                           <div class="form-label-group"><label class="form-label">Choose Quick
                                   Amount to Invest</label></div>
                           <div class="invest-amount-group g-2">
-                              <div class="invest-amount-item"><input type="radio"
+                            @each(amount in [100000, 200000, 500000, 1000000])
+                              <div class="invest-amount-item" data-amount="{{ amount }}"><input type="radio"
                                       class="invest-amount-control" name="iv-amount"
-                                      id="iv-amount-1"><label class="invest-amount-label"
-                                      for="iv-amount-1">$ 100</label></div>
-                              <div class="invest-amount-item"><input type="radio"
-                                      class="invest-amount-control" name="iv-amount"
-                                      id="iv-amount-2"><label class="invest-amount-label"
-                                      for="iv-amount-2">$ 250</label></div>
-                              <div class="invest-amount-item"><input type="radio"
-                                      class="invest-amount-control" name="iv-amount"
-                                      id="iv-amount-3"><label class="invest-amount-label"
-                                      for="iv-amount-3">$ 500</label></div>
-                              <div class="invest-amount-item"><input type="radio"
-                                      class="invest-amount-control" name="iv-amount"
-                                      id="iv-amount-4"><label class="invest-amount-label"
-                                      for="iv-amount-4">$ 1,000</label></div>
-                              <div class="invest-amount-item"><input type="radio"
-                                      class="invest-amount-control" name="iv-amount"
-                                      id="iv-amount-5"><label class="invest-amount-label"
-                                      for="iv-amount-5">$ 1,500</label></div>
-                              <div class="invest-amount-item"><input type="radio"
-                                      class="invest-amount-control" name="iv-amount"
-                                      id="iv-amount-6"><label class="invest-amount-label"
-                                      for="iv-amount-6">$ 2,000</label></div>
+                              id="iv-amount-{{amount}}"><label class="invest-amount-label"
+                              for="iv-amount-{{amount}}">{{{ moneyFormat(amount) }}}</label></div>
+                                @endeach
                           </div>
                       </div>
                       <div class="invest-field form-group">
@@ -141,21 +125,21 @@ New Package
                                   Amount</label>
                           </div>
                           <div class="form-control-group">
-                              <div class="form-info">USD</div><input type="text"
+                              <div class="form-info">NGN</div><input type="number"
                                   class="form-control form-control-amount form-control-lg"
                                   id="custom-amount" value="100.00">
                               <div class="form-range-slider" id="amount-step"></div>
                           </div>
-                          <div class="form-note pt-2">Note: Minimum invest 100 USD and upto 2,000
-                              USD</div>
+                          <div class="form-note pt-2">Note: Minimum invest 100 NGN and upto 2,000
+                              NGN</div>
                       </div>
+                    </div>
                       <div class="invest-field form-group">
                           <div class="form-label-group"><label class="form-label">Choose Payment
-                                  Method</label></div><input type="hidden" value="wallet"
-                              name="iv-wallet" id="invest-choose-wallet">
-                          <div class="dropdown invest-cc-dropdown"><a href="#"
+                                  Method</label></div>
+                          <div class="dropdown invest-cc-dropdown"><a href="javascript:void(0)"
                                   class="invest-cc-choosen dropdown-indicator"
-                                  data-toggle="dropdown">
+                                  data-toggle="dropdown" id="select-payment-method">
                                   <div class="coin-item">
                                       <div class="coin-icon"><em
                                               class="icon ni ni-wallet-alt"></em></div>
@@ -166,7 +150,7 @@ New Package
                               </a>
                               <div class="dropdown-menu dropdown-menu-auto dropdown-menu-mxh">
                                   <ul class="invest-cc-list">
-                                      <li class="invest-cc-item selected"><a href="#"
+                                      <li class="invest-cc-item selected select-payment-method"><a href="javascript:void(0)"
                                               class="invest-cc-opt" data-plan="silver">
                                               <div class="coin-item">
                                                   <div class="coin-icon"><em
@@ -177,7 +161,7 @@ New Package
                                                           class="coin-text">Package Starts immediately</span></div>
                                               </div>
                                           </a></li>
-                                      <li class="invest-cc-item selected"><a href="#"
+                                      <li class="invest-cc-item selected select-payment-method"><a href="javascript:void(0)"
                                               class="invest-cc-opt" data-plan="starter">
                                               <div class="coin-item">
                                                   <div class="coin-icon"><em
@@ -195,7 +179,7 @@ New Package
                           <div class="custom-control custom-control-xs custom-checkbox"><input
                                   type="checkbox" class="custom-control-input"
                                   id="checkbox"><label class="custom-control-label"
-                                  for="checkbox">I agree the <a href="#">terms and &amp;
+                                  for="checkbox">I agree the <a href="javascript:void(0)">terms and &amp;
                                       conditions.</a></label></div>
                       </div>
                   </div>
@@ -207,35 +191,19 @@ New Package
                                   <ul class="nk-iv-wg4-overview g-2">
                                       <li>
                                           <div class="sub-text">Name of scheme</div>
-                                          <div class="lead-text">Silver Plan</div>
+                                          <div class="lead-text" id="name_of_scheme">Please Select Project</div>
                                       </li>
                                       <li>
                                           <div class="sub-text">Term of the scheme</div>
-                                          <div class="lead-text">21 days</div>
+                                          <div class="lead-text" id="duration_of_scheme">Please Select  Project</div>
                                       </li>
                                       <li>
-                                          <div class="sub-text">Daily profit</div>
-                                          <div class="lead-text">$ 11.99</div>
-                                      </li>
-                                      <li>
-                                          <div class="sub-text">Daily profit %</div>
-                                          <div class="lead-text">4.76 %</div>
-                                      </li>
-                                      <li>
-                                          <div class="sub-text">Total net profit</div>
-                                          <div class="lead-text">$ 249.99</div>
-                                      </li>
+                                        <div class="sub-text">Capital</div>
+                                        <div class="lead-text" id="capital">Please Select Project</div>
+                                    </li>
                                       <li>
                                           <div class="sub-text">Total Return</div>
-                                          <div class="lead-text">$ 499.99</div>
-                                      </li>
-                                      <li>
-                                          <div class="sub-text">Term start at</div>
-                                          <div class="lead-text">Today (12-04-2019)</div>
-                                      </li>
-                                      <li>
-                                          <div class="sub-text">Term end at</div>
-                                          <div class="lead-text">12 - 25 - 2019</div>
+                                          <div class="lead-text" id="annual_return">Please Select  Project</div>
                                       </li>
                                   </ul>
                               </div>
@@ -243,34 +211,32 @@ New Package
                                   <ul class="nk-iv-wg4-list">
                                       <li>
                                           <div class="sub-text">Payment Method</div>
-                                          <div class="lead-text">NioWallet</div>
+                                          <div class="lead-text" id="paymentMethod">Please Select</div>
                                       </li>
                                   </ul>
                               </div>
+
                               <div class="nk-iv-wg4-sub">
-                                  <ul class="nk-iv-wg4-list">
-                                      <li>
-                                          <div class="sub-text">Amount to invest</div>
-                                          <div class="lead-text">$ 250.00</div>
-                                      </li>
-                                      <li>
-                                          <div class="sub-text">Conversion Fee <span>(0.5%)</span>
-                                          </div>
-                                          <div class="lead-text">$ 1.25</div>
-                                      </li>
-                                  </ul>
-                              </div>
+                                <ul class="nk-iv-wg4-list">
+                                    <li>
+                                        <div class="sub-text">Payment Mode</div>
+                                        <div class="lead-text" id="paymentMode">Please Select</div>
+                                    </li>
+                                </ul>
+                            </div>
+
                               <div class="nk-iv-wg4-sub">
                                   <ul class="nk-iv-wg4-list">
                                       <li>
                                           <div class="lead-text">Total Charge</div>
-                                          <div class="caption-text text-primary">$ 251.25</div>
+                                          <div class="caption-text text-primary" id="amount_to_invest">&#8358;0.00</div>
                                       </li>
                                   </ul>
                               </div>
-                              <div class="nk-iv-wg4-sub text-center bg-lighter"><a href="#"
-                                      class="btn btn-lg btn-primary ttu" data-toggle="modal"
-                                      data-target="#invest-plan">Confirm &amp; proceed</a></div>
+                              <div class="nk-iv-wg4-sub text-center bg-lighter">
+                                  <button href="javascript:void(0)"
+                                      class="btn btn-lg btn-primary ttu" >Confirm &amp; proceed</button>
+                                </div>
                           </div>
                       </div>
                   </div>
@@ -282,9 +248,10 @@ New Package
 
 <form action="{{ route('app.packages.store') }}" method="POST">
     <input type="hidden" name="plan_id" id="plan_id">
-    <input type="hidden" name="method" id="method">
+    <input type="hidden" name="mode" id="form_payment_mode">
+    <input type="hidden" name="method" id="form_payment_method">
+    <input type="hidden" name="method" id="form_amount_to_invest">
     {{ csrfField() }}
-  <button type="submit" class="btn btn-primary btn-block btn-lg cursor">Proceed</button>
 </form>
 @endsection
 
