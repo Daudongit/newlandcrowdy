@@ -24669,7 +24669,8 @@ body.nav-shown {
 }
 
 .nk-body {
-  outline: none
+  outline: none;
+  background-color: #101924;
 }
 
 .nk-app-root {
@@ -24683,11 +24684,13 @@ body.nav-shown {
 .nk-wrap {
   display: flex;
   flex-direction: column;
-  min-height: 100vh
+  min-height: 100vh;
+  background: #101924;
 }
 
 .nk-content {
-  padding: 24px 4px
+  padding: 24px 4px;
+  background-color: #e5e9f2;
 }
 
 .nk-content-fs {
@@ -24732,7 +24735,8 @@ body.nav-shown {
 }
 
 .nk-content-body {
-  flex-grow: 1
+  flex-grow: 1;
+  margin-top: 15px;
 }
 
 .logo-link {
@@ -24784,7 +24788,7 @@ body.nav-shown {
 
 .nk-header {
   background: #f5f6fa;
-  border-bottom: 1px solid #e5e9f2;
+  border-bottom: 0px;
   padding: 0 6px
 }
 
@@ -25190,7 +25194,7 @@ body.nav-shown {
 }
 
 .nk-sidebar-element {
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100%;
   max-height: 100%
 }
@@ -25200,7 +25204,7 @@ body.nav-shown {
 }
 
 .nk-sidebar-fixed {
-  position: fixed;
+  /* position: fixed; */
   max-height: 100vh
 }
 
@@ -25310,7 +25314,7 @@ body.nav-shown {
 .nk-sidebar-content {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 65px)
+  /* height: calc(100vh - 65px) */
 }
 
 .nk-sidebar-content .nk-sidebar-menu {
@@ -25554,7 +25558,7 @@ body.nav-shown {
 
   .has-sidebar-fat .nk-content-body {
     padding-top: 1.5rem;
-    padding-bottom: 1.5rem
+    padding-bottom: 1.5rem;
   }
 
   .has-sidebar-fat .nk-sidebar-widget:first-child {
@@ -25732,7 +25736,8 @@ body.nav-shown {
 }
 
 .has-aside .nk-content {
-  padding-bottom: 0
+  padding-bottom: 0;
+  background: #f5f6fa !important;
 }
 
 .has-aside .nk-content-wrap {

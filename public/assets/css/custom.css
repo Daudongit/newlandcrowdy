@@ -1,3 +1,21 @@
 .hidden {
   display: none;
 }
+
+.fa-ban{
+  padding: 2px;
+}
+
+.logo-img {
+  width: 220px;
+}
+
+.faq-card-body{
+  border-left: 2px solid rgba(0, 0, 0, 0.07);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.07);
+  border-right: 2px solid rgba(0, 0, 0, 0.07);
+}
+
+.nk-menu {
+  background: #101924;
+}
