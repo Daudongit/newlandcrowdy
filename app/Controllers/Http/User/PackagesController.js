@@ -1,6 +1,5 @@
 'use strict';
 
-const Hash = use('Hash');
 const Config = use('Config');
 const BankOption = use('App/Models/BankOption');
 const Deposit = use('App/Models/Deposit');
@@ -29,7 +28,7 @@ class PackagesController {
           .where({
             user_id: auth.user.id,
           })
-          .with('plan')
+          .with('project')
           .withCount('payments', builder => {
             builder.where('status', 1);
           })
@@ -45,7 +44,7 @@ class PackagesController {
           .where({
             id: params.id,
           })
-          .with('plan')
+          .with('project')
           .first()
       ).toJSON(),
     });
@@ -67,12 +66,19 @@ class PackagesController {
       });
       return response.redirect('back');
     }
+
+    const investmentBoundaries = await Reference.query()
+    .whereIn('slug', ['min_investment', 'max_investment'])
+    .get();
+
     return view.render('app.packages.choose', {
       projects: (
         await Project.query()
           .where({ active: 1 })
           .fetch()
       ).toJSON(),
+      minInvestment: investmentBoundaries.find(({slug}) => slug === 'min_investment').value,
+      maxInvestment: investmentBoundaries.find(({slug}) => slug === 'max_investment').value,
     });
   }
 
@@ -122,7 +128,7 @@ class PackagesController {
     }
 
     if ('success' == paystackRes['data']['status']) {
-      // console.log(paystackRes['data']);
+      console.log(paystackRes['data']);
 
       // TODO
       let { reference, amount } = paystackRes['data'];
@@ -131,13 +137,7 @@ class PackagesController {
 
       amount = amount / 100;
 
-      const plan_id = (
-        await Project.query()
-          .where({
-            capital: amount,
-          })
-          .first()
-      ).id;
+      const project_id = session.get('project_id');
 
       const authUser = await User.query()
         .where({
@@ -147,7 +147,7 @@ class PackagesController {
 
       const _package = await Package.create({
         user_id: authUser.id,
-        plan_id,
+        project_id,
         status: 1,
         started: moment().format('YYYY-MM-DD HH:mm:ss'),
       });
@@ -275,12 +275,20 @@ class PackagesController {
   }
 
   async invoice({ params, view }) {
-    return view.render('app.packages.invoice', {
-      plan: await Project.query()
+
+    const _package = await Package.query()
         .where({
           id: params.id,
         })
+        .first()
+
+    return view.render('app.packages.invoice', {
+      plan: await Project.query()
+        .where({
+          id: _package.project_id,
+        })
         .first(),
+        package: _package,
       toDate: dateFormat(null, 'mmmm dS, yyyy'),
       bankDetails: await BankOption.query().get(),
     });
@@ -304,8 +312,10 @@ class PackagesController {
     }
 
     const validationRules = {
-      plan_id: 'required',
+      project_id: 'required',
       method: 'required',
+      amount: 'required',
+      payment_mode: 'required',
     };
 
     const validation = await validateAll(request.all(), validationRules, validationMessages);
@@ -315,18 +325,14 @@ class PackagesController {
       return response.redirect('back');
     }
 
-    const { plan_id, method } = request.all();
-
-    const plan = await Project.query()
-      .where({
-        id: plan_id,
-      })
-      .first();
+    const { project_id, method, payment_mode, amount } = request.all();
 
     const email = auth.user.email;
-    const amount = plan.capital * 100;
 
-    if (method == 'Paystack') {
+    if (method == 'Online Payment') {
+      console.log(project_id);
+      session.put('project_id', project_id);
+      console.log(session.get('project_id'));
       const paystackOptions = {
         hostname: 'api.paystack.co',
         port: 443,
@@ -347,7 +353,6 @@ class PackagesController {
             resData += chunk;
           });
           res.on('end', () => {
-            // console.log(resData);
             const jsonData = JSON.parse(resData);
             if (jsonData.status === 400) {
               return reject(new Error(jsonData.message));
@@ -359,19 +364,19 @@ class PackagesController {
         req.on('error', e => reject(e));
 
         const postData = JSON.stringify({
-          amount,
+          amount: parseInt(amount) * 100,
           email,
         });
         req.write(postData);
         req.end();
       });
-
       return response.redirect(paystackRes['data']['authorization_url']);
     }
 
     const _package = await Package.create({
       user_id: auth.user.id,
-      plan_id,
+      project_id,
+      amount,
     });
 
     Deposit.create({
@@ -379,7 +384,7 @@ class PackagesController {
       package_id: _package.id,
       platform: 'BANK_DEPOSIT',
       status: 0,
-      amount: amount / 100,
+      amount,
       file: '/assets/images/none.jpeg',
     }).then(() => {});
 
@@ -388,7 +393,7 @@ class PackagesController {
     });
 
     return response.route('app.packages.invoice', {
-      id: plan_id,
+      id: _package.id,
     });
   }
 }

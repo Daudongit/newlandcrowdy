@@ -12,13 +12,11 @@ class Referrals {
       .first();
 
     if (userReferral && userReferral.status == 0) {
-      const referralsPercentage = (
+      const amountForReferrals = (
         await Reference.query()
-          .where('slug', 'referrals_percent')
+          .where('slug', 'referrals_amount')
           .first()
       ).value;
-
-      const amountForReferrals = (amount * referralsPercentage) / 100;
 
       Transaction.create({
         user_id: userReferral.referred_by,

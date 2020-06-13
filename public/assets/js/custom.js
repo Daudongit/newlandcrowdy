@@ -12,7 +12,6 @@
         $('.nk-content').css('min-height', `${window.innerHeight - 62}px`);
       }
 
-
   const presentMoney = (money) => {
     if(money){
       money = Number(money);
@@ -25,10 +24,11 @@
       $('#select-package .coin-item').html($(this).find('.coin-item').html());
       const value = $(this).data('id');
       $('#name_of_scheme').text($(this).find('.coin-name').text());
-      $('#duration_of_scheme').text($(this).find('.duration').text());
+      $('#duration_of_scheme').text($(this).find('.duration').text() + ' Years');
       $('#annual_return').text($(this).find('.annual_return').text());
       $('#capital').html(presentMoney($(this).find('.capital').text()));
-      $('#plan_id').val(value);
+      $('#capital__plain_text').html($(this).find('.capital').text());
+      $('#project_id').val(value);
     });
 
       $('.select-payment-method').click(function(){
@@ -41,13 +41,6 @@
       $('.invest-amount-item').click(function() {
         $('#amount_to_invest').html(presentMoney($(this).data('amount')));
         $('#form_amount_to_invest').val($(this).data('amount'));
-        $('#custom-amount').val($(this).data('amount'));
-      });
-
-      $('#custom-amount').change(function(){
-        console.log();
-        $('#amount_to_invest').html(presentMoney($(this).val()));
-        $('#form_amount_to_invest').val($(this).val());
       });
 
       $('.select-payment-mode').click(function(){
@@ -55,7 +48,7 @@
         const value = $(this).find('.coin-name').text();
         if(value === 'Full Payment' && $('#capital').text() != 'Please Select Project'){
           $('#amount_to_invest').html($('#capital').text());
-          $('#form_amount_to_invest').val($('#capital').text());
+          $('#form_amount_to_invest').val($('#capital__plain_text').text());
         }
         if(value != 'Full Payment'){
           $('#minute-payment').removeClass('hidden');
@@ -64,6 +57,34 @@
         }
         $('#paymentMode').text(value);
         $('#form_payment_mode').val(value);
+      });
+
+      $('#confirm_and_proceed').click((event) => {
+        event.preventDefault();
+        let error = false;
+
+        if(!$('#form_payment_method').val()){
+          error = 'Please Select A Payment Method';
+        }
+        if(!$('#form_amount_to_invest').val()){
+          error = 'Please Select Amount To Invest';
+        }
+        if(!$('#form_payment_mode').val()){
+          error = 'Please Select A Payment Mode';
+        }
+        if(!$('#project_id').val()){
+          error = 'Please Select A Project';
+        }
+
+        if(error){
+          $('#error').text(error);
+          return;
+        }
+
+        $('#error').text('');
+
+        $('#choose_form').submit();
+
       });
 
 })();

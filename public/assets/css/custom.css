@@ -19,3 +19,12 @@
 .nk-menu {
   background: #101924;
 }
+
+.choose-error{
+  color: #dc3545;
+  font-size: 13px;
+}
+
+.package-index-amount{
+  font-weight: normal;
+}

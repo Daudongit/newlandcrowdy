@@ -8,7 +8,6 @@ Invoice
   <div class="col-sm-12">
     <div class="page-title-box">
       <h4 class="page-title">Invoice</h4>
-      
     </div>
   </div>
 </div><!-- end row -->
@@ -20,7 +19,7 @@ Invoice
           <div class="col-12">
             <div class="invoice-title">
               <!-- <h4 class="float-right font-16"><strong>Order </strong></h4> -->
-              <h3 class="mt-0"><img src="/assets/images/logo.png" alt="logo" height="24"></h3>
+              <h3 class="mt-0"><img src="/assets/images/logo12.png" alt="logo" height="24"></h3>
             </div>
             <hr>
             <div class="row">
@@ -63,22 +62,22 @@ Invoice
                       <!-- foreach ($order->lineItems as $line) or some such thing here -->
                       <tr>
                         <td>{{ plan.name }}</td>
-                        <td class="text-center">{{{ moneyFormat(plan.capital) }}}</td>
+                        <td class="text-center">{{{ moneyFormat(package.amount) }}}</td>
                         <td class="text-center">1</td>
-                        <td class="text-right">{{{ moneyFormat(plan.capital) }}}</td>
+                        <td class="text-right">{{{ moneyFormat(package.amount) }}}</td>
                       </tr>
                       <tr>
                         <td class="thick-line"></td>
                         <td class="thick-line"></td>
                         <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                        <td class="thick-line text-right">{{{ moneyFormat(plan.capital) }}}</td>
+                        <td class="thick-line text-right">{{{ moneyFormat(package.amount) }}}</td>
                       </tr>
                       <tr>
                         <td class="no-line"></td>
                         <td class="no-line"></td>
                         <td class="no-line text-center"><strong>Total</strong></td>
                         <td class="no-line text-right">
-                          <h4 class="m-0">{{{ moneyFormat(plan.capital) }}}</h4>
+                          <h4 class="m-0">{{{ moneyFormat(package.amount) }}}</h4>
                         </td>
                       </tr>
                     </tbody>

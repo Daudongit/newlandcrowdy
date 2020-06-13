@@ -1,6 +1,6 @@
 @layout('templates.main')
 @section('title')
-Packages
+Projects
 @endsection
 @section('content')
 
@@ -9,9 +9,9 @@ Packages
     <!-- <div class="card"> -->
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-between pb-4">
-          <h4 class="card-title mb-0">Packages
+          <h4 class="card-title mb-0">Projects
           </h4>
-          <a href="{{ route('app.packages.choose') }}" class="btn btn-primary pull-right">New Package</a>
+          <a href="{{ route('app.packages.choose') }}" class="btn btn-primary pull-right">New Project</a>
 
         </div>
         <div class="row">
@@ -20,9 +20,10 @@ Packages
             <a href="{{ route('app.packages.show', {id: package.id}) }}">
                 <div class="card">
                 <div class="card-body">
+                  <h5 class="m0">{{ package.project.flats }} - {{ package.project.name }}</h5>
                     <div class="d-flex justify-content-between pb-2">
-                    <h5 class="m0">{{{ moneyFormat(package.plan.capital) }}}</h5>
-                    <i> {{ package.plan.annum_return }}/annum</i>
+                    <h6 class="m0 package-index-amount">{{{ moneyFormat(package.amount) }}}</h6>
+                    <i> {{{ moneyFormat(package.project.annum_return * package.amount / package.project.capital) }}}/annum</i>
                     </div>
                     <div class="d-flex justify-content-between">
                     <p class="text-muted"><span class="btn btn-sm btn-{{ package.fullStatus.class }}">{{ package.fullStatus.label }}</span></p>
@@ -38,7 +39,7 @@ Packages
           @else
           <div style="margin: 0 auto">
             <div class="text-center ">
-              <h6> You dont a have package <a href="{{ route('app.packages.choose') }}"> Click me to create one</a></h6>
+              <h6> You dont a have project <a href="{{ route('app.packages.choose') }}"> Click me to create one</a></h6>
             </div>
           </div>
           @endeach

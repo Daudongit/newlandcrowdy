@@ -190,6 +190,12 @@
   padding: 5rem !important;
 }
 
+.helpline, .helpline:hover{
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 .blog-image {
   opacity: 1;
   display: block;
@@ -231,5 +237,5 @@ z-index: 9999
 
 .form-group label {
   color:  #222;
-  tes
 }
+
