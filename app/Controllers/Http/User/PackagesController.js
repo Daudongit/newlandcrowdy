@@ -128,7 +128,6 @@ class PackagesController {
     }
 
     if ('success' == paystackRes['data']['status']) {
-      console.log(paystackRes['data']);
 
       // TODO
       let { reference, amount } = paystackRes['data'];
@@ -330,9 +329,7 @@ class PackagesController {
     const email = auth.user.email;
 
     if (method == 'Online Payment') {
-      console.log(project_id);
       session.put('project_id', project_id);
-      console.log(session.get('project_id'));
       const paystackOptions = {
         hostname: 'api.paystack.co',
         port: 443,

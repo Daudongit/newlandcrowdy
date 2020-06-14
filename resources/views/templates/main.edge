@@ -78,10 +78,10 @@
                                             @if(auth.user.isUser())
                                             <div class="dropdown-inner user-account-info">
                                                 <h6 class="overline-title-alt">Account Balance</h6>
-                                                <div class="user-balance">1,494.23 <small
-                                                        class="currency currency-usd">USD</small></div>
-                                                <div class="user-balance-sub">Locked <span>15,495.39 <span
-                                                            class="currency currency-usd">USD</span></span></div><a href="#"
+                                                <div class="user-balance">  {{{ moneyFormat(auth.user.wallet) }}}</div>
+                                                <!--  <div class="user-balance-sub">Locked <span>15,495.39 <span
+                                                            class="currency currency-usd">USD</span></span></div>  -->
+                                                <a href="{{ route('app.withdrawals.create') }}"
                                                     class="link"><span>Withdraw Balance</span> <em
                                                         class="icon ni ni-wallet-out"></em></a>
                                             </div>
