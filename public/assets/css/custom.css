@@ -28,3 +28,8 @@
 .package-index-amount{
   font-weight: normal;
 }
+
+.dashboard-image{
+  margin-bottom: 20px;
+  border-radius: 5px;
+}

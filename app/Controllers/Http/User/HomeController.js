@@ -5,6 +5,7 @@ const Route = use('Route');
 const Transaction = use('App/Models/Transaction');
 const Withdrawal = use('App/Models/Withdrawal');
 const UserAnnouncement = use('App/Models/UserAnnouncement');
+const Project = use('App/Models/Project');
 const User = use('App/Models/User');
 
 class HomeController {
@@ -14,14 +15,14 @@ class HomeController {
 
       fullUrl: Config.get('app.fullUrl'),
 
-      announcementCount: (
-        await UserAnnouncement.query()
-          .where({
-            user_id: auth.user.id,
-            opened: 0,
-          })
-          .count('* as count')
-      )[0].count,
+      // announcementCount: (
+      //   await UserAnnouncement.query()
+      //     .where({
+      //       user_id: auth.user.id,
+      //       opened: 0,
+      //     })
+      //     .count('* as count')
+      // )[0].count,
 
       user: (
         await User.query()
@@ -56,15 +57,20 @@ class HomeController {
             .sum('charge as charge')
         )[0].charge,
 
-      lastTransactions: (
-        await Transaction.query()
-          .where({
-            user_id: auth.user.id,
-          })
-          .orderBy('id', 'desc')
-          .limit(5)
-          .fetch()
-      ).toJSON(),
+        projects: (
+          await Project.query()
+            .fetch()
+        ).toJSON(),
+
+      // lastTransactions: (
+      //   await Transaction.query()
+      //     .where({
+      //       user_id: auth.user.id,
+      //     })
+      //     .orderBy('id', 'desc')
+      //     .limit(5)
+      //     .fetch()
+      // ).toJSON(),
     });
   }
 }

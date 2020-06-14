@@ -112,7 +112,7 @@ New Project
                           <div class="form-label-group"><label class="form-label">Choose Quick
                                   Amount to Invest</label></div>
                           <div class="invest-amount-group g-2">
-                            @each(amount in [minInvestment, ((maxInvestment - minInvestment) / 5 + +minInvestment),  ((maxInvestment - minInvestment) / 4 + +minInvestment), maxInvestment])
+                            @each(amount in [minInvestment, maxInvestment / 4,  maxInvestment / 2, maxInvestment])
                               <div class="invest-amount-item" data-amount="{{ amount }}"><input type="radio"
                                       class="invest-amount-control" name="iv-amount"
                               id="iv-amount-{{amount}}"><label class="invest-amount-label"
