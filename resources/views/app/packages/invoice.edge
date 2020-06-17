@@ -61,7 +61,7 @@ Invoice
                     <tbody>
                       <!-- foreach ($order->lineItems as $line) or some such thing here -->
                       <tr>
-                        <td>{{ plan.name }}</td>
+                      <td> {{ plan.flats }} at <b>{{ plan.name }}</b></td>
                         <td class="text-center">{{{ moneyFormat(package.amount) }}}</td>
                         <td class="text-center">1</td>
                         <td class="text-right">{{{ moneyFormat(package.amount) }}}</td>

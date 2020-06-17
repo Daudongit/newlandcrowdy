@@ -10,7 +10,7 @@ class Package extends Model {
       const _last_process = last_process ? last_process : started;
       const end = moment(_last_process);
       const start = moment();
-      return 30 - (Math.floor(moment.duration(start.diff(end)).asDays()) % 30);
+      return 365 - (Math.floor(moment.duration(start.diff(end)).asDays()) % 30);
     }
     return 'N/A';
   }

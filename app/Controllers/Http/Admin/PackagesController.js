@@ -14,7 +14,7 @@ module.exports = class PackagesController extends ResourceController {
     this.indexRoute = `${this.resourceRoute}.index`;
     this.singleItem = 'Package';
     this.mutipleItems = 'Packages';
-    this.relationships = ['user', 'plan'];
+    this.relationships = ['user', 'project'];
 
     this.showLinks = [
       {
@@ -59,7 +59,7 @@ module.exports = class PackagesController extends ResourceController {
       },
       {
         label: 'Annum Return',
-        value: 'plan.annum_return',
+        value: 'project.annum_return',
         type: 'money',
       },
       {
@@ -68,11 +68,11 @@ module.exports = class PackagesController extends ResourceController {
       },
       {
         label: 'Duration',
-        value: 'plan.duration',
+        value: 'project.duration',
       },
       {
         label: 'Capital',
-        value: 'plan.capital',
+        value: 'amount',
         type: 'money',
       },
       {
