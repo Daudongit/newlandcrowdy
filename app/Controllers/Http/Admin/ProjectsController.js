@@ -77,7 +77,7 @@ class ProjectsController extends ResourceController {
 
     this.showAbles = [
       {
-        label: 'Name',
+        label: 'Location',
         value: 'name',
       },
       {
