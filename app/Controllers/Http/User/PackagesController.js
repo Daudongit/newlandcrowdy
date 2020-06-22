@@ -51,22 +51,6 @@ class PackagesController {
   }
 
   async choose({ view, auth, session, response }) {
-    if (
-      (
-        await Package.query()
-          .where({
-            user_id: auth.user.id,
-            status: '1',
-          })
-          .count('* as count')
-      )[0].count == 1
-    ) {
-      session.flash({
-        error: 'Sorry But you can only run one package at a time',
-      });
-      return response.redirect('back');
-    }
-
     const investmentBoundaries = await Reference.query()
     .whereIn('slug', ['min_investment', 'max_investment'])
     .get();
@@ -294,22 +278,6 @@ class PackagesController {
   }
 
   async store({ request, response, session, auth }) {
-    if (
-      (
-        await Package.query()
-          .where({
-            user_id: auth.user.id,
-            status: '1',
-          })
-          .count('* as count')
-      )[0].count == 1
-    ) {
-      session.flash({
-        error: 'Sorry But you can only run one package at a time',
-      });
-      return response.redirect('back');
-    }
-
     const validationRules = {
       project_id: 'required',
       method: 'required',
