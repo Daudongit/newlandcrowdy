@@ -23,6 +23,10 @@ Route
     Route.post('/contact', 'GuestController.postContact').as('guest.contact')
     Route.get('/chart', 'GuestController.getChart').as('guest.chart')
     Route.get('/terms', 'GuestController.getTerms').as('guest.terms')
+    Route.get('/teams', 'GuestController.getTeams').as('guest.teams')
+    Route.get('/company', 'GuestController.getCompany').as('guest.company')
+    Route.get('/blog', 'GuestController.getBlog').as('guest.blog')
+    Route.get('/property', 'GuestController.getProperty').as('guest.property')
   })
   .middleware(['guest']);
 
@@ -31,7 +35,7 @@ Route
     Route.get('/', 'HomeController.getDashboard').as('admin.dashboard')
 
     generateResource('deposits', 'DepositController', 'admin.deposits')
-    generateResource('plans', 'PlansController', 'admin.plans')
+    generateResource('projects', 'ProjectsController', 'admin.projects')
     generateResource('packages', 'PackagesController', 'admin.packages')
     generateResource('supporttypes', 'SupportTypesController', 'admin.supporttypes')
     generateResource('faqs', 'FaqController', 'admin.faqs')
@@ -73,15 +77,15 @@ Route
 
     Route.get('/', 'HomeController.getDashboard').as('app.dashboard')
 
-    Route.get('/packages', 'PackagesController.index').as('app.packages.index')
-    Route.get('/packages/choose', 'PackagesController.choose').as('app.packages.choose')
-    Route.get('/packages/invoice/:id', 'PackagesController.invoice').as('app.packages.invoice')
-    Route.get('/packages/choose/payment/:id', 'PackagesController.choosePayment').as('app.packages.choose.payment')
-    Route.get('/packages/:id', 'PackagesController.show').as('app.packages.show')
-    Route.post('/packages', 'PackagesController.store').as('app.packages.store')
-    Route.get('/packages/evidence/:id', 'PackagesController.getEvidence').as('app.packages.evidence')
-    Route.post('/packages/evidence/:id', 'PackagesController.doEvidence').as('app.packages.evidence')
-    Route.get('/packages/payments/:id', 'PackagesController.payments').as('app.packages.payments')
+    Route.get('/projects', 'PackagesController.index').as('app.packages.index')
+    Route.get('/projects/choose', 'PackagesController.choose').as('app.packages.choose')
+    Route.get('/projects/invoice/:id', 'PackagesController.invoice').as('app.packages.invoice')
+    Route.get('/projects/choose/payment/:id', 'PackagesController.choosePayment').as('app.packages.choose.payment')
+    Route.get('/projects/:id', 'PackagesController.show').as('app.packages.show')
+    Route.post('/projects', 'PackagesController.store').as('app.packages.store')
+    Route.get('/projects/evidence/:id', 'PackagesController.getEvidence').as('app.packages.evidence')
+    Route.post('/projects/evidence/:id', 'PackagesController.doEvidence').as('app.packages.evidence')
+    Route.get('/projects/payments/:id', 'PackagesController.payments').as('app.packages.payments')
 
     Route.get('/testimonials', 'TestimonialsController.get').as('app.testimonials.get')
     Route.post('/testimonials', 'TestimonialsController.update').as('app.testimonials.update')

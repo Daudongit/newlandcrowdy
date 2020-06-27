@@ -2,14 +2,11 @@
 const User = use('App/Models/User');
 const Transaction = use('App/Models/Transaction');
 const Package = use('App/Models/Package');
-const {
-  validateAll
-} = use('Validator');
+const { validateAll } = use('Validator');
 const validationMessages = use('App/Helpers/ValidationMessages');
 const ResourceController = require('../ResourceController');
-const moment = require("moment");
+const moment = require('moment');
 module.exports = class PackagesController extends ResourceController {
-
   constructor() {
     super();
     this.model = use('App/Models/Package');
@@ -17,14 +14,14 @@ module.exports = class PackagesController extends ResourceController {
     this.indexRoute = `${this.resourceRoute}.index`;
     this.singleItem = 'Package';
     this.mutipleItems = 'Packages';
-    this.relationships = ['user', 'plan'];
+    this.relationships = ['user', 'project'];
 
     this.showLinks = [
       {
         link: 'admin.payments.packages',
-        title: 'Payments'
-      }
-    ]
+        title: 'Payments',
+      },
+    ];
 
     this.dataFields = ['status'];
     this.validationRules = {
@@ -37,66 +34,67 @@ module.exports = class PackagesController extends ResourceController {
     this.hasShow = true;
     this.hasEdit = true;
 
-    this.editAbles = [{
-      label: "Status",
-      name: "status",
-      type: "select",
-      options: [{
-          value: '1',
-          display: 'Running'
-        },
-        {
-          value: '3',
-          display: 'Paused'
-        }
-      ]
-    }];
+    this.editAbles = [
+      {
+        label: 'Status',
+        name: 'status',
+        type: 'select',
+        options: [
+          {
+            value: '1',
+            display: 'Running',
+          },
+          {
+            value: '3',
+            display: 'Paused',
+          },
+        ],
+      },
+    ];
 
-    this.indexAbles = [{
-        label: "User",
-        value: "user.fullName"
+    this.indexAbles = [
+      {
+        label: 'User',
+        value: 'user.fullName',
       },
       {
-        label: "Interest",
-        value: "plan.interest",
-        type: "rate"
+        label: 'Annum Return',
+        value: 'project.annum_return',
+        type: 'money',
       },
       {
-        label: "Next Interest Days",
-        value: "nextInterestDays",
+        label: 'Next Interest Days',
+        value: 'nextInterestDays',
       },
       {
-        label: "Duration",
-        value: "plan.duration",
+        label: 'Duration',
+        value: 'project.duration',
       },
       {
-        label: "Capital",
-        value: "plan.capital",
-        type: "money"
+        label: 'Capital',
+        value: 'amount',
+        type: 'money',
       },
       {
-        label: "Status",
-        value: "fullStatus",
-        type: 'label'
+        label: 'Status',
+        value: 'fullStatus',
+        type: 'label',
       },
       {
-        label: "Started",
-        value: "started",
-        type: "date"
+        label: 'Started',
+        value: 'started',
+        type: 'date',
       },
       {
-        label: "Created",
-        value: "created_at",
-        type: "date"
+        label: 'Created',
+        value: 'created_at',
+        type: 'date',
       },
     ];
 
     this.showAbles = this.indexAbles;
-
   }
-
-}
-
+};
 
 //   async update({
 //     request,

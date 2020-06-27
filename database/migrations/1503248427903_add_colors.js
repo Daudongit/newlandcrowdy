@@ -5,11 +5,11 @@ const Schema = use('Schema')
 
 class MigrationSchema extends Schema {
   up () {
-    this.alter('plans', (table) => {
-      table.string('color').notNullable()
+    this.alter('projects', (table) => {
+      table.string('flats').notNullable();
+      table.integer('slots').notNullable();
     })
   }
-
 }
 
 module.exports = MigrationSchema

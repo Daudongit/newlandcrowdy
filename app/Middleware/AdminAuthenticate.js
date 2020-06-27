@@ -1,18 +1,13 @@
-'use strict'
+'use strict';
 
 class AdminAuthenticate {
-  async handle({
-    auth,
-    response,
-    session,
-    request
-  }, next) {
+  async handle({ auth, response, session, request }, next) {
     if (!auth.user) {
-      session.put('fromURL', request.url())
-      return response.route('admin.signin')
+      session.put('fromURL', request.url());
+      return response.route('admin.signin');
     }
-    await next()
+    await next();
   }
 }
 
-module.exports = AdminAuthenticate
+module.exports = AdminAuthenticate;

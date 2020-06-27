@@ -1,21 +1,18 @@
-'use strict'
+'use strict';
 const _ = require('lodash');
 
-const {
-  validateAll
-} = use('Validator');
+const { validateAll } = use('Validator');
 const validationMessages = use('App/Helpers/ValidationMessages');
 const Helpers = use('Helpers');
 const uuidv4 = require('uuid/v4');
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array)
+    await callback(array[index], index, array);
   }
 }
 
 class ResourceController {
-
   constructor() {
     this.relationships = [];
     this.indexWheres = [];
@@ -26,17 +23,11 @@ class ResourceController {
     this.showLinks = [];
     this.searchAbles = [];
     this.fileFields = [];
-    this.editText = "Edit"
+    this.editText = 'Edit';
   }
 
-  async index({
-    view,
-    request,
-    params,
-    auth
-  }) {
-
-    let titlePrefix = "";
+  async index({ view, request, params, auth }) {
+    let titlePrefix = '';
     const page = request.input('page') || 1;
     let query = this.model.query();
 
@@ -50,8 +41,8 @@ class ResourceController {
     }
 
     if (params.field && params.id) {
-      titlePrefix = (params.field === 'user') ? 'User ' : _.find(this.filterFields, params).title
-      const field = (params.field === 'user') ? 'user_id' : params.field
+      titlePrefix = params.field === 'user' ? 'User ' : _.find(this.filterFields, params).title;
+      const field = params.field === 'user' ? 'user_id' : params.field;
       query = query.where(field, params.id);
     }
 
@@ -59,12 +50,12 @@ class ResourceController {
       titlePrefix = 'Search ';
       this.searchAbles.forEach(searchAble => {
         query = query.orWhere(searchAble, 'LIKE', '%' + request.input('search') + '%');
-      })
+      });
     }
 
     if (this.whereMe) {
       query = query.where({
-        user_id: auth.user.id
+        user_id: auth.user.id,
       });
     }
 
@@ -92,14 +83,11 @@ class ResourceController {
       filterFields: this.filterFields,
       noAction: this.noAction,
       searchAbles: this.searchAbles.length,
-      editText: this.editText
+      editText: this.editText,
     });
-
   }
 
-  async create({
-    view
-  }) {
+  async create({ view }) {
     return view.render('crud.create', {
       resourceRoute: this.resourceRoute,
       mutipleItems: this.mutipleItems,
@@ -108,39 +96,30 @@ class ResourceController {
     });
   }
 
-  async store({
-    request,
-    response,
-    session
-  }) {
-
+  async store({ request, response, session }) {
     const validation = await validateAll(request.all(), this.validationRules, validationMessages);
 
     if (validation.fails()) {
-      session
-        .withErrors(validation.messages())
-        .flashExcept()
-      return response.redirect('back')
+      session.withErrors(validation.messages()).flashExcept();
+      return response.redirect('back');
     }
-    
+
     const createData = request.only(this.dataFields);
 
     if (this.fileFields.length > 0) {
-      
       await asyncForEach(this.fileFields, async fileFieldName => {
-
-        const fileField = request.file(fileFieldName)
+        const fileField = request.file(fileFieldName);
 
         if (fileField.type != 'image') {
           session.flash({
-            error: "Only Images Are Allowed",
+            error: 'Only Images Are Allowed',
           });
           return response.redirect('back');
         }
 
         if (fileField.size > 1000000) {
           session.flash({
-            error: "Image size too large. Maximum size is 1MB",
+            error: 'Image size too large. Maximum size is 1MB',
           });
           return response.redirect('back');
         }
@@ -149,33 +128,27 @@ class ResourceController {
 
         const fullPath = 'uploads/' + dirPath + '/' + uuidv4() + '.jpg';
 
-       await fileField.move(Helpers.publicPath(), {
-          name: fullPath
+        await fileField.move(Helpers.publicPath(), {
+          name: fullPath,
         });
 
         if (!fileField.moved()) {
-          return fileField.error()
+          return fileField.error();
         }
         createData[fileFieldName] = '/' + fullPath;
-
       });
-
     }
 
     this.model.create(createData);
     session.flash({
-      info: `${this.singleItem} Created Successfully.`
-    })
+      info: `${this.singleItem} Created Successfully.`,
+    });
     return response.route(this.indexRoute);
   }
 
-  async show({
-    view,
-    params
-  }) {
-
+  async show({ view, params }) {
     let query = this.model.query().where({
-      id: params.id
+      id: params.id,
     });
     this.relationships.forEach(relationship => {
       query = query.with(relationship);
@@ -189,64 +162,60 @@ class ResourceController {
       hasEdit: this.hasEdit,
       hasDelete: this.hasDelete,
       showAbles: this.showAbles,
-      showLinks: this.showLinks
+      showLinks: this.showLinks,
     });
   }
 
-  async edit({
-    view,
-    params
-  }) {
+  async edit({ view, params }) {
     return view.render('crud.edit', {
-      resourceDatum: await this.model.query().where({
-          id: params.id
-        }).first(),
-        resourceRoute: this.resourceRoute,
-        singleItem: this.singleItem,
-        editAbles: this.editAbles,
-        editText: this.editText
-
+      resourceDatum: await this.model
+        .query()
+        .where({
+          id: params.id,
+        })
+        .first(),
+      resourceRoute: this.resourceRoute,
+      singleItem: this.singleItem,
+      editAbles: this.editAbles,
+      editText: this.editText,
     });
   }
 
-  async update({
-    request,
-    response,
-    session,
-    params
-  }) {
+  async update({ request, response, session, params }) {
     const validation = await validateAll(request.all(), this.validationRules, validationMessages);
 
     if (validation.fails()) {
-      session
-        .withErrors(validation.messages())
-      return response.redirect('back')
+      session.withErrors(validation.messages());
+      return response.redirect('back');
     }
 
     const updateData = request.only(this.dataFields);
-    this.model.query().where({
-      id: params.id
-    }).update(updateData).then(() => {})
+    this.model
+      .query()
+      .where({
+        id: params.id,
+      })
+      .update(updateData)
+      .then(() => {});
     session.flash({
-      info: `${this.singleItem} Updated Successfully.`
-    })
+      info: `${this.singleItem} Updated Successfully.`,
+    });
     return response.route(this.indexRoute);
   }
 
-  async destroy({
-    params,
-    session,
-    response
-  }) {
-    this.model.query().where({
-      id: params.id
-    }).delete().then(() => {})
+  async destroy({ params, session, response }) {
+    this.model
+      .query()
+      .where({
+        id: params.id,
+      })
+      .delete()
+      .then(() => {});
     session.flash({
-      info: `${this.singleItem} Deleted Successfully.`
-    })
+      info: `${this.singleItem} Deleted Successfully.`,
+    });
     return response.route(this.indexRoute);
   }
-
 }
 
-module.exports = ResourceController
+module.exports = ResourceController;

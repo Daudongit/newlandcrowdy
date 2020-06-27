@@ -1,11 +1,9 @@
-'use strict'
+'use strict';
 
-const {
-  validateAll
-} = use('Validator');
+const { validateAll } = use('Validator');
 const validationMessages = use('App/Helpers/ValidationMessages');
-const Route = use("Route");
-const Mail = use("Mail");
+const Route = use('Route');
+const Mail = use('Mail');
 const Helpers = use('Helpers');
 const Config = use('Config');
 const Hash = use('Hash');
@@ -15,31 +13,22 @@ const Token = use('App/Models/Token');
 const Referral = use('App/Models/Referral');
 const BankDetail = use('App/Models/BankDetail');
 const randomstring = require('randomstring');
-const moment = require("moment");
 
 class AuthController {
-
-  getSignUp({
-    view,
-    params
-  }) {
+  getSignUp({ view, params }) {
     return view.render('auth.signup', {
-      referral: params.referral
+      referral: params.referral,
     });
   }
 
-  getForGotPassword({
-    view
-  }) {
+  getForGotPassword({ view }) {
     return view.render('auth.forgotpassword');
   }
 
-  async doSignUp({
-    request,
-    response,
-    session
-  }) {
-    const validation = await validateAll(request.all(), {
+  async doSignUp({ request, response, session }) {
+    const validation = await validateAll(
+      request.all(),
+      {
         email: 'required|email|unique:users,email',
         username: 'required|unique:users,username',
         phone_number: 'required|unique:users,phone_number',
@@ -51,16 +40,14 @@ class AuthController {
         state: 'required',
         bank_name: 'required',
         account_name: 'required',
-        account_number: 'required'
+        account_number: 'required',
       },
-      validationMessages
+      validationMessages,
     );
     if (validation.fails()) {
-      session
-        .withErrors(validation.messages())
-        .flashExcept(['password'])
+      session.withErrors(validation.messages()).flashExcept(['password']);
 
-      return response.redirect('back')
+      return response.redirect('back');
     }
     const {
       email,
@@ -75,7 +62,7 @@ class AuthController {
       address,
       city,
       state,
-      referral
+      referral,
     } = request.all();
 
     // let referred_by = 0;
@@ -83,36 +70,40 @@ class AuthController {
     let referralUser = false;
 
     if (referral) {
-      referralUser = await User.query().where('username', referral).first();
+      referralUser = await User.query()
+        .where('username', referral)
+        .first();
 
       if (!referralUser) {
-        session.flash({
-          error: 'Referral Doesn\'t exist.'
-        }).flashExcept()
+        session
+          .flash({
+            error: "Referral Doesn't exist.",
+          })
+          .flashExcept();
         return response.redirect('back');
       }
     }
 
-    const id_card = request.file('id_card')
-    const picture = request.file('picture')
+    const id_card = request.file('id_card');
+    const picture = request.file('picture');
 
     if (picture.size == 0 || id_card.size == 0) {
       session.flashExcept(['password']).flash({
-        error: "Both the picture and ID Card are required",
+        error: 'Both the picture and ID Card are required',
       });
       return response.redirect('back');
     }
 
     if (id_card.type != 'image' && picture.type != 'image') {
       session.flashExcept(['password']).flash({
-        error: "Only Images Are Allowed",
+        error: 'Only Images Are Allowed',
       });
       return response.redirect('back');
     }
 
     if (picture.size > 1000000 || id_card.size > 1000000) {
       session.flashExcept(['password']).flash({
-        error: "Image size too large. Maximum size is 1MB",
+        error: 'Image size too large. Maximum size is 1MB',
       });
       return response.redirect('back');
     }
@@ -121,19 +112,19 @@ class AuthController {
     const id_card_ = 'uploads/id_card/' + uuidv4() + '.jpg';
 
     await picture.move(Helpers.publicPath(), {
-      name: picture_
-    })
+      name: picture_,
+    });
 
     await id_card.move(Helpers.publicPath(), {
-      name: id_card_
-    })
+      name: id_card_,
+    });
 
     if (!id_card.moved()) {
-      return id_card.error()
+      return id_card.error();
     }
 
     if (!picture.moved()) {
-      return picture.error()
+      return picture.error();
     }
 
     const activationCode = randomstring.generate();
@@ -153,293 +144,288 @@ class AuthController {
       id_card: id_card_,
     });
 
-    if(referral){
+    if (referral) {
       Referral.create({
         referred_by: referralUser.id,
-        user_id: user.id
-      }).then(() => {})
+        user_id: user.id,
+      }).then(() => {});
     }
 
     BankDetail.create({
-       user_id: user.id,
-       bank_name,
-       account_number,
-       account_name
+      user_id: user.id,
+      bank_name,
+      account_number,
+      account_name,
     }).then(() => {});
 
-    Mail.send('emails.activateaccount', {
-      name: username,
-      link: Config.get('app.fullUrl') + Route.url('auth.activateAccount', {
-        username,
-        token: activationCode
+    Mail.send(
+      'emails.activateaccount',
+      {
+        name: username,
+        link:
+          Config.get('app.fullUrl') +
+          Route.url('auth.activateAccount', {
+            username,
+            token: activationCode,
+          }),
+      },
+      message => {
+        message
+          .to(email)
+          .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
+          .subject('Welcome to ' + Config.get('app.name'));
+      },
+    )
+      .then(() => {
+        // console.log("nic3")
       })
-    }, (message) => {
-      message
-        .to(email)
-        .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
-        .subject('Welcome to ' + Config.get('app.name'))
-    }).then(() => {
-      // console.log("nic3")
-    }).catch(e => {
-      console.log(e)
-    })
+      .catch(e => {
+        console.log(e);
+      });
 
     session.flash({
-      info: 'We just sent you a mail, please check and confirm your email to login.'
-    })
+      info: 'Registration Successfull, We just sent you a mail, please check and confirm your email to login.',
+    });
     return response.redirect('back');
-
   }
 
-  async doForGotPassword({
-    request,
-    response,
-    session
-  }) {
-    const validation = await validateAll(request.all(), {
-      email: 'required|email',
-    }, validationMessages);
+  async doForGotPassword({ request, response, session }) {
+    const validation = await validateAll(
+      request.all(),
+      {
+        email: 'required|email',
+      },
+      validationMessages,
+    );
 
     if (validation.fails()) {
-      session
-        .withErrors(validation.messages())
-        .flashExcept()
-      return response.redirect('back')
+      session.withErrors(validation.messages()).flashExcept();
+      return response.redirect('back');
     }
     const email = request.input('email');
 
-    const responseMessage = "We just sent you a mail containing your new password if the email you sent was valid.";
+    const responseMessage =
+      'We just sent you a mail containing your new password if the email you sent was valid.';
 
-    const user = await User.query().where({
-      email
-    }).first();
+    const user = await User.query()
+      .where({
+        email,
+      })
+      .first();
     if (!user) {
-      session.flash({
-        error: responseMessage
-      }).flashExcept()
+      session
+        .flash({
+          error: responseMessage,
+        })
+        .flashExcept();
       return response.redirect('back');
     }
 
     const newPassword = randomstring.generate();
 
-    User.query().where({
-      id: user.id
-    }).update({
-      password: await Hash.make(newPassword)
-    }).then(() => {})
+    User.query()
+      .where({
+        id: user.id,
+      })
+      .update({
+        password: await Hash.make(newPassword),
+      })
+      .then(() => {});
 
-    Mail.send('emails.changepassword', {
-      name: `${user.username}`,
-      newPassword
-    }, (message) => {
-      message
-        .to(email)
-        .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
-        .subject('Password Reset - ' + Config.get('app.name'))
-    }).then((kiss) => {
-      console.log('kiss')
-    }).catch(hello => {
-      console.log(hello)
-    });
+    Mail.send(
+      'emails.changepassword',
+      {
+        name: `${user.username}`,
+        newPassword,
+      },
+      message => {
+        message
+          .to(email)
+          .from(Config.get('mail.from.email'), Config.get('mail.from.name'))
+          .subject('Password Reset - ' + Config.get('app.name'));
+      },
+    )
+      .then(kiss => {
+        console.log('kiss');
+      })
+      .catch(hello => {
+        console.log(hello);
+      });
 
     session.flash({
-      info: responseMessage
+      info: responseMessage,
     });
 
     return response.redirect('back');
-
   }
 
-  async activateAccount({
-    response,
-    session,
-    params
-  }) {
+  async activateAccount({ response, session, params }) {
+    const { username, token } = params;
 
-    const {
-      username,
-      token
-    } = params;
-
-    const user = await User.query().where({
-      username
-    }).first();
+    const user = await User.query()
+      .where({
+        username,
+      })
+      .first();
     if (!user) {
       session.flash({
-        error: 'Username Doesn\'t exist.'
+        error: "Username Doesn't exist.",
       });
       return response.route('app.signin');
     }
 
-    if (!await Hash.verify(token, user.verified)) {
+    if (!(await Hash.verify(token, user.verified))) {
       session.flash({
-        error: `Account Activation Failed`
+        error: `Account Activation Failed`,
       });
       return response.route('app.signin');
     }
 
-    User.query().where({
-      id: user.id
-    }).update({
-      verified: '1',
-      // activated_at: moment().format("YYYY-MM-DD HH:mm:ss"),
-    }).then(() => {})
+    User.query()
+      .where({
+        id: user.id,
+      })
+      .update({
+        verified: '1',
+        // activated_at: moment().format("YYYY-MM-DD HH:mm:ss"),
+      })
+      .then(() => {});
 
     session.flash({
-      info: 'Account activated successfully. Please Signin'
-    })
+      info: 'Account activated successfully. Please Signin',
+    });
 
     return response.route('app.signin');
   }
 
-
-  getAdminSignin({
-    view
-  }) {
+  getAdminSignin({ view }) {
     return view.render('auth.signin', {
-      authFrom: 'admin'
+      authFrom: 'admin',
     });
   }
 
-  getAppSignin({
-    view
-  }) {
+  getAppSignin({ view }) {
     return view.render('auth.signin', {
-      authFrom: 'app'
+      authFrom: 'app',
     });
   }
 
-  async logOut({
-    auth,
-    response
-  }) {
-    await Token.query().where("user_id", auth.user.id).delete();
-    await auth.logout()
+  async logOut({ auth, response }) {
+    await Token.query()
+      .where('user_id', auth.user.id)
+      .delete();
+    await auth.logout();
     return response.route('index');
   }
 
-  async postAdminSignin({
-    auth,
-    request,
-    response,
-    session
-  }) {
-
-    const validation = await validateAll(request.all(), {
-      email: 'required|email',
-      password: 'required',
-    }, validationMessages);
+  async postAdminSignin({ auth, request, response, session }) {
+    const validation = await validateAll(
+      request.all(),
+      {
+        email: 'required|email',
+        password: 'required',
+      },
+      validationMessages,
+    );
 
     if (validation.fails()) {
-      session
-        .withErrors(validation.messages())
-        .flashExcept(['password'])
+      session.withErrors(validation.messages()).flashExcept(['password']);
 
-      return response.redirect('back')
+      return response.redirect('back');
     }
 
-    const user = await User.query().where('email', request.input('email')).first();
+    const user = await User.query()
+      .where('email', request.input('email'))
+      .first();
 
     if (!user) {
       session.flash({
-        error: 'Invalid Login.'
-      })
+        error: 'Invalid Login.',
+      });
       return response.redirect('back');
     }
 
     if (!user.isAdmin()) {
       session.flash({
-        error: 'Invalid Login.'
-      })
+        error: 'Invalid Login.',
+      });
       return response.redirect('back');
     }
 
-    const {
-      email,
-      password
-    } = request.all()
+    const { email, password } = request.all();
 
     try {
       await auth.remember(true).attempt(email, password);
     } catch (e) {
       session.flash({
-        error: 'Invalid Login.'
+        error: 'Invalid Login.',
       });
       return response.redirect('back');
     }
 
     if (session.get('fromURL')) {
-      return response.redirect(session.pull('fromURL'))
+      return response.redirect(session.pull('fromURL'));
     }
-    return response.route('admin.dashboard')
+    return response.route('admin.dashboard');
   }
 
-
-  async postAppSignin({
-    auth,
-    request,
-    response,
-    session
-  }) {
-
-    const validation = await validateAll(request.all(), {
-      email: 'required|email',
-      password: 'required',
-    }, validationMessages);
+  async postAppSignin({ auth, request, response, session }) {
+    const validation = await validateAll(
+      request.all(),
+      {
+        email: 'required|email',
+        password: 'required',
+      },
+      validationMessages,
+    );
     if (validation.fails()) {
+      session.withErrors(validation.messages()).flashExcept(['password']);
 
-      session
-        .withErrors(validation.messages())
-        .flashExcept(['password'])
-
-      return response.redirect('back')
+      return response.redirect('back');
     }
-    const user = await User.query().where('email', request.input('email')).first();
+    const user = await User.query()
+      .where('email', request.input('email'))
+      .first();
 
     if (!user) {
       session.flash({
-        error: 'Invalid Login.'
-      })
+        error: 'Invalid Login.',
+      });
       return response.redirect('back');
     }
 
     if (!user.isUser()) {
       session.flash({
-        error: 'Invalid Login.'
-      })
+        error: 'Invalid Login.',
+      });
       return response.redirect('back');
     }
 
     if (user.verified !== '1') {
       session.flash({
-        error: 'Acccount Not Activated.'
-      })
+        error: 'Acccount Not Activated.',
+      });
       return response.redirect('back');
     }
 
-    const {
-      email,
-      password
-    } = request.all()
+    const { email, password } = request.all();
 
     try {
       await auth.remember(true).attempt(email, password);
     } catch (e) {
-      console.log(e)
+      console.log(e);
       session.flash({
-        error: 'Invalid Login3.'
+        error: 'Invalid Login.',
       });
       return response.redirect('back');
     }
 
     if (session.get('fromURL')) {
-      return response.redirect(session.pull('fromURL'))
+      return response.redirect(session.pull('fromURL'));
     }
 
-    return response.route('app.dashboard')
-
+    return response.route('app.dashboard');
   }
-
 }
 
-module.exports = AuthController
+module.exports = AuthController;

@@ -26,7 +26,7 @@
 
           <div class="t-row">
               <p class="font-weight-bold mb-2 d-inline-block">Amount</p>
-              <p>{{{ moneyFormat(package.plan.capital) }}}</p>
+              <p>{{{ moneyFormat(package.amount) }}}</p>
             </div>
 
           <div class="t-row">
@@ -35,14 +35,14 @@
             </div>
 
           <div class="t-row">
-                <p class="font-weight-bold mb-2 d-inline-block">Interest Duration</p>
-                <p>{{ package.plan.duration }} months</p>
+                <p class="font-weight-bold mb-2 d-inline-block">Project Duration</p>
+                <p>{{ package.project.duration }} years</p>
             </div>
             </div>
 
           <div class="t-row">
-              <p class="font-weight-bold mb-2 d-inline-block">Rate</p>
-              <p>{{ package.plan.interest }}%</p>
+              <p class="font-weight-bold mb-2 d-inline-block">Annum Return</p>
+              <p>{{{ moneyFormat(package.project.annum_return * package.amount / package.project.capital) }}}</p>
             </div>
 
           <div class="t-row">

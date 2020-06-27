@@ -77,7 +77,7 @@
                     @elseif(indexAble.type == 'date')
                      {{ formatTime(lodash($parent.data, indexAble.value) ) }}
                      @elseif(indexAble.type == 'days')
-                     {{ lodash($parent.data, indexAble.value) }} months
+                     {{ lodash($parent.data, indexAble.value) }} years
                      @elseif(indexAble.type == 'rate')
                      {{ lodash($parent.data, indexAble.value) }} %
                     @elseif(indexAble.type == 'money')
@@ -97,7 +97,7 @@
                
                 <td>
                   @if(hasShow)
-                  <a href="{{ route(resourceRoute + '.show', {id : data.id}) }}" class="btn btn-default btn-xs">
+                  <a href="{{ route(resourceRoute + '.show', {id : data.id}) }}" class="btn btn-primary btn-xs">
                       <i class="icon-eye"></i> Details
                     </a>
                   @endif
@@ -116,8 +116,6 @@
                     </button>
                   </form>
                   @endif
-
-                  <!-- Other actions = [] -->
 
                 </td>
 

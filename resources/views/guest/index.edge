@@ -4,365 +4,342 @@
 @endsection
 @section('content')
 
-	<!-- Header Section ends -->
-		<!-- Banner Section Starts -->
-	<section class="banner" id="home">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<!-- Header content start -->
-					<div class="header-content wow fadeInUp">
-						<h2>Safest & easiest way to <span>Invest and Trade</span>Cryptocurrencies</h2>
-						<p>You don't need to be a professional to trade or invest. We trade for you and satisfy your passion.</p>
-						
-						<div class="download-button">
-							<a href="{{ route('app.signup') }}" class="btn-download btn-apple"><i class="fa"><img src="/assets/images/signup.png"></i> <span>Invest Now</span>Sign Up</a>
-						</div>
-					</div>
-					<!-- Header content end -->
-				</div>
-				
-				<div class="col-lg-4 offset-lg-2">
-					<div class="registration wow fadeInRight">
-						<h3>My Account</h3>
-						
-						<div class="register-form">
-							<form action="{{ route('app.signin') }}" method="post">
- {{ csrfField() }}
-								
-						<div class="register-form">
+  <!--Carousel Wrapper-->
+  <div class="container">
+    <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+      <!--Slides-->
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <div class="view">
+            <img class="d-block img-fluid" src="/assets/images/bg3.png" alt="First slide">
+            <div class="mask rgba-black-light"></div>
+          </div>
+          <div class="carousel-caption">
+            <h1 class="h3-responsive text-dark pb-4"><b>A Clever Way To Get Your <br> Money to Work</b>
+            </h1>
+            <h5 class="text-dark pb-5"> <b>A transformative affordable housing<br> solution for
+                everyone by everyone.</b> </h5>
+            <a class="btn wrp1 waves-effect text-white mx-1" href="{{ route('app.signin') }}" role="button"><b>Sponsor A
+                Property</b></a>
+            <a class="btn wrp2 waves-effect text-white mx-1" href="{{ route('app.signup') }}" role="button"><b>Create A
+                Free Account</b></a>
+          </div>
+        </div>
+      </div>
+      <!--/.Slides-->
+    </div>
+  </div>
+  <!--/.Carousel Wrapper-->
 
-								<div class="row">
-									
-									<div class="form-group col-md-12">
-										<input type="text" name="email" class="form-control" placeholder="EMail" required>
-									</div>
-									
-									<div class="form-group col-md-12">
-										<input type="password" name="password" class="form-control" placeholder="Password" required>
-									</div>
-									
-									
-									<div class="form-group col-md-12">
-										<button type="submit" name="login" class="btn-register">Access Portal</button>
-										<p class="registration-note">Help <a href="{{ route('app.forgotpassword') }}">Forgot Password?</a></p>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>	
-	</section>
-	
-	<!-- Banner Section Ends -->
-	
-	<!-- Currency Price box starts -->
-	<div class="currency-price">
-		<div class="container">
-			<div class="row">
-				<!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  
-  <script type="text/javascript" src="../s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
-  {
-  "symbols": [
-    {
-      "title": "S&P 500",
-      "proName": "INDEX:SPX"
-    },
-    {
-      "title": "Nasdaq 100",
-      "proName": "INDEX:IUXX"
-    },
-    {
-      "title": "EUR/USD",
-      "proName": "FX_IDC:EURUSD"
-    },
-    {
-      "title": "BTC/USD",
-      "proName": "BITFINEX:BTCUSD"
-    },
-    {
-      "title": "ETH/USD",
-      "proName": "BITFINEX:ETHUSD"
-    }
-  ],
-  "locale": "en"
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
-			</div>
-		</div>
-	</div>
-	<!-- Currency Price box ends -->
-	
-	<!-- Currency Price box starts -->
-	<div class="currency-price">
-		<div class="container">
-			<div class="row">
-				<!-- TradingView Widget BEGIN -->
-<div class="pricing">
-				<div class="w3l-pricing-grids">
-					@each(plan in plans)
-					<div class="agileits-pricing-grid first">
-						<div class="pricing_grid">
-							<div class="wthree-pricing pricing-top" style="background: {{ plan.color }}">
-								<h3>{{ plan.name }}</h3>
-								<p><span>{{plan.interest}}%</span><br>{{{ moneyFormat(plan.perMonth) }}} Monthly<br><br>For {{plan.duration}} Months</p>
-							</div>
-							<div class="pricing-bottom">
-								<div class="pricing-bottom-bottom">
-									<p><span class="fa fa-check"></span><span>Fee: </span>{{{ moneyFormat(plan.capital) }}}</p>
-									<p><span class="fa fa-check"></span><span>ROI: </span>{{{ moneyFormat(plan.roi) }}}</p>
-								</div>
-								<div class="buy-button">
-									<a class="popup-with-zoom-anim" style="background: {{ plan.color }}" href="{{ route('app.signup') }}">Sign Up</a>
-								</div>
-							</div>
-						</div>
-					</div>
+  <!--MileStones-->
+  <div class="container-fluid mile">
+    <div class="row text text-center">
+			@each(counter in counters)
+      <div class="col-md-3 col-sm-6 border-right">
+        <h5> <i class="fa fa-{{ ['building-o', 'users', 'globe', 'space-shuttle'][counter.id - 1] }} fa-3x text-white" aria-hidden="true"></i> <span class="text-white h1">
+        </span><br> <span class="text-white">{{ counter.value }} {{ counter.title }}</span> </h5>
+      </div>
+      @endeach
+    </div>
+  </div>
+
+  <!--/MileStones-->
+
+  <!--.Properties Cards-->
+  <div class="container-fluid pt-4 bg-light">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h6 class="ts tsc"><b>PROPERTIES</b></h6>
+        <h2><b>Fund A Project</b></h2>
+      </div>
+      <div class="bd mb-4">
+      </div>
+    </div>
+  </div>
+
+  <!-- Card -->
+  <div class="container-fluid bg-light">
+    <div class="row">
+      @each(project in projects)
+      <div class="col-md-3">
+        <div class="card">
+          <!-- Card image -->
+          <div class="view overlay">
+            <img class="card-img-top" src="/assets/images/properties/{{ $loop.index + 1 }}.jpg" alt="Card image cap">
+            <a class=" bt1 btn wrp{{ project.active === 0 ? '3' : '2' }} waves-effect text-white"  href="{{ route('app.signin') }}" role="button"><b>
+              {{ project.active === 0 ? 'Coming Soon' : 'Active' }}</b></a> <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <!-- Button -->
+          <!-- Card content -->
+          <div class="card-body rotate-btn float-right">
+            <!-- Title -->
+
+          <h5 class="  card-title text-center"><b>{{ project.flats }}</b></h5>
+            <hr>
+            <!-- Text -->
+            <table class="table table-borderless ">
+              <thead>
+                <tr>
+                  <th scope="col"> <i class="fa fa-map-marker" aria-hidden="true"></i> Location</th>
+                <td scope="col">{{ project.name }}</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><i class="fa fa-building-o" aria-hidden="true"></i> Price</th>
+                <td>{{{ moneyFormat(project.capital) }}} <span class="font-{{ project.active === 1 ? 'selling' : 'sold' }}">per units</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Card footer -->
+          <div class="rounded-bottom cdf{{ project.active === 0 ? '2' : '' }} text-center pt-3">
+            <ul class="list-unstyled list-inline font-small">
+              <li class="list-inline-item pr-1 "> <b> <i class="fa fa-recycle pr-1" ></i> {{{ moneyFormat(project.annum_return) }}}</b><span class="small">/annum</span></li>
+            <li class="list-inline-item pr-1 "><i class="fa fa-hourglass-half pr-1 "></i><b>{{ project.duration }}</b> years</a></li>
+              <li class="list-inline-item pr-1"><i class="fa fa-users pr-1 "></i>{{ project.slots }} </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      @endeach
+    </div>
+  </div>
+  <!--/.Properties Cards-->
+
+  <!--Features-->
+  <div class="container-fluid bg-success">
+    <div class="row">
+      <div class="col-md-4">
+        <h1 class="p-5 m-5 text-white text-"><b>Why <br> LandCrowdy?</b></h1>
+      </div>
+      <div class="col-md-8 ">
+        <!-- Card deck -->
+        <div class="card-deck mt-5 mr-5 text-left">
+
+          <!-- Card 1-->
+          <div class="card mb-4 why">
+            <div class="card-body why">
+              <h6><img src="/assets/images/icons/icon1.png" alt="" class="img-fluid text-center " width="50"> <b>We're
+                  Certified</b></h6>
+              <p class="card-text">We are a registered real estate company with over 10 years experience and have built
+                over 100 homes.</p>
+              <i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>
+            </div>
+          </div>
+          <!-- /Card 1-->
+
+          <!-- Card -->
+          <!-- Card 1-->
+          <div class="card mb-4 why">
+            <div class="card-body why">
+              <h6><img src="/assets/images/icons/icon2.png" alt="" class="img-fluid text-center" width="50"> <b>We're
+                  Secure</b></h6>
+              <p class="card-text">We have your privacy at heart. Our platform was built with Bank-Grade
+                security features.</p>
+              <i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>
+            </div>
+          </div>
+          <!-- /Card 2-->
+
+          <!-- Card 3-->
+          <div class="card mb-4 why">
+            <div class="card-body why">
+              <h6><img src="/assets/images/icons/icon3.png" alt="" class="img-fluid text-center " width="50"> <b>We're Supportive
+                </b></h6>
+              <p class="card-text">We have a highly motivated team of support services which complement our scientific
+                disciplines</p>
+              <i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>
+            </div>
+          </div>
+          <!-- /Card 3-->
+          <!-- Card -->
+
+        </div>
+        <!-- Card deck -->
+      </div>
+    </div>
+  </div>
+  <!--/.Features-->
+
+  <!--VIDEO ABOUT US-->
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-md-6 data-anima=">
+        <div>
+          <img src="/assets/images/vid3.jpg" class="img-fluid " alt="smaple image">
+          <div class="carousel-caption">
+
+            <a href="#"> <i class="fa fa-play fa-5x text-white p-5 m-4" data-toggle="modal" data-target="#modalYT"
+                aria-hidden="true"></i></a>
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalYT">Launch modal</button> -->
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 text-center">
+        <h2 class="tsc"><b>How It Works</b></h2>
+        <h1 class="text-success"><b>Connecting People To Assets</b></h1>
+        <h5> We are on a mission to end the problem of shelter in Nigeria, one building at a time. We do this by
+          creating an online platform for “everyday people'', to engage in the real estate value chain by building
+          affordable homes in urban communities. </h5>
+        <a class="btn wrp2 waves-effect text-white mt-1" href="https://www.youtube.com/watch?v=ZesQ_8K5I_g"
+          target="_blank" role="button"><b>Watch Video</b></a>
+      </div>
+    </div>
+  </div>
+  <!--/VIDEO ABOUT US-->
+
+  <!--FAQ-->
+  <div class="container-fluid pt-4 faq d-none d-lg-block">
+    <div class="row mt-1">
+      <div class="col-md-12 text-center">
+        <h6 class="ts tsc"><b>FAQ SECTION</b></h6>
+        <h2 class="text-white"><b>Frequently Asked Questions</b></h2>
+        <div class="bd mb-1"></div>
+      </div>
+
+      <div class="col-md-6 mt-5">
+        <div class="accordion" id="accordionExample">
+          @each(faq in faqs)
+          @if($loop.index % 2 === 0)
+          <div class="card z-depth-0 bordered">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link faq1" type="button" data-toggle="collapse" data-target="#collapse{{faq.id}}"
+                  aria-expanded="true" aria-controls="collapseOne">{{ faq.question }}
+
+                </button>
+              </h5>
+            </div>
+            <div id="collapse{{faq.id}}" class="collapse {{ $loop.index === 0 ? 'show' : '' }}" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body"> {{ faq.answer }}
+              </div>
+            </div>
+          </div>
+          @endif
 					@endeach
-				</div>
-</div>
-<!-- TradingView Widget END -->
-			</div>
-		</div>
-	</div>
-	
-	<!-- Currency Price box ends -->
-	
-	<!-- Buy Step section starts -->
-	<div class="buy-step">
-		<div class="container">
-			<div class="row">
-				<!-- Section title start -->
-				<div class="col-md-12">
-					<div class="section-title">
-						<h2>Easy Investment Steps</h2>
-					</div>
-				</div>
-				<!-- Section title end -->
-			</div>
-			
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="buy-step-single right-arrow wow fadeInUp" data-wow-delay="0.2s">
-						<span>1</span>
-						<p><a href="{{ route('app.signup') }}">Register</a> your <br />investment account.</p>
-					</div>
-				</div>
-				
-				<div class="col-lg-4">
-					<div class="buy-step-single right-arrow wow fadeInUp" data-wow-delay="0.4s">
-						<span>2</span>
-						<p>Deposit funds  in <br />your account.</p>
-					</div>
-				</div>
-				
-				<div class="col-lg-4">
-					<div class="buy-step-single wow fadeInUp" data-wow-delay="0.6s">
-						<span>3</span>
-						<p>Invest on a plan <br />and, we trade for you.</p>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</div>
-	<!-- Buy Step section ends -->
-	
-	<!-- Why choose us section starts -->
-	<section class="why-choose-us" id="feature">
-		<div class="container">
-			<div class="row">
-				<!-- Section title start -->
-				<div class="col-md-12">
-					<div class="section-title">
-						<h2>Why Invest with us?</h2>
-					</div>
-				</div>
-				<!-- Section title end -->
-			</div>
-			
-			<div class="row">
-				<!-- Why us box start -->
-				<div class="col-lg-3 col-md-6">
-					<div class="why-us-box wow fadeInUp" data-wow-delay="0.2s">
-						<h3>Accuracy</h3>
-						<div class="icon-box">
-							<i class="flaticon-mixer"></i>
-						</div>
-						<p>Our expert trading professionals analyse market trends for best trading results.</p>
-					</div>
-				</div>
-				<!-- Why us box end -->
-				
-				<!-- Why us box start -->
-				<div class="col-lg-3 col-md-6">
-					<div class="why-us-box wow fadeInUp" data-wow-delay="0.4s">
-						<h3>Fast</h3>
-						<div class="icon-box">
-							<i class="flaticon-startup"></i>
-						</div>
-						<p>Our services are automated and operates at a flash speed for maximum efficiency.</p>
-					</div>
-				</div>
-				<!-- Why us box end -->
-				
-				<!-- Why us box start -->
-				<div class="col-lg-3 col-md-6">
-					<div class="why-us-box wow fadeInUp" data-wow-delay="0.6s">
-						<h3>Secure</h3>
-						<div class="icon-box">
-							<i class="flaticon-locked"></i>
-						</div>
-						<p>Our website and trading portal is fully secured with the latest technologies of cyber security.</p>
-					</div>
-				</div>
-				<!-- Why us box end -->
-				
-				<!-- Why us box start -->
-				<div class="col-lg-3 col-md-6">
-					<div class="why-us-box wow fadeInUp" data-wow-delay="0.8s">
-						<h3>Multibank</h3>
-						<div class="icon-box">
-							<i class="flaticon-coins"></i>
-						</div>
-						<p>We accept deposits via three (3) popular banks for flexibility, GTB, Access and Diamond.</p>
-					</div>
-				</div>
-				<!-- Why us box end -->
-				
-				<!-- Why us box start -->
-				<div class="col-lg-3 col-md-6">
-					<div class="why-us-box wow fadeInUp" data-wow-delay="1.0s">
-						<h3>Online Payment</h3>
-						<div class="icon-box">
-							<i class="flaticon-wallet"></i>
-						</div>
-						<p>Our payment systems are electronic, fast and secure. Efficient online transactions remains best.</p>
-					</div>
-				</div>
-				<!-- Why us box end -->
-				
-				<!-- Why us box start -->
-				<div class="col-lg-3 col-md-6">
-					<div class="why-us-box wow fadeInUp" data-wow-delay="1.2s">
-						<h3>Legal</h3>
-						<div class="icon-box">
-							<i class="flaticon-law"></i>
-						</div>
-						<p>Our Company is legally incorporated with CAC with Registration Number: <a target="_blank" href="#">2511833</a></p>
-					</div>
-				</div>
-				<!-- Why us box end -->
-				
-				<!-- Why us box start -->
-				<div class="col-lg-3 col-md-6">
-					<div class="why-us-box wow fadeInUp" data-wow-delay="1.4s">
-						<h3>Commisions</h3>
-						<div class="icon-box">
-							<i class="flaticon-percent"></i>
-						</div>
-						<p>We charge the lowest commissions on witdrawals as low as ₦500 for a single withdrawal.</p>
-					</div>
-				</div>
-				<!-- Why us box end -->
-				
-				<!-- Why us box start -->
-				<div class="col-lg-3 col-md-6">
-					<div class="why-us-box wow fadeInUp" data-wow-delay="1.6s">
-						<h3>Withdraw</h3>
-						<div class="icon-box">
-							<i class="flaticon-withdraw"></i>
-						</div>
-						<p>Witdrawals are paid at lightening speed through our automated payment system.</p>
-					</div>
-				</div>
-				<!-- Why us box end -->
-			</div>
-		</div>
-	</section>
-	<!-- Why choose us section ends -->
-	
-	<!-- How it work section starts -->
-	
-	<!-- How it work section ends -->
-	
-	
-	<!-- Stat Counter section starts -->
-	<div class="stat-counter">
-		<div class="container">
-			<div class="row">
-				@each(counter in counters)
-				<!-- Stat Counter single start -->
-				<div class="col-md-3">
-					<div class="counter-box">
-						<h3 class="counter">
-						
-								{{ numberFormat(counter.value) }}						</h3>
-						<p>{{  counter.title.replace("Counter - ", "") }}</p>
-					</div>
-				</div>
-				<!-- Stat Counter single end -->
-				@endeach
-			</div>
-		</div>
-	</div>
-	<!-- Stat Counter section ends -->
-	
-	<!-- Testimonial section starts -->
-	<section class="testimonial" id="testimonial">
-		<div class="container">
-			<div class="row">
-				<!-- Section title start -->
-				<div class="col-md-12">
-					<div class="section-title">
-						<h2>Testimonial</h2>
-					</div>
-				</div>
-				<!-- Section title end -->
-			</div>
-			
-			<div class="row">
-				<div class="col-md-12">
-					<div class="testimonial-slider-wrapper">
-						<div class="swiper-container testimonial-slider">
-							<div class="swiper-wrapper">
+        </div>
+      </div>
+      <div class="col-md-6 mt-5">
+        <div class="accordion" id="accordionExample1">
+          @each(faq in faqs)
+          @if($loop.index % 2 === 1)
+          <div class="card z-depth-0 bordered">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link faq1" type="button" data-toggle="collapse" data-target="#collapse{{faq.id}}"
+                  aria-expanded="true" aria-controls="collapseOne">{{ faq.question }}
 
-								@each(testimonial in testimonials)
-															<!-- Testimonial slide start -->
-								<div class="swiper-slide">
-									<div class="testimonial-slide">
-										<div class="testimonial-quote">
-											<p>{{ testimonial.message }}</p>
-										</div>
-										
-										<div class="testimonial-author">
-											<i class="fa fa-quote-left"></i>
-											<h3>{{ testimonial.name }}</h3>
-											<p>{{ testimonial.role }}</p>
-										</div>
-									</div>
-								</div>
-								<!-- Testimonial slide end -->
-								@endeach
-								 
-								
-																
-							</div>
-							<!-- Testimonial Pagination start -->
-							<div class="testimonial-pagination"></div>
-							<!-- Testimonial Pagination end -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Testimonial section ends -->
+                </button>
+              </h5>
+            </div>
+            <div id="collapse{{faq.id}}" class="collapse {{ $loop.index === 0 ? 'show' : '' }}" aria-labelledby="headingOne" data-parent="#accordionExample1">
+              <div class="card-body"> {{ faq.answer }}
+              </div>
+            </div>
+          </div>
+          @endif
+					@endeach
+        </div>
+      </div>
+      <div class="col-md-12 text-center mt-5">
+        <a class="btn tnav4 waves-effect text-white " href="/" role="button"><b>Any Further Questions?</b></a>
+      </div>
+    </div>
+  </div>
+
+  <!--/FAQ-->
+
+  <!-- FEATURED -->
+  <div class="bg-white">
+    <div class="container py-3">
+      <div class="row pt-1">
+        <div class="col-md-12 text-center">
+          <h3 class="pb-3">We've been featured in</h3>
+        </div>
+        <div class="col-md-2">
+          <img src="/assets/image/media/tgm.jpg" alt="">
+        </div>
+        <div class="col-md-2">
+          <img src="/assets/image/media/moment.jpg" alt="">
+        </div>
+        <div class="col-md-2">
+          <img src="/assets/image/media/lib.jpg" alt="">
+        </div>
+        <div class="col-md-2">
+          <img src="/assets/image/media/ft4.jpg" alt="">
+        </div>
+        <div class="col-md-2">
+          <img src="/assets/image/media/ft5.jpg" alt="">
+        </div>
+        <div class="col-md-2 mt-3">
+          <img src="/assets/image/media/ft6.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /FEATURED -->
+
+  <!-- WAITING LIST -->
+  <!-- Begin Mailchimp Signup Form -->
+  <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    #mc_embed_signup {
+      background: #fff;
+      clear: left;
+      font: 14px Helvetica, Arial, sans-serif;
+    }
+
+    /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+  </style>
+  <div class="container-fluid bg-success">
+    <form action="https://landcrowdy.us1.list-manage.com/subscribe/post?u=513362da437534d581ade7bbd&amp;id=b9c7605f1b"
+      method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank"
+      novalidate>
+      <div class="container-fluid bg-success">
+        <div class="row">
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-6 text-center text-white pt-4">
+            <h5>Get on the</h5>
+            <h1>Waiting List</h1>
+            <h6>Please fill your contact details below:</h6>
+            <div class="mc-field-group">
+              <input type="email" value="" name="EMAIL" class="form-control my-3" id="mce-EMAIL"
+                placeholder="Email Address">
+            </div>
+            <div class="mc-field-group">
+              <input type="text" value="" name="FNAME" class="form-control my-3" id="mce-FNAME" placeholder="Full Name">
+            </div>
+            <div class="mc-field-group size1of2">
+              <input type="text" value="" name="PNUMBER" class="form-control my-3" id="mce-PNUMBER"
+                placeholder="Phone Number">
+            </div>
+            <div id="mce-responses" class="clear">
+              <div class="response" id="mce-error-response" style="display:none"></div>
+              <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>
+            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                name="b_513362da437534d581ade7bbd_b9c7605f1b" tabindex="-1" value=""></div>
+            <div class="clear"><input type="submit" value="Join Now" name="subscribe" id="mc-embedded-subscribe"
+                class="btn btn-dark my-3 btn-block"></div>
+
+          </div>
+    </form>
+  </div>
+  <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+  <script
+    type='text/javascript'>(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
+  <!--End mc_embed_signup-->
+  </div>
+  </div>
+  <!-- /WAITING LIST -->
 	@endsection

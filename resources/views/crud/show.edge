@@ -24,7 +24,7 @@
             <form class="form-inline" method="POST" action="{{ route(resourceRoute + '.destroy', {id : resourceDatum.id}) }}?_method=DELETE">
               {{ csrfField() }}
               <button class="btn btn-danger btn-xs">
-                <i class="mdi mdi-delete"></i>
+                <i class="fa fa-ban"></i>
               </button>
             </form>
             @endif
@@ -33,7 +33,7 @@
         <div class="table-responsive support-pane no-wrap">
           @each(showAble in showAbles)
           <div class="t-row">
-              <p class="font-weight-bold mb-2 d-inline-block">{{ showAble.label }}</p>
+              <p class="font-weight-bold d-inline-block">{{ showAble.label }}</p>
               <p>
               @if(showAble.type == 'label')
               <label class="badge badge-{{ lodash(resourceDatum, showAble.value)['class'] }}">{{ lodash(resourceDatum, showAble.value)['label'] }}</label>
@@ -52,7 +52,7 @@
               N/A
               @endif
               @elseif(showAble.type == 'image')
-              <img src="/{{ lodash(resourceDatum, showAble.value) }}" class="img-responsive" />
+              <img src="{{ lodash(resourceDatum, showAble.value) }}" class="img-responsive" />
               @else
               {{ lodash(resourceDatum, showAble.value) }}
               @endif

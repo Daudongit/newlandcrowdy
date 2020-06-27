@@ -1,0 +1,12 @@
+.form-inline{
+    display: inline-block;
+}
+.t-row{
+    margin-bottom:  20px;
+}
+.t-row p{
+    margin-bottom:  5px;
+}
+.nk-content{
+    padding: 0 !important;
+}

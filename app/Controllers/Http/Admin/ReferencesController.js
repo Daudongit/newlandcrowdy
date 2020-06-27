@@ -1,8 +1,7 @@
 'use strict';
 
 const ResourceController = require('../ResourceController');
-class ReferencesController extends ResourceController{
-
+class ReferencesController extends ResourceController {
   constructor() {
     super();
     this.model = use('App/Models/Reference');
@@ -12,7 +11,7 @@ class ReferencesController extends ResourceController{
     this.mutipleItems = 'References';
     this.dataFields = ['value', 'title'];
     this.validationRules = {
-      value: 'required'
+      value: 'required',
     };
     this.relationships = [];
 
@@ -22,38 +21,36 @@ class ReferencesController extends ResourceController{
     this.hasShow = false;
     this.hasEdit = true;
 
-    this.editAbles = [{
-        label: "Title",
-        name: "title",
-        type: "title"
+    this.editAbles = [
+      {
+        label: 'Title',
+        name: 'title',
+        type: 'title',
       },
       {
-        label: "Value",
-        name: "value",
-        type: "text"
-      }
+        label: 'Value',
+        name: 'value',
+        type: 'text',
+      },
     ];
 
-    this.indexAbles = [{
-      label: "Title",
-      value: "title"
-    },
-    {
-      label: "Value",
-      value: "value",
-      type: "text"
-    },
-    {
-      label: "Updated Last",
-      value: "updated_at",
-      type: "date"
-    },
-  ];
-
-
-
-  } 
-
+    this.indexAbles = [
+      {
+        label: 'Title',
+        value: 'title',
+      },
+      {
+        label: 'Value',
+        value: 'value',
+        type: 'text',
+      },
+      {
+        label: 'Updated Last',
+        value: 'updated_at',
+        type: 'date',
+      },
+    ];
+  }
 }
 
-module.exports = ReferencesController
+module.exports = ReferencesController;

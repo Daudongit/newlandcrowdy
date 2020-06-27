@@ -1,24 +1,29 @@
-@layout('templates.auth')
+@layout('templates.index')
 @section('title')
 Sign Up
 @endsection
 @section('content')
 
-@include('includes.alert')
-
-<form action="{{ route('app.signup') }}" method="POST" enctype="multipart/form-data">
-  {{ csrfField() }}
+<div class="container my-4">
   <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+  @include('includes.alert')
+      <div class="card">
+        <h4 class="card-header fm1 text-white text-center py-3 mb-4">
+          <strong>Sign Up</strong>
+        </h4>
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0">
+          <!-- Form -->
+          <form style="color: #757575;" action="{{ route('app.signup') }}" method="POST" enctype="multipart/form-data">
+            {{ csrfField() }}
+            <div class="row">
 
     <div class="form-group col-sm-12">
       <label class="label">Username</label>
       <div class="input-group">
         <input type="text" class="form-control" name="username" placeholder="Username" value="{{ old('username','') }}">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('username'), hasErrorFor('username')) }}
     </div>
@@ -28,11 +33,6 @@ Sign Up
       <label class="label">Last Name</label>
       <div class="input-group">
         <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{ old('last_name', '') }}">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="fa fa-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('last_name'), hasErrorFor('last_name')) }}
     </div>
@@ -41,11 +41,6 @@ Sign Up
       <label class="label">First Name</label>
       <div class="input-group">
         <input type="first_name" class="form-control" name="first_name" placeholder="First Name" value="{{ old('first_name') || '' }}">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('first_name'), hasErrorFor('first_name')) }}
     </div>
@@ -54,11 +49,6 @@ Sign Up
       <label class="label">Email</label>
       <div class="input-group">
         <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') || ''}}">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
     </div>
@@ -68,11 +58,6 @@ Sign Up
       <label class="label">Phone Number</label>
       <div class="input-group">
         <input type="text" class="form-control" name="phone_number" placeholder="Phone Number" value="{{ old('phone_number') || '' }}">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('phone_number'), hasErrorFor('phone_number')) }}
     </div>
@@ -81,11 +66,6 @@ Sign Up
       <label class="label">Address</label>
       <div class="input-group">
         <input type="text" class="form-control" name="address" placeholder="Address" value="{{ old('address') || '' }}">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('address'), hasErrorFor('address')) }}
     </div>
@@ -94,11 +74,6 @@ Sign Up
       <label class="label">City</label>
       <div class="input-group">
         <input type="text" class="form-control" name="city" placeholder="City" value="{{ old('city') || '' }}">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('city'), hasErrorFor('city')) }}
     </div>
@@ -107,11 +82,6 @@ Sign Up
       <label class="label">State</label>
       <div class="input-group">
         <input type="text" class="form-control" name="state" placeholder="State" value="{{ old('state') || '' }}">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('state'), hasErrorFor('state')) }}
     </div>
@@ -120,11 +90,6 @@ Sign Up
       <label class="label">Account Name</label>
       <div class="input-group">
         <input type="text" class="form-control" name="account_name" placeholder="Account Name" value="{{ old('account_name') || '' }}">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('account_name'), hasErrorFor('account_name')) }}
     </div>
@@ -133,11 +98,6 @@ Sign Up
       <label class="label">Account Number</label>
       <div class="input-group">
         <input type="text" class="form-control" name="account_number" placeholder="Account Number" value="{{ old('account_number') || '' }}">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('account_number'), hasErrorFor('account_number')) }}
     </div>
@@ -146,11 +106,6 @@ Sign Up
       <label class="label">Bank Name</label>
       <div class="input-group">
         <input type="text" class="form-control" name="bank_name" placeholder="Bank Name" value="{{ old('bank_name') || '' }}">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('bank_name'), hasErrorFor('bank_name')) }}
     </div>
@@ -159,11 +114,6 @@ Sign Up
       <label class="label">Your Picture</label>
       <div class="input-group">
         <input type="file" class="form-control" name="picture" placeholder="Your Picture">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('picture'), hasErrorFor('picture')) }}
     </div>
@@ -171,11 +121,6 @@ Sign Up
       <label class="label">ID Card</label>
       <div class="input-group">
         <input type="file" class="form-control" name="id_card" placeholder="ID Card">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('id_card'), hasErrorFor('id_card')) }}
     </div>
@@ -184,11 +129,6 @@ Sign Up
       <label class="label">Password</label>
       <div class="input-group">
         <input type="password" class="form-control" name="password">
-        <div class="input-group-append">
-          <span class="input-group-text">
-            <i class="mdi mdi-check-circle-outline"></i>
-          </span>
-        </div>
       </div>
       {{ elIf('<span>$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
     </div>
@@ -197,11 +137,6 @@ Sign Up
         <label class="label">Referral</label>
         <div class="input-group">
           <input type="text" class="form-control" name="referral" value="{{ old('referral') || referral }}">
-          <div class="input-group-append">
-            <span class="input-group-text">
-              <i class="mdi mdi-check-circle-outline"></i>
-            </span>
-          </div>
         </div>
         {{ elIf('<span>$self</span>', getErrorFor('referral'), hasErrorFor('referral')) }}
       </div>
@@ -211,14 +146,18 @@ Sign Up
       </a>
     </div>
 
-    <div class="form-group col-sm-12">
-      <button class="btn btn-primary submit-btn btn-block">Sign Up</button>
-    </div>
-
-    <div class="text-block text-center my-3 col-sm-12">
-      <a href="{{ route('app.signin') }}" class="text-black text-small">Already have an account? Sign In</a>
-    </div>
-
   </div>
-</form>
+
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign Up</button>
+            <h6 class="text-center">Already have an account?
+              <a href="{{ route('app.signin') }}">Sign In</a>
+            </h6>
+          </form>
+          <!-- Form -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection

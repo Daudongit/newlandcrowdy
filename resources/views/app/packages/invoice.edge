@@ -8,7 +8,6 @@ Invoice
   <div class="col-sm-12">
     <div class="page-title-box">
       <h4 class="page-title">Invoice</h4>
-      
     </div>
   </div>
 </div><!-- end row -->
@@ -20,13 +19,13 @@ Invoice
           <div class="col-12">
             <div class="invoice-title">
               <!-- <h4 class="float-right font-16"><strong>Order </strong></h4> -->
-              <h3 class="mt-0"><img src="/assets/images/logo.png" alt="logo" height="24"></h3>
+              <h3 class="mt-0"><img src="/assets/images/logo12.png" alt="logo" height="24"></h3>
             </div>
             <hr>
             <div class="row">
               <div class="col-6"><address><strong>Billed To:</strong><br>{{ auth.user.getFullName() }} </address></div>
 
-              <div class="col-6 text-right"><address><strong>Digital Coop</strong><br>Lagos, Nigeria</address></div>
+              <div class="col-6 text-right"><address><strong>LandCrowdy</strong><br>Lagos, Nigeria</address></div>
             </div>
             <div class="row">
               <div class="col-6 m-t-30"><address><strong>Bank Account Information:</strong>
@@ -62,32 +61,31 @@ Invoice
                     <tbody>
                       <!-- foreach ($order->lineItems as $line) or some such thing here -->
                       <tr>
-                        <td>{{ plan.name }}</td>
-                        <td class="text-center">{{{ moneyFormat(plan.capital) }}}</td>
+                      <td> {{ plan.flats }} at <b>{{ plan.name }}</b></td>
+                        <td class="text-center">{{{ moneyFormat(package.amount) }}}</td>
                         <td class="text-center">1</td>
-                        <td class="text-right">{{{ moneyFormat(plan.capital) }}}</td>
+                        <td class="text-right">{{{ moneyFormat(package.amount) }}}</td>
                       </tr>
                       <tr>
                         <td class="thick-line"></td>
                         <td class="thick-line"></td>
                         <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                        <td class="thick-line text-right">{{{ moneyFormat(plan.capital) }}}</td>
+                        <td class="thick-line text-right">{{{ moneyFormat(package.amount) }}}</td>
                       </tr>
                       <tr>
                         <td class="no-line"></td>
                         <td class="no-line"></td>
                         <td class="no-line text-center"><strong>Total</strong></td>
                         <td class="no-line text-right">
-                          <h4 class="m-0">{{{ moneyFormat(plan.capital) }}}</h4>
+                          <h4 class="m-0">{{{ moneyFormat(package.amount) }}}</h4>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <div class="d-print-none">
-                  <div class="float-right"><a href="javascript:window.print()" class="btn btn-success waves-effect waves-light"><i
+                  <div class="float-left"><a href="javascript:window.print()" class="btn btn-success waves-effect waves-light"><i
                        class="fa fa-print"></i></a> 
-                       <!-- <a href="#" class="btn btn-primary waves-effect waves-light">Send</a> -->
                       </div>
                 </div>
               </div>

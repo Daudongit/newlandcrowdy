@@ -1,72 +1,35 @@
-.card {
-  margin-top: 20px;
+.hidden {
+  display: none;
 }
 
-.mr10 {
-  margin-right: 10px;
+.fa-ban{
+  padding: 2px;
 }
 
-.btn {
-  padding: 8px;
+.logo-img {
+  width: 220px;
 }
 
-.form-group span, span.validation {
-  color: red;
-  font-size: 12px;
+.faq-card-body{
+  border-left: 2px solid rgba(0, 0, 0, 0.07);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.07);
+  border-right: 2px solid rgba(0, 0, 0, 0.07);
 }
 
-.form-inline {
-  display: inline;
-}
-.btn-default{
-    border: 1px solid #7a6fbe;
-}
-.card{
-  padding: 20px;
-}
-a{
-    color: #7a6fbe;
-}
-button[type=submit]{
-  float: right;
-}
-.mb0{
-  margin-bottom: 0px;
-}
-.choose-package a{
-  color: #fff;
-}
-.choose-package{
-  text-align: center;
-  cursor: pointer;
+.nk-menu {
+  background: #101924;
 }
 
-.cursor{
-  cursor: pointer;
+.choose-error{
+  color: #dc3545;
+  font-size: 13px;
 }
 
-.choose-package:hover{
-  opacity: 0.9;
-}
-.choose-package .btn{
-  border:1px solid#fff;
-  color: #fff;
-}
-.choose-package.picked{
-  border: 2px solid #000;
-}
-.choose-payment.picked{
-  border: 1px solid #000;
+.package-index-amount{
+  font-weight: normal;
 }
 
-.mt20{
-  margin-top: 20px; 
-}
-.m0{
-  margin: 0px;
-}
-
-.referral_link{
-  font-size: 12px;
-  float: right;
+.dashboard-image{
+  margin-bottom: 20px;
+  border-radius: 5px;
 }

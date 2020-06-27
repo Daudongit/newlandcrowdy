@@ -1,12 +1,11 @@
-'use strict'
+'use strict';
 const _ = require('lodash');
 
-const Model = use('Model')
+const Model = use('Model');
 
 class Withdrawal extends Model {
-
   static get computed() {
-    return ['fullStatus']
+    return ['fullStatus'];
   }
 
   static getEnums() {
@@ -14,27 +13,25 @@ class Withdrawal extends Model {
       {
         field: 'status',
         id: 0,
-        label: "UnProcessed",
+        label: 'UnProcessed',
         class: 'default',
       },
       {
         field: 'status',
         id: 1,
-        label: "Processed",
+        label: 'Processed',
         class: 'success',
-      }
-    ]
+      },
+    ];
   }
 
-  getFullStatus({
-    status
-  }) {
-    return _.find(Withdrawal.getEnums(), {field: 'status', id: status})
+  getFullStatus({ status }) {
+    return _.find(Withdrawal.getEnums(), { field: 'status', id: status });
   }
 
   user() {
-    return this.belongsTo('App/Models/User')
+    return this.belongsTo('App/Models/User');
   }
 }
 
-module.exports = Withdrawal
+module.exports = Withdrawal;

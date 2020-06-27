@@ -4,7 +4,7 @@ server {
     listen 80 default_server;
 
     location / {
-        return 301 https://digitalcoop.com.ng$request_uri;
+        return 301 https://landcrowdy.com.ng/$request_uri;
         #proxy_pass http://node:${WEB_REVERSE_PROXY_PORT};
     }
 

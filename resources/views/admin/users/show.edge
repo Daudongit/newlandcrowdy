@@ -19,7 +19,7 @@
             <form class="form-inline" method="POST" action="{{ route(resourceRoute + '.destroy', {id : resourceDatum.id}) }}?_method=DELETE">
               {{ csrfField() }}
               <button class="btn btn-danger btn-xs">
-                <i class="mdi mdi-delete"></i>
+                <i class="fa fa-ban"></i>
               </button>
             </form>
             @endif

@@ -1,8 +1,7 @@
-'use strict'
+'use strict';
 
 const ResourceController = require('../ResourceController');
 class TestimonialsController extends ResourceController {
-
   constructor() {
     super();
     this.model = use('App/Models/Testimonial');
@@ -23,65 +22,68 @@ class TestimonialsController extends ResourceController {
     this.hasShow = true;
     this.hasEdit = true;
 
-    this.createAbles = [{
-        label: "Name",
-        name: "name",
-        type: "text"
+    this.createAbles = [
+      {
+        label: 'Name',
+        name: 'name',
+        type: 'text',
       },
       {
-        label: "Profession",
-        name: "role",
-        type: "text"
+        label: 'Profession',
+        name: 'role',
+        type: 'text',
       },
       {
-        label: "Message",
-        name: "message",
-        type: "textarea"
+        label: 'Message',
+        name: 'message',
+        type: 'textarea',
       },
       {
-        label: "Display",
-        name: "display",
-        type: "select",
-        options: [{
-          value: '0',
-          display: 'Hidden'
-        }, {
-          value: '1',
-          display: 'Live'
-        }]
+        label: 'Display',
+        name: 'display',
+        type: 'select',
+        options: [
+          {
+            value: '0',
+            display: 'Hidden',
+          },
+          {
+            value: '1',
+            display: 'Live',
+          },
+        ],
       },
     ];
 
     this.editAbles = this.createAbles;
 
-    this.showAbles = [{
-      label: "Name",
-      value: "name",
-    },
-    {
-      label: "Profession",
-      value: "role",
-    },
-    {
-      label: "Message",
-      value: "message",
-    },
+    this.showAbles = [
       {
-        label: "Created",
-        value: "created_at",
-        type: "date"
+        label: 'Name',
+        value: 'name',
       },
       {
-        label: "Display",
-        value: "fullDisplay",
-        type: "label"
+        label: 'Profession',
+        value: 'role',
+      },
+      {
+        label: 'Message',
+        value: 'message',
+      },
+      {
+        label: 'Created',
+        value: 'created_at',
+        type: 'date',
+      },
+      {
+        label: 'Display',
+        value: 'fullDisplay',
+        type: 'label',
       },
     ];
 
     this.indexAbles = this.showAbles;
-
   }
-
 }
 
-module.exports = TestimonialsController
+module.exports = TestimonialsController;

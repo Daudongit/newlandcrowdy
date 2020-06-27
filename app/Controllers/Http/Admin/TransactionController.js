@@ -1,7 +1,6 @@
 'use strict';
 const ResourceController = require('../ResourceController');
-class TransactionController extends ResourceController{
-
+class TransactionController extends ResourceController {
   constructor() {
     super();
     this.model = use('App/Models/Transaction');
@@ -16,45 +15,45 @@ class TransactionController extends ResourceController{
       {
         field: 'from',
         id: 'online_deposit',
-        title: "Online Deposit"
+        title: 'Online Deposit',
       },
       {
         field: 'from',
         id: 'bank_deposit',
-        title: "Bank Deposit"
-      }
-  ];
+        title: 'Bank Deposit',
+      },
+    ];
 
-    this.indexAbles = [{
-      label: "User",
-      value: "user.fullName"
-    }, {
-      label: "Message",
-      value: "message"
-    },
-    // {
-    //   label: "From",
-    //   value: "fullFrom"
-    // },
-    {
-      label: "Amount",
-      value: "amount",
-      type: "money"
-    },
-    {
-      label: "Type",
-      value: "fullType",
-      type: 'label'
-    },
-    {
-      label: "Created",
-      value: "created_at",
-      type: "date"
-    },
-  ];
-
-  } 
-
+    this.indexAbles = [
+      {
+        label: 'User',
+        value: 'user.fullName',
+      },
+      {
+        label: 'Message',
+        value: 'message',
+      },
+      // {
+      //   label: "From",
+      //   value: "fullFrom"
+      // },
+      {
+        label: 'Amount',
+        value: 'amount',
+        type: 'money',
+      },
+      {
+        label: 'Type',
+        value: 'fullType',
+        type: 'label',
+      },
+      {
+        label: 'Created',
+        value: 'created_at',
+        type: 'date',
+      },
+    ];
+  }
 }
 
-module.exports = TransactionController
+module.exports = TransactionController;

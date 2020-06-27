@@ -1,8 +1,7 @@
-'use strict'
+'use strict';
 
-const Model = use('Model')
+const Model = use('Model');
 
-class BankOption extends Model {
-}
+class BankOption extends Model {}
 
-module.exports = BankOption
+module.exports = BankOption;
