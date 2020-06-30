@@ -14,6 +14,15 @@ class MigrationSchema extends Schema {
     })
   }
 
+  down() {
+    this.alter('users', (table) => {
+      table.dropColumn('address')
+      table.dropColumn('city')
+      table.dropColumn('state')
+      table.dropColumn('picture')
+      table.dropColumn('id_card')
+    })
+  }
 }
 
 module.exports = MigrationSchema

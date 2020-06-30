@@ -10,6 +10,13 @@ class MigrationSchema extends Schema {
       table.integer('slots').notNullable();
     })
   }
+
+  down() {
+    this.alter('projects', (table) => {
+      table.dropColumn('flats')
+      table.dropColumn('slots')
+    })
+  }
 }
 
 module.exports = MigrationSchema

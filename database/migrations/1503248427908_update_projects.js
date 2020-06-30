@@ -11,6 +11,12 @@ class MigrationSchema extends Schema {
     })
   }
 
+  down() {
+    this.alter('projects', (table) => {
+      table.integer('interest').notNullable()
+      table.dropColumn('annum_return')
+    })
+  }
 }
 
 module.exports = MigrationSchema

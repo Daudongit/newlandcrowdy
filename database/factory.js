@@ -12,10 +12,254 @@
 */
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
-// const Factory = use('Factory')
 
-// Factory.blueprint('App/Models/User', (faker) => {
-//   return {
-//     username: faker.username()
-//   }
-// })
+const Factory = use('Factory')
+
+Factory.blueprint('App/Models/User', (faker, index, data) => {
+    const defaultValue = {
+        phone_number: faker.phone(),
+        last_name: faker.last(),
+        first_name: faker.first(),
+        username: faker.unique(faker.word,50)[0],
+        email: faker.unique(faker.email,50)[0],
+        password: 'secret',
+        verified: faker.pickone(['1',faker.string({ length: 30 })]),
+        wallet: faker.integer({min:0,max:20}),
+        role: false,
+        suspended: false,
+        // suspended: faker.bool(),
+        address: faker.address(),
+        city: faker.city(),
+        state: faker.state({ full: true }),
+        picture: 'test.jpg',
+        id_card: 'test.jpg'
+    }
+    
+    return Object.assign(defaultValue, data)
+  })
+
+Factory.blueprint('App/Models/Reference', (faker, index, data) => {
+    const defaultValue = {
+        title: faker.unique(faker.word,20)[0],
+        slug: faker.unique(faker.word,20)[0],
+        value: faker.unique(faker.word,20)[0],
+        type: faker.unique(faker.word,20)[0],
+        last_updated_by: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        }
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Transaction', (faker, index, data) => {
+    const defaultValue = {
+        user_id: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        message: faker.unique(faker.word,20)[0],
+        from: faker.unique(faker.word,20)[0],
+        from_id: faker.integer({min:1,max:10}),
+        amount: faker.integer({min:400389,max:328739703}),
+        type: faker.unique(faker.word,20)[0],
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Withdrawal', (faker, index, data) => {
+    const defaultValue = {
+        user_id: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        amount: faker.integer({min:1000,max:269564}),
+        charge: faker.integer({min:1000,max:10000}),
+        status: faker.bool(),
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Project', (faker, index, data) => {
+    const defaultValue = {
+        name: faker.unique(faker.word,50)[0],
+        duration: faker.integer({min:5,max:20}),
+        // interest: faker.unique(faker.word,20)[0],
+        capital: faker.integer({min:10746,max:5498307}),
+        active: faker.bool(),
+        flats: faker.unique(faker.word,20)[0],
+        slots: faker.integer({min:4,max:10}),
+        annum_return: faker.integer({ min: 50000, max: 3000000 })
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Package', (faker, index, data) => {
+    const defaultValue = {
+        user_id: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        project_id: async () => {
+            return (await Factory.model('App/Models/Project').create()).id
+        },
+        status: faker.bool({likelihood: 30}),
+        started: faker.date({year: 2019}),
+        last_process: faker.date({year: 2020}),
+        amount: faker.integer({ min: 50000, max: 3000000 })
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/BankDetail', (faker, index, data) => {
+    const defaultValue = {
+        user_id: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        bank_name: faker.unique(faker.word,20)[0],
+        account_name: faker.unique(faker.word,20)[0],
+        account_number: faker.integer({ min: 1111111111, max: 9999999999 })
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Bank', (faker, index, data) => {
+    const defaultValue = {
+        name: faker.unique(faker.word,20)[0],
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Deposit', (faker, index, data) => {
+    const defaultValue = {
+        user_id: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        package_id: async () => {
+            return (await Factory.model('App/Models/Package').create()).id
+        },
+        platform: faker.unique(faker.word,20)[0],
+        status: faker.bool(),
+        approved: faker.date({year: 2020}),
+        amount: faker.integer({ min: 36548, max: 237672098 }),
+        reference: faker.unique(faker.word,20)[0],
+        reason: faker.unique(faker.word,20)[0],
+        file: faker.unique(faker.word,20)[0],
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Payment', (faker, index, data) => {
+    const defaultValue = {
+        user_id: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        package_id: async () => {
+            return (await Factory.model('App/Models/Package').create()).id
+        },
+        status: faker.bool(),
+        amount: faker.integer({min:10000,max:1000000})
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Announcement', (faker, index, data) => {
+    const defaultValue = {
+        title: faker.unique(faker.word,20)[0],
+        message: faker.sentence(),
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/UserAnnouncement', (faker, index, data) => {
+    const defaultValue = {
+        user_id: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        announcement_id:  async () => {
+            return (await Factory.model('App/Models/Announcement').create()).id
+        },
+        opened: faker.bool(),
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Support', (faker, index, data) => {
+    const defaultValue = {
+        user_id: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        reply_by: faker.integer({min:1,max:5}),
+        message: faker.sentence(),
+        reply: faker.sentence(),
+        type: faker.unique(faker.word,20)[0],
+        status: faker.bool(),
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/SupportType', (faker, index, data) => {
+    const defaultValue = {
+        name: faker.unique(faker.word,20)[0],
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Faq', (faker, index, data) => {
+    const defaultValue = {
+        question: faker.sentence({ words: 5 }),
+        answer: faker.sentence()
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/BankOption', (faker, index, data) => {
+    const defaultValue = {
+        bank_name: faker.unique(faker.word,20)[0],
+        account_name: faker.unique(faker.word,20)[0],
+        account_number: faker.integer({ min: 1111111111, max: 9999999999 })
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Testimonial', (faker, index, data) => {
+    const defaultValue = {
+        name: faker.unique(faker.word,20)[0],
+        role: faker.unique(faker.word,20)[0],
+        message: faker.sentence(),
+        user_id: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        display: faker.bool()
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('App/Models/Referral', (faker, index, data) => {
+    const defaultValue = {
+        user_id: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        referred_by: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        amount: faker.integer({min:20945,max:3985626}),
+        status: faker.bool()
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+  

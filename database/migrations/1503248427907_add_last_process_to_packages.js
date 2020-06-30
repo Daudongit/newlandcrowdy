@@ -10,6 +10,11 @@ class MigrationSchema extends Schema {
     })
   }
 
+  down() {
+    this.alter('packages', (table) => {
+      table.dropColumn('last_process')
+    })
+  }
 }
 
 module.exports = MigrationSchema
