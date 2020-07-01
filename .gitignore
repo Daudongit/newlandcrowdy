@@ -11,6 +11,8 @@ tmp
 database/development.sqlite
 
 public/uploads
+! public/uploads/id_card/test.jpg
+! public/uploads/picture/test.jpg
 
 data
 

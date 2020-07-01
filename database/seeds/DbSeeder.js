@@ -114,6 +114,12 @@ class DbSeeder {
   }
 
   async references(userCount){
+    await Factory
+      .model('App/Models/Reference')
+      .create({slug:'min_investment',value:10000})
+    await Factory
+      .model('App/Models/Reference')
+      .create({slug:'max_investment',value:5000000})
     return await Factory
       .model('App/Models/Reference')
       .createMany(

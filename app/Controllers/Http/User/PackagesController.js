@@ -361,6 +361,10 @@ class PackagesController {
       id: _package.id,
     });
   }
+
+  async viewUpdate({request,view}){
+    return view.render('app.packages.view_update')
+  }
 }
 
 module.exports = PackagesController;

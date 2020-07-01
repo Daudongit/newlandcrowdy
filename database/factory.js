@@ -27,7 +27,6 @@ Factory.blueprint('App/Models/User', (faker, index, data) => {
         wallet: faker.integer({min:0,max:20}),
         role: false,
         suspended: false,
-        // suspended: faker.bool(),
         address: faker.address(),
         city: faker.city(),
         state: faker.state({ full: true }),
@@ -42,7 +41,8 @@ Factory.blueprint('App/Models/Reference', (faker, index, data) => {
     const defaultValue = {
         title: faker.unique(faker.word,20)[0],
         slug: faker.unique(faker.word,20)[0],
-        value: faker.unique(faker.word,20)[0],
+        // slug: faker.pickone(['min_investment', 'max_investment']),
+        value: faker.integer({min:2344,max:37528}),
         type: faker.unique(faker.word,20)[0],
         last_updated_by: async () => {
             return (await Factory.model('App/Models/User').create()).id
@@ -74,7 +74,7 @@ Factory.blueprint('App/Models/Withdrawal', (faker, index, data) => {
         },
         amount: faker.integer({min:1000,max:269564}),
         charge: faker.integer({min:1000,max:10000}),
-        status: faker.bool(),
+        status: true,
     }
     
     return Object.assign(defaultValue, data)
@@ -86,7 +86,7 @@ Factory.blueprint('App/Models/Project', (faker, index, data) => {
         duration: faker.integer({min:5,max:20}),
         // interest: faker.unique(faker.word,20)[0],
         capital: faker.integer({min:10746,max:5498307}),
-        active: faker.bool(),
+        active: true,
         flats: faker.unique(faker.word,20)[0],
         slots: faker.integer({min:4,max:10}),
         annum_return: faker.integer({ min: 50000, max: 3000000 })
@@ -103,7 +103,8 @@ Factory.blueprint('App/Models/Package', (faker, index, data) => {
         project_id: async () => {
             return (await Factory.model('App/Models/Project').create()).id
         },
-        status: faker.bool({likelihood: 30}),
+        // status: faker.bool({likelihood: 30}),
+        status: true,
         started: faker.date({year: 2019}),
         last_process: faker.date({year: 2020}),
         amount: faker.integer({ min: 50000, max: 3000000 })
@@ -142,7 +143,7 @@ Factory.blueprint('App/Models/Deposit', (faker, index, data) => {
             return (await Factory.model('App/Models/Package').create()).id
         },
         platform: faker.unique(faker.word,20)[0],
-        status: faker.bool(),
+        status: true,
         approved: faker.date({year: 2020}),
         amount: faker.integer({ min: 36548, max: 237672098 }),
         reference: faker.unique(faker.word,20)[0],
@@ -161,7 +162,7 @@ Factory.blueprint('App/Models/Payment', (faker, index, data) => {
         package_id: async () => {
             return (await Factory.model('App/Models/Package').create()).id
         },
-        status: faker.bool(),
+        status: true,
         amount: faker.integer({min:10000,max:1000000})
     }
     
@@ -200,7 +201,7 @@ Factory.blueprint('App/Models/Support', (faker, index, data) => {
         message: faker.sentence(),
         reply: faker.sentence(),
         type: faker.unique(faker.word,20)[0],
-        status: faker.bool(),
+        status: true,
     }
     
     return Object.assign(defaultValue, data)
@@ -256,7 +257,7 @@ Factory.blueprint('App/Models/Referral', (faker, index, data) => {
             return (await Factory.model('App/Models/User').create()).id
         },
         amount: faker.integer({min:20945,max:3985626}),
-        status: faker.bool()
+        status: true,
     }
     
     return Object.assign(defaultValue, data)

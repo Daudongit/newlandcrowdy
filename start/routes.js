@@ -86,6 +86,7 @@ Route
     Route.get('/projects/evidence/:id', 'PackagesController.getEvidence').as('app.packages.evidence')
     Route.post('/projects/evidence/:id', 'PackagesController.doEvidence').as('app.packages.evidence')
     Route.get('/projects/payments/:id', 'PackagesController.payments').as('app.packages.payments')
+    Route.get('/projects/view/update/:id', 'PackagesController.viewUpdate').as('app.packages.view.update')
 
     Route.get('/testimonials', 'TestimonialsController.get').as('app.testimonials.get')
     Route.post('/testimonials', 'TestimonialsController.update').as('app.testimonials.update')
