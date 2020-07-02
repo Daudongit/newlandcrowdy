@@ -8,52 +8,52 @@
   <li class="nk-menu-item">
     <a href="{{ route('app.packages.index') }}" class="nk-menu-link">
         <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-        <span class="nk-menu-text">Projects</span>
+        <span class="nk-menu-text">My Projects</span>
     </a>
-</li>
-<li class="nk-menu-item">
-  <a href="{{ route('app.withdrawals.index') }}" class="nk-menu-link">
-      <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-      <span class="nk-menu-text">Withdrawals</span>
-  </a>
-</li>
-<li class="nk-menu-item">
-  <a href="{{ route('app.announcements.index') }}" class="nk-menu-link">
-      <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-      <span class="nk-menu-text">Announcements  </span>
-        @if(announcementCount && announcementCount > 0)
-        <span class="badge badge-primary badge-pill float-right"> {{ announcementCount }}</span>
-        @endif
-  </a>
-</li>
-<li class="nk-menu-item">
-  <a href="{{ route('app.transactions.index') }}" class="nk-menu-link">
-      <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-      <span class="nk-menu-text">Transactions</span>
-  </a>
-</li>
-<li class="nk-menu-item">
-  <a href="{{ route('app.referrals.index') }}" class="nk-menu-link">
-      <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-      <span class="nk-menu-text">Referrals</span>
-  </a>
-</li>
-<li class="nk-menu-item">
-  <a href="{{ route('app.supports.index') }}" class="nk-menu-link">
-      <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-      <span class="nk-menu-text">Account Manager</span>
-  </a>
-</li>
-<li class="nk-menu-item">
-  <a href="{{ route('app.testimonials.get') }}" class="nk-menu-link">
-      <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-      <span class="nk-menu-text">Testimonial</span>
-  </a>
-</li>
-<li class="nk-menu-item">
-  <a href="{{ route('app.faqs.index') }}" class="nk-menu-link">
-      <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-      <span class="nk-menu-text">FAQ</span>
-  </a>
-</li>
+  </li>
+  <li class="nk-menu-item">
+    <a href="{{ route('app.withdrawals.index') }}" class="nk-menu-link">
+        <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+        <span class="nk-menu-text">Withdrawals</span>
+    </a>
+  </li>
+  <li class="nk-menu-item">
+    <a href="{{ route('app.announcements.index') }}" class="nk-menu-link">
+        <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+        <span class="nk-menu-text">Announcements  </span>
+          @if(announcementCount && announcementCount > 0)
+          <span class="badge badge-primary badge-pill float-right"> {{ announcementCount }}</span>
+          @endif
+    </a>
+  </li>
+  <li class="nk-menu-item">
+    <a href="{{ route('app.transactions.index') }}" class="nk-menu-link">
+        <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+        <span class="nk-menu-text">Transactions</span>
+    </a>
+  </li>
+  <li class="nk-menu-item">
+    <a href="{{ route('app.referrals.index') }}" class="nk-menu-link">
+        <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+        <span class="nk-menu-text">Referrals</span>
+    </a>
+  </li>
+  <li class="nk-menu-item">
+    <a href="{{ route('app.supports.index') }}" class="nk-menu-link">
+        <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+        <span class="nk-menu-text">Support</span>
+    </a>
+  </li>
+  <li class="nk-menu-item">
+    <a href="{{ route('app.testimonials.get') }}" class="nk-menu-link">
+        <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+        <span class="nk-menu-text">Testimonial</span>
+    </a>
+  </li>
+  <li class="nk-menu-item">
+    <a href="{{ route('app.faqs.index') }}" class="nk-menu-link">
+        <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+        <span class="nk-menu-text">FAQ</span>
+    </a>
+  </li>
 </ul>

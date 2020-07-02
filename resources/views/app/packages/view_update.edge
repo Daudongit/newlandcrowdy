@@ -10,7 +10,8 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="card-title mb-0">Package view update</h4>
-                    <div class="btn-toolbar mb-0 d-none d-sm-block" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-toolbar mb-0 d-none d-sm-block" 
+                        role="toolbar" aria-label="Toolbar with button groups">
                         <a href="{{ route('app.packages.index') }}" class="btn btn-primary btn-xs">
                             <i class="mdi mdi-file"></i> Back
                         </a>
@@ -31,20 +32,33 @@
             <div class="card-body">
                 <div class="table-responsive support-pane no-wrap">
                     <div class="t-row">
-                        <p class="font-weight-bold mb-2 d-inline-block">Amount</p>
-                        <p>new price</p>
+                        <p class="font-weight-bold mb-0 d-inline-block">LOCATION:</p>
+                        <p class="mb-1">OBANIKORO</p>
                     </div>
                     <div class="t-row">
-                        <p class="font-weight-bold mb-2 d-inline-block">Amount</p>
-                        <p>new price</p>
+                        <p class="font-weight-bold mb-0 d-inline-block">PROPERTY OVERVIEW</p>
+                        <p class="mb-1">
+                            Lovely And Spacious Studio Apartment which comes with modern finishing and facility. Spacious rooms | Vitrified tiles | Borehole water | Private Balcony | Large size cross ventilation window system | Ample parking space | Serene and secured environment
+                        </p>
                     </div>
-                    <div class="t-row">
-                        <p class="font-weight-bold mb-2 d-inline-block">Amount</p>
-                        <p>new price</p>
-                    </div>
-                    <div class="t-row">
-                        <p class="font-weight-bold mb-2 d-inline-block">Amount</p>
-                        <p>new price</p>
+                    <div class="row">
+                        <div class="t-row col-md-6">
+                            <p class="font-weight-bold mb-0 d-inline-block">CATEGORY:</p>
+                            <p class="mb-1">Apartment</p>
+                            <p class="mb-1">Spacious Room</p>
+                        </div>
+                        <div class="t-row col-md-6">
+                            <p class="font-weight-bold mb-0 d-inline-block">Price:</p>
+                            <p class="mb-1">{{{ moneyFormat(package.amount) }}}</p>
+                        </div>
+                        <div class="t-row col-md-6">
+                            <p class="font-weight-bold mb-0 d-inline-block">Duration/Tenure:</p>
+                            <p class="mb-1"> {{ package.project.duration }} years</p>
+                        </div>
+                        <div class="t-row col-md-6">
+                            <p class="font-weight-bold mb-0 d-inline-block">Delivery Date:</p>
+                            <p class="mb-1"> April 2020 (exclusive of two months moratorium period)</p>
+                        </div>
                     </div>
                   </div>
             </div>

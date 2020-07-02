@@ -27,12 +27,14 @@ Projects
                         </div>
                     </a>
                     <div class="d-flex justify-content-between">
-                      <p class="text-mute">
-                        <span class="btn btn-sm btn-{{ package.fullStatus.class }}">{{ package.fullStatus.label }}</span>
-                      <a class="btn btn-sm btn-success" 
-                        href="{{ route('app.packages.view.update', {id: package.id}) }}">
-                         View Update
-                      </a>
+                      <p class="text-mute d-flex d-md-block flex-column">
+                        <span class="btn btn-sm btn-{{ package.fullStatus.class }} mb-1 mb-md-0">
+                            {{ package.fullStatus.label }}
+                        </span>
+                        <a class="btn btn-sm btn-success" 
+                            href="{{ route('app.packages.view.update', {id: package.id}) }}">
+                            View Update
+                        </a>
                       </p>
                       <p class="text-muted">Payments: {{package.__meta__.payments_count}}</p>
                     </div>

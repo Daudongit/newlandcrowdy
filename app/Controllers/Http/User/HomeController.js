@@ -58,7 +58,7 @@ class HomeController {
         )[0].charge,
 
         projects: (
-          await Project.query()
+          await Project.query().limit(3)
             .fetch()
         ).toJSON(),
 

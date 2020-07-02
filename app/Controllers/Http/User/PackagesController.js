@@ -362,8 +362,12 @@ class PackagesController {
     });
   }
 
-  async viewUpdate({request,view}){
-    return view.render('app.packages.view_update')
+  async viewUpdate({params,view}){
+    return view.render('app.packages.view_update',{
+      package:(await Package.query().where({
+        id: params.id,
+      }).with('project').first()).toJSON()
+    })
   }
 }
 
