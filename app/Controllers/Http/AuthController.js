@@ -221,7 +221,7 @@ class AuthController {
       return response.redirect('back');
     }
 
-    const newPassword = randomstring.generate();
+    const newPassword = randomstring.generate(12);
 
     User.query()
       .where({
