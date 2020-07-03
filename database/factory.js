@@ -24,7 +24,7 @@ Factory.blueprint('App/Models/User', (faker, index, data) => {
         email: faker.unique(faker.email,50)[0],
         password: 'secret',
         verified: faker.pickone(['1',faker.string({ length: 30 })]),
-        wallet: faker.integer({min:0,max:20}),
+        wallet: faker.integer({min:5000,max:500000}),
         role: false,
         suspended: false,
         address: faker.address(),
@@ -74,7 +74,8 @@ Factory.blueprint('App/Models/Withdrawal', (faker, index, data) => {
         },
         amount: faker.integer({min:1000,max:269564}),
         charge: faker.integer({min:1000,max:10000}),
-        status: true,
+        // status: true,
+        status: faker.bool({likelihood: 30}),
     }
     
     return Object.assign(defaultValue, data)

@@ -120,6 +120,15 @@ class DbSeeder {
     await Factory
       .model('App/Models/Reference')
       .create({slug:'max_investment',value:5000000})
+    await Factory
+      .model('App/Models/Reference')
+      .create({slug:'min_withdrawal',value:5000})
+    await Factory
+      .model('App/Models/Reference')
+      .create({slug:'max_withdrawal',value:50000})
+    await Factory
+      .model('App/Models/Reference')
+      .create({slug:'withdrawal_charges',value:1000})
     return await Factory
       .model('App/Models/Reference')
       .createMany(
