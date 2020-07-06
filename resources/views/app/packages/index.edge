@@ -28,9 +28,10 @@ Projects
                     </a>
                     <div class="d-flex justify-content-between">
                       <p class="text-mute d-flex d-md-block flex-column">
-                        <span class="btn btn-sm btn-{{ package.fullStatus.class }} mb-1 mb-md-0">
+                        <a href="{{ route('app.packages.show', {id: package.id}) }}"
+                          class="btn btn-sm btn-{{ package.fullStatus.class }} mb-1 mb-md-0">
                             {{ package.fullStatus.label }}
-                        </span>
+                        </a>
                         <a class="btn btn-sm btn-success" 
                             href="{{ route('app.packages.view.update', {id: package.id}) }}">
                             View Update
