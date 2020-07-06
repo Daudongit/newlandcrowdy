@@ -50,13 +50,15 @@
               <div class="card-inner">
                     <div class="nk-news-list">
                         <a class="nk-news-item" href="{{ route('app.referrals.index') }}">
-                            <div class="nk-news-icon"><em class="icon ni ni-card-view"></em></div>
-                            <div class="nk-news-text" style="width:100%;max-width:100%">
-                                <p style="text-overflow:inherit;width:50%">Referral link: 
+                            <div class="nk-news-icon d-none d-md-block" >
+                                <em class="icon ni ni-card-view"></em>
+                            </div>
+                            <div class="nk-news-text w-100 mw-100" >
+                                <p class="w-100 ml-n1 ml-md-0" style="text-overflow:inherit">Referral link: 
                                     {{ fullUrl }}{{ route('auth.referral', {referral: auth.user.username}) }}     
                                     {{--  <span> A overview of our is now available on YouTube</span>  --}}
                                 </p>
-                                <em class="icon ni ni-external"></em>
+                                <em class="icon ni ni-external d-none d-md-block"></em>
                             </div>
                         </a>
                     </div>

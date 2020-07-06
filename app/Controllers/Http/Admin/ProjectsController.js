@@ -10,6 +10,7 @@ class ProjectsController extends ResourceController {
     this.singleItem = 'Project';
     this.mutipleItems = 'Projects';
     this.dataFields = ['name', 'annum_return', 'duration', 'capital', 'active', 'flats', 'slots'];
+    this.fileFields = ['feature_img'];
     this.validationRules = {
       name: 'required',
       annum_return: 'required',
@@ -27,7 +28,7 @@ class ProjectsController extends ResourceController {
 
     this.createAbles = [
       {
-        label: 'Name',
+        label: 'Location',
         name: 'name',
         type: 'text',
       },
@@ -70,6 +71,11 @@ class ProjectsController extends ResourceController {
             display: 'Active',
           },
         ],
+      },
+      {
+        label: 'Feature Image',
+        name: 'feature_img',
+        type: 'image',
       },
     ];
 

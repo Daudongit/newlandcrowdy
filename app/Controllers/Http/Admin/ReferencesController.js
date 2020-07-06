@@ -40,6 +40,10 @@ class ReferencesController extends ResourceController {
         value: 'title',
       },
       {
+        label: 'Slug',
+        value: 'slug',
+      },
+      {
         label: 'Value',
         value: 'value',
         type: 'text',

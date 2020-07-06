@@ -114,7 +114,7 @@ class WithdrawalController {
       )
     ) {
       session.flash({
-        error: "Sorry! But you can't exceeded the maximum withdrawal limit",
+        error: "Sorry! But you can't exceed the maximum withdrawal limit",
       });
       return response.redirect('back');
     }

@@ -63,4 +63,7 @@ hooks.after.providersBooted(() => {
     return toReturn
   });
 
+  View.global('imageName', function (path) {
+    return path.split('/').pop()
+  });
 })

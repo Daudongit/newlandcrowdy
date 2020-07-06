@@ -129,13 +129,13 @@ class DbSeeder {
     await Factory
       .model('App/Models/Reference')
       .create({slug:'withdrawal_charges',value:1000})
-    return await Factory
-      .model('App/Models/Reference')
-      .createMany(
-        this.reference,{
-          last_updated_by:()=>Math.floor(Math.random() * userCount) + 1
-        }
-      )
+    // return await Factory
+    //   .model('App/Models/Reference')
+    //   .createMany(
+    //     this.reference,{
+    //       last_updated_by:()=>Math.floor(Math.random() * userCount) + 1
+    //     }
+    //   )
   }
 
   // async transactions(userCount){
