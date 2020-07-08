@@ -119,7 +119,7 @@ class DbSeeder {
       .create({slug:'min_investment',value:10000})
     await Factory
       .model('App/Models/Reference')
-      .create({slug:'max_investment',value:5000000})
+      .create({slug:'max_investment',value:100000})
     await Factory
       .model('App/Models/Reference')
       .create({slug:'min_withdrawal',value:5000})

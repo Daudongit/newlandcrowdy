@@ -364,9 +364,9 @@ class PackagesController {
 
   async viewUpdate({params,view}){
     return view.render('app.packages.view_update',{
-      package:(await Package.query().where({
+      project:(await Project.query().where({
         id: params.id,
-      }).with('project').first()).toJSON()
+      }).first()).toJSON()
     })
   }
 }

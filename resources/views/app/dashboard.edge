@@ -154,7 +154,10 @@
                                     </ul>
                                 </div>
                                 <div class="nk-iv-wg2-cta">
-                                    <a href="{{ project.active === 0 ? '#' : route('app.packages.choose') }}"  class="btn btn-{{ project.active === 0 ? 'warning' : 'primary' }} btn-lg btn-block">  {{ project.active === 0 ? 'Coming Soon' : 'Choose Project' }}  </a>
+                                    <a href="{{ project.active === 0 ? '#' : project.sold_status == 2?route('app.packages.view.update', {id:project.id}): route('app.packages.choose') }}"  
+                                        class="btn btn-{{ project.active === 0 ? 'warning' : project.sold_status == 2?'danger':'primary' }} btn-lg btn-block">  
+                                        {{ project.active === 0 ? 'Coming Soon' : project.sold_status == 2?'View Update':'Choose Project' }}  
+                                    </a>
                                 </div>
                           </div>
                       </div>

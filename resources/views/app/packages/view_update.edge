@@ -23,8 +23,8 @@
     <div class="col-md-6">
         <div class="card support-pane-cars">
             <div class="card-body">
-                @if(package.project.feature_img)
-                    <img src="{{ package.project.feature_img }}"/>
+                @if(project.feature_img)
+                    <img src="{{ project.feature_img }}"/>
                 @else
                     <img src="/assets/images/properties/2.jpg"/>
                 @endif
@@ -37,7 +37,7 @@
                 <div class="table-responsive support-pane no-wrap">
                     <div class="t-row">
                         <p class="font-weight-bold mb-0 d-inline-block">LOCATION:</p>
-                        <p class="mb-1">{{ package.project.name }}</p>
+                        <p class="mb-1">{{ project.name }}</p>
                     </div>
                     <div class="t-row">
                         <p class="font-weight-bold mb-0 d-inline-block">PROPERTY OVERVIEW</p>
@@ -53,11 +53,11 @@
                         </div>
                         <div class="t-row col-md-6">
                             <p class="font-weight-bold mb-0 d-inline-block">Price:</p>
-                            <p class="mb-1">{{{ moneyFormat(package.amount) }}}</p>
+                            <p class="mb-1">{{{ moneyFormat(project.capital) }}}</p>
                         </div>
                         <div class="t-row col-md-6">
                             <p class="font-weight-bold mb-0 d-inline-block">Duration/Tenure:</p>
-                            <p class="mb-1"> {{ package.project.duration }} years</p>
+                            <p class="mb-1"> {{ project.duration }} years</p>
                         </div>
                         <div class="t-row col-md-6">
                             <p class="font-weight-bold mb-0 d-inline-block">Delivery Date:</p>

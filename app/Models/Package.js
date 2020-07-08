@@ -22,24 +22,28 @@ class Package extends Model {
         id: 0,
         label: 'Un Approved',
         class: 'warning',
+        background:'#F77B01',
       },
       {
         field: 'status',
         id: 1,
         label: 'Running',
         class: 'success',
+        background:'#01A04B',
       },
       {
         field: 'status',
         id: 2,
         label: 'Ended',
         class: 'primary',
+        background:'',
       },
       {
         field: 'status',
         id: 3,
         label: 'Paused',
         class: 'danger',
+        background:'',
       },
     ];
   }
