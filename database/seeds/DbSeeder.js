@@ -53,7 +53,7 @@ class DbSeeder {
     },
     this.user = 10
     this.reference = 5
-    // this.transaction = 15
+    // this.transaction = 25
     this.withdrawal = 15
     this.project = 20
     this.bank = 5
@@ -74,7 +74,7 @@ class DbSeeder {
   others(){
     try {
       this.references(this.user)
-      // this.transactions(this.user)
+      this.transactions(this.user)
       this.withdrawals(this.user)
       this.packages({
         user:this.user,project:this.project
@@ -138,15 +138,15 @@ class DbSeeder {
     //   )
   }
 
-  // async transactions(userCount){
-  //   return await Factory
-  //     .model('App/Models/Transaction')
-  //     .createMany(
-  //       this.transaction,{
-  //         user_id:()=>Math.floor(Math.random() * userCount) + 1
-  //       }
-  //     )
-  // }
+  async transactions(userCount){
+    return await Factory
+      .model('App/Models/Transaction')
+      .createMany(
+        this.transaction,{
+          user_id:()=>Math.floor(Math.random() * userCount) + 1
+        }
+      )
+  }
 
   async withdrawals(userCount){
     return await Factory

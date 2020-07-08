@@ -22,6 +22,11 @@ class TransactionController extends ResourceController {
         id: 'bank_deposit',
         title: 'Bank Deposit',
       },
+      {
+        field: 'from',
+        id: 'withdrawal',
+        title: 'Withdrawal Request',
+      },
     ];
 
     this.indexAbles = [

@@ -53,15 +53,23 @@ Factory.blueprint('App/Models/Reference', (faker, index, data) => {
 })
 
 Factory.blueprint('App/Models/Transaction', (faker, index, data) => {
+    const messages = [
+        'Bought Package Through Bank Deposit',
+        'Bought Package Through Online Payment',
+        'Withdrawal Request Submitted Successfully'
+    ]
+    const from = ['bank_deposit','online_deposit','withdrawal']
+    const key = faker.integer({min:0,max:2})
+
     const defaultValue = {
         user_id: async () => {
             return (await Factory.model('App/Models/User').create()).id
         },
-        message: faker.unique(faker.word,20)[0],
-        from: faker.unique(faker.word,20)[0],
+        message: messages[key],
+        from: from[key],
         from_id: faker.integer({min:1,max:10}),
-        amount: faker.integer({min:400389,max:328739703}),
-        type: faker.unique(faker.word,20)[0],
+        amount: faker.integer({min:4003,max:328731}),
+        type: faker.bool(),
     }
     
     return Object.assign(defaultValue, data)
@@ -86,11 +94,12 @@ Factory.blueprint('App/Models/Project', (faker, index, data) => {
         name: faker.unique(faker.word,50)[0],
         duration: faker.integer({min:5,max:20}),
         // interest: faker.unique(faker.word,20)[0],
-        capital: faker.integer({min:10746,max:5498307}),
+        capital: faker.integer({min:100000,max:2000000}),
         active: true,
         flats: faker.unique(faker.word,20)[0],
         slots: faker.integer({min:4,max:10}),
-        annum_return: faker.integer({ min: 50000, max: 3000000 })
+        annum_return: faker.integer({ min: 50000, max: 300000 }),
+        sold_status:faker.pickone([0, 1,2]),
     }
     
     return Object.assign(defaultValue, data)

@@ -61,7 +61,7 @@ class HomeController {
           await Project.query().limit(3)
             .fetch()
         ).toJSON(),
-
+        
       // lastTransactions: (
       //   await Transaction.query()
       //     .where({
