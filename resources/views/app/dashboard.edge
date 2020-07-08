@@ -133,7 +133,7 @@
                           <div class="nk-iv-wg2">
                                 <div style="position:relative;width:100%">
                                     <img class="card-img-top dashboard-image" 
-                                        src="/assets/images/properties/{{ $loop.index + 1 }}.jpg" 
+                                        src="{{project.feature_img?project.feature_img:'/assets/images/properties/'+($loop.index + 1)+'.jpg'}}" 
                                         alt="Card image cap">
                                     <span class="badge badge-{{ project.SoldStatusObj.class}}" 
                                         style="position:absolute;top:50%;right:50%;transform: translateX(50%);">
