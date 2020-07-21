@@ -23,11 +23,7 @@
     <div class="col-md-6">
         <div class="card support-pane-cars">
             <div class="card-body">
-                @if(project.feature_img)
-                    <img src="{{ project.feature_img }}"/>
-                @else
-                    <img src="/assets/images/properties/2.jpg"/>
-                @endif
+                <img src="{{project.feature_img?project.feature_img:'/assets/images/properties/2.jpg'}}"/>
             </div>
         </div>
     </div>

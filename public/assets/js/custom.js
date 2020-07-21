@@ -46,6 +46,7 @@
     $ ('#capital').html (presentMoney ($ (this).find ('.capital').text ()));
     $ ('#capital__plain_text').html ($ (this).find ('.capital').text ());
     $ ('#project_id').val (value);
+
   });
 
   $ ('.select-payment-method').click (function () {

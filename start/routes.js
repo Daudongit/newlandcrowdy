@@ -43,6 +43,7 @@ Route
     generateResource('banks', 'BankController', 'admin.banks')
     generateResource('bankoptions', 'BankOptionController', 'admin.bankoptions')
     generateResource('withdrawals', 'WithdrawalController', 'admin.withdrawals') // Notification
+    generateResource('visitation', 'VisitationController', 'admin.visitations')
     Route.get('/transactions', 'TransactionController.index').as('admin.transactions.index')
     Route.get('/packages/payment/:id', 'PaymentsController.packages').as('admin.payments.packages')
     Route.get('/payments', 'PaymentsController.index').as('admin.payments.index')
@@ -116,7 +117,7 @@ Route
     Route.post('/withdrawals', 'WithdrawalController.store').as('app.withdrawals.store')
 
     Route.get('/referrals', 'ReferralsController.index').as('app.referrals.index')
-
+    Route.post('/visitations', 'VisitationController.store').as('app.visitations.store')
   })
   .prefix('app')
   .namespace('User/')

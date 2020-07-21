@@ -15,8 +15,8 @@
           <h4 class="card-title mb-0">Add New {{ singleItem }}</h4>
         </div>
 
-          <form class="forms-sample" method="POST" action="{{ route(resourceRoute + '.store') }}" enctype="multipart/form-data">
-
+          <form class="forms-sample" method="POST" 
+            action="{{ route(resourceRoute + '.store') }}" enctype="multipart/form-data">
             {{ csrfField() }} 
 
             @each(field in createAbles)
