@@ -9,7 +9,7 @@ class Visitation extends Model {
 
     project(){
         return this.belongsTo('App/Models/Project');
-    }
+    } 
 }
 
 module.exports = Visitation;
