@@ -123,29 +123,29 @@ New Project
                                 </div>
                             </div>
                             <div id="minute-payment" class="hidden">
-                            <div class="invest-field form-group">
-                                <div class="form-label-group">
-                                    <label class="form-label">Choose Quick Amount to Invest</label>
+                                <div class="invest-field form-group">
+                                    <div class="form-label-group">
+                                        <label class="form-label">Choose Quick Amount to Invest</label>
+                                    </div>
+                                    <div class="invest-amount-group g-2" id="invest-amount-group">
+                                        {{--  @each(amount in [minInvestment, maxInvestment / 4,  maxInvestment / 2, maxInvestment])  --}}
+                                        {{--  @each(amount in [maxInvestment / 2, maxInvestment / 4,  maxInvestment / 8, maxInvestment / 16])  --}}
+                                        {{--  @each(amount in [project.capital / 2, project.capital / 4,  project.capital / 8, project.capital / 16])
+                                            <div class="invest-amount-item" data-amount="{{ amount }}">
+                                                <input type="radio" class="invest-amount-control" name="iv-amount" id="iv-amount-{{amount}}">
+                                                <label class="invest-amount-label" for="iv-amount-{{amount}}">
+                                                    {{{ moneyFormat(amount) }}}
+                                                </label>
+                                            </div>
+                                        @endeach  --}}
+                                    </div>
                                 </div>
-                                <div class="invest-amount-group g-2">
-                                    {{--  @each(amount in [minInvestment, maxInvestment / 4,  maxInvestment / 2, maxInvestment])  --}}
-                                    {{--  @each(amount in [maxInvestment / 2, maxInvestment / 4,  maxInvestment / 8, maxInvestment / 16])  --}}
-                                    @each(amount in [project.capital / 2, project.capital / 4,  project.capital / 8, project.capital / 16])
-                                        <div class="invest-amount-item" data-amount="{{ amount }}">
-                                            <input type="radio" class="invest-amount-control" name="iv-amount" id="iv-amount-{{amount}}">
-                                            <label class="invest-amount-label" for="iv-amount-{{amount}}">
-                                                {{{ moneyFormat(amount) }}}
-                                            </label>
-                                        </div>
-                                    @endeach
-                                </div>
-                            </div>
-                            <span class="hidden" id="min_investment"> {{ minInvestment }} </span>
-                            <span class="hidden" id="max_investment"> {{ maxInvestment }} </span>
+                                <span class="hidden" id="min_investment"> {{ minInvestment }} </span>
+                                <span class="hidden" id="max_investment"> {{ maxInvestment }} </span>
                             </div>
                             <div class="invest-field form-group">
                                     <div class="form-label-group">
-                                    <label class="form-label">Choose Payment Method</label>
+                                        <label class="form-label">Choose Payment Method</label>
                                     </div>
                                 <div class="dropdown invest-cc-dropdown">
                                     <a href="javascript:void(0)"

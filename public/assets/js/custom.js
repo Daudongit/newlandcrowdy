@@ -46,8 +46,21 @@
     $ ('#capital').html (presentMoney ($ (this).find ('.capital').text ()));
     $ ('#capital__plain_text').html ($ (this).find ('.capital').text ());
     $ ('#project_id').val (value);
-
+    $ ('#minute-payment').addClass ('hidden');
   });
+
+  const getPaymentOptions = (amount)=>{
+    const amountSegment = [amount/2,amount/4,amount/8,amount/16];
+    return amountSegment.map((eachAmount)=>{
+        return `<div class="invest-amount-item" data-amount="${eachAmount}">
+            <input type="radio" class="invest-amount-control" 
+              name="iv-amount" id="iv-amount-${eachAmount}">
+            <label class="invest-amount-label" for="iv-amount-${eachAmount}">
+                ${ presentMoney(eachAmount) }
+            </label>
+        </div>`
+    }).join('');
+  };
 
   $ ('.select-payment-method').click (function () {
     $ ('#select-payment-method .coin-item').html (
@@ -58,7 +71,8 @@
     $ ('#form_payment_method').val (value);
   });
 
-  $ ('.invest-amount-item').click (function () {
+  // $ ('.invest-amount-item').click (function () {
+  $('#invest-amount-group').on('click','.invest-amount-item',function () {
     $ ('#amount_to_invest').html (presentMoney ($ (this).data ('amount')));
     $ ('#form_amount_to_invest').val ($ (this).data ('amount'));
   });
@@ -76,7 +90,10 @@
       $ ('#form_amount_to_invest').val ($ ('#capital__plain_text').text ());
     }
     if (value != 'Full Payment') {
-      $ ('#minute-payment').removeClass ('hidden');
+      $('#invest-amount-group').html(
+        getPaymentOptions($('#capital__plain_text').text())
+      );
+      $('#minute-payment').removeClass ('hidden');           
     } else {
       $ ('#minute-payment').addClass ('hidden');
     }
