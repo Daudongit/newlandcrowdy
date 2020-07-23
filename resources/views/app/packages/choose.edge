@@ -55,8 +55,8 @@ New Project
                                                 <a href="javascript:void(0)"
                                                     class="invest-cc-opt" data-plan="silver">
                                                     <div class="coin-item">
-                                                        <div class="coin-icon"><em
-                                                                class="icon ni ni-offer-fill"></em>
+                                                        <div class="coin-icon">
+                                                            <em class="icon ni ni-offer-fill"></em>
                                                         </div>
                                                         <div class="coin-info">
                                                             <span class="capital hidden">{{ project.capital }}</span>
@@ -78,42 +78,65 @@ New Project
                             </div>
 
                             <div class="invest-field form-group">
-                                <div class="form-label-group"><label class="form-label">Payment Mode</label>
+                                <div class="form-label-group">
+                                    <label class="form-label">Payment Mode</label>
                                 </div>
                                 <input type="hidden" value="wallet"
                                     name="iv-wallet" id="invest-choose-wallet">
-                                <div class="dropdown invest-cc-dropdown" > <a href="javascript:void(0)" id="select-payment-mode"
+                                <div class="dropdown invest-cc-dropdown" > 
+                                    <a href="javascript:void(0)" id="select-payment-mode"
                                         class="invest-cc-choosen dropdown-indicator"
                                         data-toggle="dropdown">
                                         <div class="coin-item">
-                                            <div class="coin-icon"><em
-                                                    class="icon ni ni-shield-fill"></em></div>
-                                                    <div class="coin-info"><span
-                                                        class="coin-name">Full Payment</span><span
-                                                        class="coin-text">Pay full amount for project and get started immediately</span></div>
+                                            <div class="coin-icon">
+                                                <em class="icon ni ni-shield-fill"></em>
+                                            </div>
+                                            <div class="coin-info">
+                                                <span class="coin-name">Full Payment</span>
+                                                <span class="coin-text">Pay full amount for project and get started immediately</span>
+                                            </div>
                                         </div>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-auto dropdown-menu-mxh">
                                         <ul class="invest-cc-list">
-                                            <li class="invest-cc-item selected select-payment-mode"><a href="javascript:void(0)"
+                                            <li class="invest-cc-item selected select-payment-mode">
+                                                <a href="javascript:void(0)"
                                                     class="invest-cc-opt" data-plan="silver">
                                                     <div class="coin-item">
-                                                        <div class="coin-icon"><em
-                                                                class="icon ni ni-shield-fill"></em>
+                                                        <div class="coin-icon">
+                                                            <em class="icon ni ni-shield-fill"></em>
                                                         </div>
-                                                        <div class="coin-info"><span
-                                                                class="coin-name">Full Payment</span><span
-                                                                class="coin-text">Pay full amount for project and get started immediately</span></div>
+                                                        <div class="coin-info">
+                                                            <span class="coin-name">Full Payment</span>
+                                                            <span class="coin-text">Pay full amount for project and get started immediately</span>
+                                                        </div>
                                                     </div>
-                                                </a></li>
+                                                </a>
+                                            </li>
                                             <li class="invest-cc-item selected select-payment-mode">
                                                 <a href="javascript:void(0)"
                                                     class="invest-cc-opt" data-plan="starter">
                                                     <div class="coin-item">
-                                                        <div class="coin-icon"><em class="icon ni ni-shield-half"></em></div>
+                                                        <div class="coin-icon">
+                                                            <em class="icon ni ni-shield-half"></em>
+                                                        </div>
                                                         <div class="coin-info">
                                                             <span class="coin-name">Part Payment</span>
                                                             <span class="coin-text">Pay what you have and the project starts the slot is filled</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="invest-cc-item selected select-payment-mode">
+                                                <a href="javascript:void(0)"
+                                                    class="invest-cc-opt" data-plan="diamond">
+                                                    <div class="coin-item">
+                                                        <div class="coin-icon">
+                                                            <em class="icon ni ni-shield-half"></em>
+                                                        </div>
+                                                        <div class="coin-info">
+                                                            <span class="coin-name">Year Payment</span>
+                                                            <span class="coin-text">Pay per month for one year</span>
                                                         </div>
                                                     </div>
                                                 </a>

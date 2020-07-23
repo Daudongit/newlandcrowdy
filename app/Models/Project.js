@@ -4,7 +4,11 @@ const Model = use('Model');
 
 class Project extends Model {
   static get computed() {
-    return ['perMonth', 'roi', 'fullActive','SoldStatusObj'];
+    return ['perMonth', 'roi', 'fullActive','SoldStatusObj','fullName'];
+  }
+
+  getFullName({ flats,name }) {
+    return `${flats} - ${name}`
   }
 
   getFullActive({ active }) {

@@ -12,7 +12,7 @@ module.exports = class VisitationController extends ResourceController {
 
     this.hasShow = true;
 
-    this.indexAbles = [
+    this.indexShow = [
       {
         label: 'Username',
         value: 'user.fullName',
@@ -22,21 +22,33 @@ module.exports = class VisitationController extends ResourceController {
         value: 'user.email',
       },
       {
+        label: 'Subject',
+        value: 'subject',
+      }
+    ];
+
+    this.indexAbles = this.indexShow.concat([
+      {
         label: 'Project',
         value: 'project.name',
       },
       {
-        label: 'Subject',
-        value: 'subject',
+        label: 'Created',
+        value: 'created_at',
+        type: 'date',
+      }
+    ]);
+
+    this.showAbles = this.indexShow.concat([
+      {
+        label: 'Project',
+        value: 'project.fullName',
       },
       {
         label: 'Created',
         value: 'created_at',
         type: 'date',
       },
-    ];
-
-    this.showAbles = this.indexAbles.concat([
       {
         label: 'Message',
         value: 'message',
