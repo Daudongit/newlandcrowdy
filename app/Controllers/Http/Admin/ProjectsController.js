@@ -9,7 +9,11 @@ class ProjectsController extends ResourceController {
     this.indexRoute = `${this.resourceRoute}.index`;
     this.singleItem = 'Project';
     this.mutipleItems = 'Projects';
-    this.dataFields = ['name', 'annum_return', 'duration', 'capital', 'active', 'flats', 'slots'];
+    this.dataFields = [
+      'name', 'annum_return', 'duration', 'capital',
+       'active', 'flats', 'slots','sold_status'
+    ];
+    this.fileFields = ['feature_img'];
     this.validationRules = {
       name: 'required',
       annum_return: 'required',
@@ -27,7 +31,7 @@ class ProjectsController extends ResourceController {
 
     this.createAbles = [
       {
-        label: 'Name',
+        label: 'Location',
         name: 'name',
         type: 'text',
       },
@@ -70,6 +74,30 @@ class ProjectsController extends ResourceController {
             display: 'Active',
           },
         ],
+      },
+      {
+        label: 'Sold Status',
+        name: 'sold_status',
+        type: 'select',
+        options: [
+          {
+            value: '0',
+            display: 'Opening Soon',
+          },
+          {
+            value: '1',
+            display: 'Now Selling',
+          },
+          {
+            value: '2',
+            display: 'Sold Out',
+          },
+        ],
+      },
+      {
+        label: 'Feature Image',
+        name: 'feature_img',
+        type: 'image',
       },
     ];
 

@@ -4,7 +4,11 @@ const Model = use('Model');
 
 class Project extends Model {
   static get computed() {
-    return ['perMonth', 'roi', 'fullActive'];
+    return ['perMonth', 'roi', 'fullActive','SoldStatusObj','fullName'];
+  }
+
+  getFullName({ flats,name }) {
+    return `${flats} - ${name}`
   }
 
   getFullActive({ active }) {
@@ -36,6 +40,30 @@ class Project extends Model {
 
   getRoi({ annum_return, duration }) {
     return (annum_return, duration) / 100;
+  }
+
+  static getSoldStatusEnums() {
+    return [
+      {
+        id: 0,
+        label: 'Opening Soon',
+        class: 'info',
+      },
+      {
+        id: 1,
+        label: 'Now Selling',
+        class: 'success',
+      },
+      {
+        id: 2,
+        label: 'Sold Out',
+        class: 'danger',
+      },
+    ];
+  }
+
+  getSoldStatusObj({sold_status}){
+    return _.find(Project.getSoldStatusEnums(), { id: sold_status });
   }
 }
 

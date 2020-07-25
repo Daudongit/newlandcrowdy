@@ -2,8 +2,10 @@
 @section('title')
   {{ mutipleItems }}
 @endsection
+@section('style')
+  <link href="/assets/css/MultiFileUpload.css" rel="stylesheet" type="text/css">
+@endsection
 @section('content')
-
 
 <div class="row">
   <div class="col-md-12">
@@ -13,8 +15,8 @@
           <h4 class="card-title mb-0">Add New {{ singleItem }}</h4>
         </div>
 
-          <form class="forms-sample" method="POST" action="{{ route(resourceRoute + '.store') }}" enctype="multipart/form-data">
-
+          <form class="forms-sample" method="POST" 
+            action="{{ route(resourceRoute + '.store') }}" enctype="multipart/form-data">
             {{ csrfField() }} 
 
             @each(field in createAbles)
@@ -29,6 +31,19 @@
                     </select>
                   @elseif(field.type == 'textarea')
                   <textarea class="form-control" id="input_{{ field.name }}" name="{{ field.name }}" placeholder="Enter {{ field.label }}">{{ old(field.name, '') }}</textarea> 
+                  @elseif(field.type == 'image')
+                    <p id="for_ad_image" class="valError text-danger small"></p>
+                    <div class="file-upload-previews"></div>
+                    <div class="file-upload">
+                        <input type="file" name="{{ field.name }}" 
+                          class="file-upload-input with-preview" 
+                          title="Click to add files" 
+                          maxlength="1" accept="jpg|png" id="img">
+                        <span style="color:#000">CLICK OR DRAG IMAGES HERE</span>
+                        <input type="hidden" id="imgCount" value="1"/>
+                        <input type="hidden" id="previousImages" 
+                            name="previousImages" value="1">
+                    </div>
                   @else
                   <input type="{{ field.type }}" class="form-control" id="input_{{ field.name }}" name="{{ field.name }}" placeholder="Enter {{ field.label }}" value="{{ old(field.name, '') }}"> 
                   @endif
@@ -36,7 +51,6 @@
                 </div>
               </div>
             @endeach
-
             <button type="submit" class="btn btn-primary mr-2">Submit</button>
         </form>
 
@@ -44,7 +58,8 @@
     </div>
   </div>
 </div>
-
- 
-
+@endsection
+@section('scripts')
+  <script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
+  <script type="text/javascript" src="/assets/js/MultiFileUpload.js"></script>
 @endsection

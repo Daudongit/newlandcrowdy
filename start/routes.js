@@ -43,6 +43,7 @@ Route
     generateResource('banks', 'BankController', 'admin.banks')
     generateResource('bankoptions', 'BankOptionController', 'admin.bankoptions')
     generateResource('withdrawals', 'WithdrawalController', 'admin.withdrawals') // Notification
+    generateResource('visitation', 'VisitationController', 'admin.visitations')
     Route.get('/transactions', 'TransactionController.index').as('admin.transactions.index')
     Route.get('/packages/payment/:id', 'PaymentsController.packages').as('admin.payments.packages')
     Route.get('/payments', 'PaymentsController.index').as('admin.payments.index')
@@ -86,6 +87,7 @@ Route
     Route.get('/projects/evidence/:id', 'PackagesController.getEvidence').as('app.packages.evidence')
     Route.post('/projects/evidence/:id', 'PackagesController.doEvidence').as('app.packages.evidence')
     Route.get('/projects/payments/:id', 'PackagesController.payments').as('app.packages.payments')
+    Route.get('/projects/view/update/:id', 'PackagesController.viewUpdate').as('app.packages.view.update')
 
     Route.get('/testimonials', 'TestimonialsController.get').as('app.testimonials.get')
     Route.post('/testimonials', 'TestimonialsController.update').as('app.testimonials.update')
@@ -115,7 +117,7 @@ Route
     Route.post('/withdrawals', 'WithdrawalController.store').as('app.withdrawals.store')
 
     Route.get('/referrals', 'ReferralsController.index').as('app.referrals.index')
-
+    Route.post('/visitations', 'VisitationController.store').as('app.visitations.store')
   })
   .prefix('app')
   .namespace('User/')

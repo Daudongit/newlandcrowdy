@@ -361,6 +361,14 @@ class PackagesController {
       id: _package.id,
     });
   }
+
+  async viewUpdate({params,view}){
+    return view.render('app.packages.view_update',{
+      project:(await Project.query().where({
+        id: params.id,
+      }).first()).toJSON()
+    })
+  }
 }
 
 module.exports = PackagesController;

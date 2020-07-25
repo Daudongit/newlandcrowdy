@@ -1,8 +1,26 @@
 const dateFormat = require('dateformat');
 const _ = require('lodash');
+// const { ioc } = require('@adonisjs/fold')
 const {
   hooks
 } = require('@adonisjs/ignitor')
+
+// hooks.after.providersRegistered(() => {
+//   ioc.extend('Adonis/Addons/Mail','log', function (app) {
+//     // const Logmail = use('App/Driver/Logmail')
+//     // const Config = app.use('Adonis/Src/Config')
+//     return class Logmail{
+//       setConfig (config) {
+//           console.log('.....mail log........')
+//       }
+
+//       send (message) {
+//         console.log(message)  
+//       }
+//     }
+//     // return new Logmail(Config)
+//   })
+// })
 
 hooks.after.providersBooted(() => {
   const View = use('View')
@@ -61,6 +79,10 @@ hooks.after.providersBooted(() => {
       toReturn += "...";
     }
     return toReturn
+  });
+
+  View.global('imageName', function (path) {
+    return path.split('/').pop()
   });
 
 })

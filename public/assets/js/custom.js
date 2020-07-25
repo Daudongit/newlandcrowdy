@@ -46,7 +46,23 @@
     $ ('#capital').html (presentMoney ($ (this).find ('.capital').text ()));
     $ ('#capital__plain_text').html ($ (this).find ('.capital').text ());
     $ ('#project_id').val (value);
+    $ ('#minute-payment').addClass ('hidden');
   });
+
+  const getPaymentOptions = (amount, monthly=false)=>{
+    // const amountSegment = [amount/2,amount/4,amount/8,amount/16];
+    const amountSegment = monthly? [amount/12]:
+    [amount/2,amount/4,amount/8,amount/16];
+    return amountSegment.map((eachAmount)=>{
+        return `<div class="invest-amount-item" data-amount="${eachAmount}">
+            <input type="radio" class="invest-amount-control" 
+              name="iv-amount" id="iv-amount-${eachAmount}">
+            <label class="invest-amount-label" for="iv-amount-${eachAmount}">
+                ${ presentMoney(eachAmount) }
+            </label>
+        </div>`
+    }).join('');
+  };
 
   $ ('.select-payment-method').click (function () {
     $ ('#select-payment-method .coin-item').html (
@@ -57,7 +73,8 @@
     $ ('#form_payment_method').val (value);
   });
 
-  $ ('.invest-amount-item').click (function () {
+  // $ ('.invest-amount-item').click (function () {
+  $('#invest-amount-group').on('click','.invest-amount-item',function () {
     $ ('#amount_to_invest').html (presentMoney ($ (this).data ('amount')));
     $ ('#form_amount_to_invest').val ($ (this).data ('amount'));
   });
@@ -73,12 +90,25 @@
     ) {
       $ ('#amount_to_invest').html ($ ('#capital').text ());
       $ ('#form_amount_to_invest').val ($ ('#capital__plain_text').text ());
-    }
-    if (value != 'Full Payment') {
-      $ ('#minute-payment').removeClass ('hidden');
-    } else {
       $ ('#minute-payment').addClass ('hidden');
     }
+    // if (value != 'Full Payment') {
+    if (value === 'Part Payment') {
+      $('#invest-amount-group').html(
+        getPaymentOptions($('#capital__plain_text').text())
+      );
+      $('#minute-payment').removeClass ('hidden');           
+    } 
+    // else {
+    //   $ ('#minute-payment').addClass ('hidden');
+    // }
+    if (value === 'Year Payment') {
+      $('#invest-amount-group').html(
+        getPaymentOptions($('#capital__plain_text').text(),true)
+      );
+      $('#minute-payment').removeClass ('hidden');           
+    } 
+
     $ ('#paymentMode').text (value);
     $ ('#form_payment_mode').val (value);
   });

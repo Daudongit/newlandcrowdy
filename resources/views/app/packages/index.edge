@@ -9,32 +9,50 @@ Projects
     <!-- <div class="card"> -->
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-between pb-4">
-          <h4 class="card-title mb-0">Projects
-          </h4>
-          <a href="{{ route('app.packages.choose') }}" class="btn btn-primary pull-right">New Project</a>
+          <h4 class="card-title mb-0">Projects</h4>
+          <a href="{{ route('app.packages.choose') }}" style="background:#169EB5"
+            class="btn btn-primary pull-right">
+            New Project
+          </a>
 
         </div>
         <div class="row">
           @each(package in packages)
           <div class="col-xs-12 col-sm-6 col-md-6 grid-margin stretch-card card-tile ">
-            <a href="{{ route('app.packages.show', {id: package.id}) }}">
+            {{--  <a href="{{ route('app.packages.show', {id: package.id}) }}">  --}}
                 <div class="card">
-                <div class="card-body">
-                  <h5 class="m0">{{ package.project.flats }} - {{ package.project.name }}</h5>
-                    <div class="d-flex justify-content-between pb-2">
-                    <h6 class="m0 package-index-amount">{{{ moneyFormat(package.amount) }}}</h6>
-                    <i> {{{ moneyFormat(package.project.annum_return * package.amount / package.project.capital) }}}/annum</i>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                    <p class="text-muted"><span class="btn btn-sm btn-{{ package.fullStatus.class }}">{{ package.fullStatus.label }}</span></p>
-                    <p class="text-muted">Payments: {{package.__meta__.payments_count}}</p>
-                    </div>
-                    <div class="progress progress-md">
-                    <div class="progress-bar bg-{{ package.fullStatus.class }}" style="width: {{ package.__meta__.payments_count / package.plan.duration * 100 }}%" role="progressbar" aria-valuenow="{{ package.percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                  <div class="card-body">
+                      <a href="{{ route('app.packages.show', {id: package.id}) }}">
+                          <h5 class="m0">{{ package.project.flats }} - {{ package.project.name }}</h5>
+                          <div class="d-flex justify-content-between pb-2">
+                              <h6 class="m0 package-index-amount">{{{ moneyFormat(package.amount) }}}</h6>
+                              <i> {{{ moneyFormat(package.project.annum_return * package.amount / package.project.capital) }}}/annum</i>
+                          </div>
+                      </a>
+                      <div class="d-flex justify-content-between">
+                        <p class="text-mute d-flex d-md-block flex-column">
+                          <a href="{{ route('app.packages.show', {id: package.id}) }}"
+                            class="btn btn-sm btn-{{ package.fullStatus.class }} mb-1 mb-md-0"
+                            style="background:{{package.fullStatus.background}}">
+                              {{ package.fullStatus.label }}
+                          </a>
+                          <a class="btn btn-sm btn-success" style="background:#169EB5"
+                              href="{{ route('app.packages.view.update', {id: package.project.id}) }}">
+                              View Details
+                          </a>
+                        </p>
+                        <p class="text-muted">Payments: {{package.__meta__.payments_count}}</p>
+                      </div>
+                      <div class="progress progress-md">
+                        <div class="progress-bar bg-{{ package.fullStatus.class }}" 
+                          style="width: {{ package.__meta__.payments_count / package.plan.duration * 100 }}%" 
+                          role="progressbar" aria-valuenow="{{ package.percentage }}" 
+                          aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                      </div>
+                  </div>
                 </div>
-                </div>
-            </a>
+            {{--  </a>  --}}
           </div>
           @else
           <div style="margin: 0 auto">

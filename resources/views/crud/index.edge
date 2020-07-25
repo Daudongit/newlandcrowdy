@@ -55,7 +55,7 @@
                 @each(indexAble in indexAbles)
                   <th>
                     @if(indexAble.type == 'money')
-                  <a href="{{ route(resourceRoute + '.sort', {sort: indexAble.value, order: (lodash(request, 'params.sort') == indexAble.value) ? ((request.params.order == 'desc') ? 'asc' : 'desc' ) : 'asc' }) }}"> {{ indexAble.label }}  <i class="mdi mdi-sort-ascending"></i> </a>
+                      <a href="{{ route(resourceRoute + '.sort', {sort: indexAble.value, order: (lodash(request, 'params.sort') == indexAble.value) ? ((request.params.order == 'desc') ? 'asc' : 'desc' ) : 'asc' }) }}"> {{ indexAble.label }}  <i class="mdi mdi-sort-ascending"></i> </a>
                     @else
                     {{ indexAble.label }}
                     @endif

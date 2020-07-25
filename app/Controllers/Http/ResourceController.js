@@ -1,5 +1,6 @@
 'use strict';
 const _ = require('lodash');
+const fs = require('fs');
 
 const { validateAll } = use('Validator');
 const validationMessages = use('App/Helpers/ValidationMessages');
@@ -190,13 +191,59 @@ class ResourceController {
     }
 
     const updateData = request.only(this.dataFields);
-    this.model
-      .query()
-      .where({
-        id: params.id,
-      })
-      .update(updateData)
-      .then(() => {});
+    let query = this.model.query().where({id: params.id,})
+
+    if (this.fileFields.length > 0) {
+      await asyncForEach(this.fileFields, async fileFieldName => {
+          if(!request.input('previousImage')){
+            const modelObj = await query.first()
+            const previousFilePath = Helpers.publicPath()+modelObj[fileFieldName]
+            fs.access(previousFilePath,fs.F_OK,(err)=>{
+              if(err){
+                console.log(err)
+                return
+              }
+
+              fs.unlink(previousFilePath,(err)=>{
+                console.log(err)
+                return
+              })
+            })
+          }
+
+          const fileField = request.file(fileFieldName);
+
+          if (fileField.type != 'image') {
+            session.flash({
+              error: 'Only Images Are Allowed',
+            });
+            return response.redirect('back');
+          }
+
+          if (fileField.size > 1000000) {
+            session.flash({
+              error: 'Image size too large. Maximum size is 1MB',
+            });
+            return response.redirect('back');
+          }
+
+          const dirPath = this.resourceRoute.replace('admin.', '');
+
+          const fullPath = 'uploads/' + dirPath + '/' + uuidv4() + '.jpg';
+
+          await fileField.move(Helpers.publicPath(), {
+            name: fullPath,
+          });
+
+          if (!fileField.moved()) {
+            return fileField.error();
+          }
+          updateData[fileFieldName] = '/' + fullPath;
+      });
+    }
+
+    query.update(updateData).then(() => {});
+
     session.flash({
       info: `${this.singleItem} Updated Successfully.`,
     });
@@ -204,13 +251,28 @@ class ResourceController {
   }
 
   async destroy({ params, session, response }) {
-    this.model
-      .query()
-      .where({
-        id: params.id,
-      })
-      .delete()
-      .then(() => {});
+    let query = this.model.query().where({id: params.id,})
+    if (this.fileFields.length > 0) {
+      await asyncForEach(this.fileFields, async fileFieldName => {
+        const modelObj = await query.first()
+          if(modelObj[fileFieldName]){
+            const previousFilePath = Helpers.publicPath()+modelObj[fileFieldName]
+            fs.access(previousFilePath,fs.F_OK,(err)=>{
+              if(err){
+                console.log(err)
+                return
+              }
+
+              fs.unlink(previousFilePath,(err)=>{
+                console.log(err)
+                return
+              })
+            })
+          }
+      });
+    }
+    query.delete().then(() => {});
+    
     session.flash({
       info: `${this.singleItem} Deleted Successfully.`,
     });

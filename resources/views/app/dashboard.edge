@@ -17,7 +17,7 @@
                               <em class="icon ni ni-arrow-long-right ml-2"></em></a></div>
                   </div>
                   <div class="nk-block-des">
-                      <p>At a glance summary of your investment account. Have fun!</p>
+                      <p>At a glance summary of your sponsored account. Have fun!</p>
                   </div>
               </div>
               <div class="nk-block-head-content d-none d-md-block">
@@ -48,14 +48,24 @@
       <div class="nk-block">
           <div class="nk-news card card-bordered">
               <div class="card-inner">
-                  <div class="nk-news-list"><a class="nk-news-item" href="#">
-                          <div class="nk-news-icon"><em class="icon ni ni-card-view"></em></div>
-                          <div class="nk-news-text">
-                              <p>Do you know the latest update of 2019? <span> A overview of our
-                                      is now available on YouTube</span></p><em
-                                  class="icon ni ni-external"></em>
-                          </div>
-                      </a></div>
+                    <div class="nk-news-list">
+                        <div class="nk-news-item">
+                            <div class="nk-news-icon d-none d-md-block" >
+                                <em class="icon ni ni-card-view"  style="cursor:pointer"
+                                    onclick="copyLink('{{ fullUrl }}{{ route('auth.referral', {referral: auth.user.username}) }}')"></em>
+                            </div>
+                            <div class="nk-news-text w-100 mw-100" >
+                                <p class="w-100 ml-n1 ml-md-0" 
+                                    style="text-overflow:inherit">My Referral link: 
+                                    <a href="{{ fullUrl }}{{ route('auth.referral', {referral: auth.user.username}) }}">
+                                        {{ fullUrl }}{{ route('auth.referral', {referral: auth.user.username}) }}   
+                                    </a>  
+                                </p>
+                                <em class="icon ni ni-external d-none d-md-block" style="cursor:pointer"
+                                    onclick="copyLink('{{ fullUrl }}{{ route('auth.referral', {referral: auth.user.username}) }}')"></em>
+                            </div>
+                        </div>
+                    </div>
               </div>
           </div>
       </div>
@@ -121,21 +131,33 @@
                   <div class="nk-wg-card card card-bordered h-100">
                       <div class="card-inner h-100">
                           <div class="nk-iv-wg2">
-                         <img class="card-img-top dashboard-image" src="/assets/images/properties/{{ $loop.index + 1 }}.jpg" alt="Card image cap">
-                              <div class="nk-iv-wg2-text">
-                                  <div class="nk-iv-wg2-amount ui-v2">{{ project.flats }}</div>
-                                  <ul class="nk-iv-wg2-list">
-                                      <li><span class="item-label"><i class="fa fa-map-marker" aria-hidden="true"></i> Location</span><span
-                                              class="item-value">{{ project.name }}</span></li>
-                                              <li><span class="item-label"><i class="fa fa-hourglass-half pr-1 "></i>Duration</span><span
-                                                class="item-value"><b>{{ project.duration }}</b> years</span></li>
-                                      <li><span class="item-label"><i class="fa fa-building-o" aria-hidden="true"></i> Price</span><span
-                                              class="item-value">{{{ moneyFormat(project.capital) }}} <span class="font-{{ project.active === 1 ? 'selling' : 'sold' }}">per units</span></li>
-                                      <li class="total"><span class="item-label">Annual Return</span><span
-                                              class="item-value">{{{ moneyFormat(project.annum_return) }}}</span></li>
-                                  </ul>
-                              </div>
-                            <div class="nk-iv-wg2-cta"><a href="{{ project.active === 0 ? '#' : route('app.packages.choose') }}"  class="btn btn-{{ project.active === 0 ? 'warning' : 'primary' }} btn-lg btn-block">  {{ project.active === 0 ? 'Coming Soon' : 'Choose Project' }}  </a>
+                                <div style="position:relative;width:100%">
+                                    <img class="card-img-top dashboard-image" 
+                                        src="{{project.feature_img?project.feature_img:'/assets/images/properties/'+($loop.index + 1)+'.jpg'}}" 
+                                        alt="Card image cap">
+                                    <span class="badge badge-{{ project.SoldStatusObj.class}}" 
+                                        style="position:absolute;top:0%;left:0%;">
+                                        {{project.SoldStatusObj.label}}
+                                    </span>
+                                </div>
+                                <div class="nk-iv-wg2-text">
+                                    <div class="nk-iv-wg2-amount ui-v2">{{ project.flats }}</div>
+                                    <ul class="nk-iv-wg2-list">
+                                        <li><span class="item-label"><i class="fa fa-map-marker" aria-hidden="true"></i> Location</span><span
+                                                class="item-value">{{ project.name }}</span></li>
+                                                <li><span class="item-label"><i class="fa fa-hourglass-half pr-1 "></i>Duration</span><span
+                                                    class="item-value"><b>{{ project.duration }}</b> years</span></li>
+                                        <li><span class="item-label"><i class="fa fa-building-o" aria-hidden="true"></i> Price</span><span
+                                                class="item-value">{{{ moneyFormat(project.capital) }}} <span class="font-{{ project.active === 1 ? 'selling' : 'sold' }}">per units</span></li>
+                                        <li class="total"><span class="item-label">Annual Return</span><span
+                                                class="item-value">{{{ moneyFormat(project.annum_return) }}}</span></li>
+                                    </ul>
+                                </div>
+                                <div class="nk-iv-wg2-cta">
+                                    <a href="{{ project.active === 0 ? '#' : project.sold_status == 2?route('app.packages.view.update', {id:project.id}): route('app.packages.choose') }}"  
+                                        class="btn btn-{{ project.active === 0 ? 'warning' : project.sold_status == 2?'danger':'primary' }} btn-lg btn-block">  
+                                        {{ project.active === 0 ? 'Coming Soon' : project.sold_status == 2?'View Update':'Choose Project' }}  
+                                    </a>
                                 </div>
                           </div>
                       </div>
@@ -146,4 +168,30 @@
       </div>
   </div>
 </div>
-  @endsection
+@endsection
+@section('scripts')
+    <script>
+        function copyLink(text){
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            
+            // Avoid scrolling to bottom
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+
+            document.body.removeChild(textArea);
+        }
+    </script>
+@endsection
+

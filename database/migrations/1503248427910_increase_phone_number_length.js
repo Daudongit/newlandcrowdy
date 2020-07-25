@@ -10,6 +10,11 @@ class MigrationSchema extends Schema {
     })
   }
 
+  down() {
+    this.alter('users', (table) => {
+      table.dropColumn('phone_number')
+    })
+  }
 }
 
 module.exports = MigrationSchema

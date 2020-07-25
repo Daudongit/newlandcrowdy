@@ -10,6 +10,11 @@ class MigrationSchema extends Schema {
     })
   }
 
+  down() {
+    this.alter('packages', (table) => {
+      table.renameColumn('project_id', 'plan_id')
+    })
+  }
 }
 
 module.exports = MigrationSchema

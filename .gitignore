@@ -1,3 +1,4 @@
+.vscode
 # Node modules
 node_modules
 
@@ -7,10 +8,13 @@ tmp
 # Environment variables, never commit this file
 .env
 
+
 # The development sqlite file
 database/development.sqlite
 
 public/uploads
+! public/uploads/id_card/test.jpg
+! public/uploads/picture/test.jpg
 
 data
 
