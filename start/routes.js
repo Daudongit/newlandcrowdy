@@ -17,6 +17,8 @@ Route
   .group(() => {
     Route.get('/', 'GuestController.getIndex').as('index')
     Route.get('/trading', 'GuestController.getTrading').as('guest.trading')
+    Route.get('/gallery', 'GuestController.getGallery').as('guest.gallery')
+    Route.get('/testimonials', 'GuestController.getTestimonials').as('guest.testimonials')
     Route.get('/about', 'GuestController.getAbout').as('guest.about')
     Route.get('/faq', 'GuestController.getFaq').as('guest.faq')
     Route.get('/contact', 'GuestController.getContact').as('guest.contact')
@@ -25,6 +27,7 @@ Route
     Route.get('/terms', 'GuestController.getTerms').as('guest.terms')
     Route.get('/teams', 'GuestController.getTeams').as('guest.teams')
     Route.get('/company', 'GuestController.getCompany').as('guest.company')
+    Route.get('/privacy', 'GuestController.getPrivacy').as('guest.privacy')
     Route.get('/blog', 'GuestController.getBlog').as('guest.blog')
     Route.get('/property', 'GuestController.getProperty').as('guest.property')
   })
