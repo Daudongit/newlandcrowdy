@@ -42,10 +42,6 @@ class GuestController {
     });
   }
 
-  getTeams({ view }) {
-    return view.render('guest.teams');
-  }
-
   getCompany({ view }) {
     return view.render('guest.company');
   }
@@ -62,12 +58,28 @@ class GuestController {
     return view.render('guest.property');
   }
 
+  getGallery({ view }) {
+    return view.render('guest.gallery');
+  }
+
+  getTestimonials({ view }) {
+    return view.render('guest.testimonials');
+  }
+
   getTerms({ view }) {
     return view.render('guest.terms');
   }
 
+  getTeams({ view }) {
+    return view.render('guest.teams');
+  }
+  
   getContact({ view }) {
     return view.render('guest.contact');
+  }
+
+  getPrivacy({ view }) {
+    return view.render('guest.privacy');
   }
 
   getChart({ view }) {

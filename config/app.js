@@ -15,7 +15,7 @@ module.exports = {
   */
   appKey: Env.get('APP_KEY'),
   name: Env.get('APP_NAME', 'LandCrowdy'),
-  fullUrl: Env.get('APP_FULL_URL', 'https://landcrowdy.com.ng'),
+  fullUrl: Env.get('APP_FULL_URL', 'https://landcrowdy.ng'),
 
   http: {
     /*

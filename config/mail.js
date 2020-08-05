@@ -14,8 +14,8 @@ module.exports = {
   */
   connection: Env.get('MAIL_CONNECTION', 'smtp'),
 
-  contact: Env.get('CONTACT_EMAIL', 'info@landcrowdy.com.ng'),
-  transaction: Env.get('TRANSACTION_EMAIL', 'admin@landcrowdy.com.ng'),
+  contact: Env.get('CONTACT_EMAIL', 'info@landcrowdy.ng'),
+  transaction: Env.get('TRANSACTION_EMAIL', 'admin@landcrowdy.ng'),
 
   from: {
     email: Env.get('MAIL_FROM', 'landcrowdy@gmail.com'),

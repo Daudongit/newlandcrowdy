@@ -53,7 +53,7 @@ services:
     #     links:
     #         - nginx
     #     environment:
-    #         - CN=landcrowdy.com.ng
+    #         - CN=landcrowdy.ng
     #         - EMAIL=jcsonvonyon@gmail.com
     #     volumes:
     #       - ./docker/certbot/letsencrypt/:/var/www/letsencrypt
