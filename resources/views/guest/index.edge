@@ -36,10 +36,20 @@
     <div class="row text text-center">
 			@each(counter in counters)
       <div class="col-md-3 col-sm-6 border-right">
-        <h5> <i class="fa fa-{{ ['building-o', 'users', 'globe', 'space-shuttle'][counter.id - 1] }} fa-3x text-white" aria-hidden="true"></i> <span class="text-white h1">
-        </span><br> <span class="text-white">{{ counter.value }} {{ counter.title }}</span> </h5>
+        <h5> 
+          <i class="fa fa-{{ ['building-o', 'users', 'globe'][counter.id - 1] }} fa-3x text-white" aria-hidden="true"></i> 
+          <span class="text-white h1"></span><br> 
+          <span class="text-white">{{ counter.value }} {{ counter.title }}</span> 
+        </h5>
       </div>
       @endeach
+      <div class="col-md-3 col-sm-6 border-right">
+        <h5> 
+          <i class="fa fa-space-shuttle fa-3x text-white" aria-hidden="true"></i> 
+          <span class="text-white h1"></span><br> 
+          <span class="text-white">Founded 2020</span> 
+        </h5>
+      </div>
     </div>
   </div>
 
@@ -61,57 +71,63 @@
   <div class="container-fluid bg-light">
     <div class="row">
       @each(project in projects)
-      <div class="col-md-3">
-        <div class="card">
-          <!-- Card image -->
-          <div class="view overlay">
-            <img class="card-img-top" src="/assets/images/properties/{{ $loop.index + 1 }}.jpg" alt="Card image cap">
-            <a class=" bt1 btn wrp{{ project.active === 0 ? '3' : '2' }} waves-effect text-white"  href="{{ route('app.signin') }}" role="button"><b>
-              {{ project.active === 0 ? 'Coming Soon' : 'Active' }}</b></a> <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-          <!-- Button -->
-          <!-- Card content -->
-          <div class="card-body rotate-btn float-right">
-            <!-- Title -->
+        <div class="col-md-3 mt-3">
+          <div class="card">
+            <!-- Card image -->
+            <div class="view overlay">
+              <img class="card-img-top" alt="Card image cap"
+                src="{{project.feature_img?project.feature_img:'/assets/images/properties/'+(($loop.index % 3)+1)+'.jpg'}}">
+              <!--<a class=" bt1 btn wrp{{ project.active === 0 ? '3' : '2' }} waves-effect text-white" --> 
+              <a class=" bt1 btn btn-{{ project.SoldStatusObj.class}} waves-effect text-white"  
+                href="{{ route('app.signin') }}" role="button">
+                <!--<b>{{ project.active === 0 ? 'Coming Soon' : 'Active' }}</b>-->
+                <b>{{project.SoldStatusObj.label}}</b>
+              </a> 
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!-- Button -->
+            <!-- Card content -->
+            <div class="card-body rotate-btn float-right">
+              <!-- Title -->
+              <h5 class="  card-title text-center"><b>{{ project.flats }}</b></h5>
+              <hr>
+              <!-- Text -->
+              <table class="table table-borderless ">
+                <thead>
+                  <tr>
+                    <th scope="col"> <i class="fa fa-map-marker" aria-hidden="true"></i> Location</th>
+                  <td scope="col">{{ project.name }}</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row"><i class="fa fa-building-o" aria-hidden="true"></i> Price</th>
+                  <td>{{{ moneyFormat(project.capital) }}} <span class="font-{{ project.active === 1 ? 'selling' : 'sold' }}">per units</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-          <h5 class="  card-title text-center"><b>{{ project.flats }}</b></h5>
-            <hr>
-            <!-- Text -->
-            <table class="table table-borderless ">
-              <thead>
-                <tr>
-                  <th scope="col"> <i class="fa fa-map-marker" aria-hidden="true"></i> Location</th>
-                <td scope="col">{{ project.name }}</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row"><i class="fa fa-building-o" aria-hidden="true"></i> Price</th>
-                <td>{{{ moneyFormat(project.capital) }}} <span class="font-{{ project.active === 1 ? 'selling' : 'sold' }}">per units</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Card footer -->
-          <div class="rounded-bottom cdf{{ project.active === 0 ? '2' : '' }} text-center pt-3">
-            <ul class="list-unstyled list-inline font-small">
-              <li class="list-inline-item pr-1 "> <b> <i class="fa fa-recycle pr-1" ></i> {{{ moneyFormat(project.annum_return) }}}</b><span class="small">/annum</span></li>
-            <li class="list-inline-item pr-1 "><i class="fa fa-hourglass-half pr-1 "></i><b>{{ project.duration }}</b> years</a></li>
-              <li class="list-inline-item pr-1"><i class="fa fa-users pr-1 "></i>{{ project.slots }} </a></li>
-            </ul>
+            <!-- Card footer -->
+            <!--<div class="rounded-bottom cdf{{ project.active === 0 ? '2' : '' }} text-center pt-3">-->
+            <div class="rounded-bottom btn btn-{{ project.SoldStatusObj.class}} text-center pt-3">
+              <ul class="list-unstyled list-inline font-small">
+                <li class="list-inline-item pr-1 "> <b> <i class="fa fa-recycle pr-1" ></i> {{{ moneyFormat(project.annum_return) }}}</b><span class="small">/annum</span></li>
+                <li class="list-inline-item pr-1 "><i class="fa fa-hourglass-half pr-1 "></i><b>{{ project.duration }}</b> years</a></li>
+                <li class="list-inline-item pr-1"><i class="fa fa-users pr-1 "></i>{{ project.slots }} </a></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
       @endeach
     </div>
   </div>
   <!--/.Properties Cards-->
 
   <!--Features-->
-  <div class="container-fluid bg-success">
+  <div class="container-fluid bg-success mt-4">
     <div class="row">
       <div class="col-md-4">
         <h1 class="p-5 m-5 text-white text-"><b>Why <br> LandCrowdy?</b></h1>
@@ -206,49 +222,52 @@
       <div class="col-md-6 mt-5">
         <div class="accordion" id="accordionExample">
           @each(faq in faqs)
-          @if($loop.index % 2 === 0)
-          <div class="card z-depth-0 bordered">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link faq1" type="button" data-toggle="collapse" data-target="#collapse{{faq.id}}"
-                  aria-expanded="true" aria-controls="collapseOne">{{ faq.question }}
+            @if($loop.index % 2 === 0)
+              <div class="card z-depth-0 bordered">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link faq1" type="button" data-toggle="collapse" data-target="#collapse{{faq.id}}"
+                      aria-expanded="true" aria-controls="collapseOne">{{ faq.question }}
 
-                </button>
-              </h5>
-            </div>
-            <div id="collapse{{faq.id}}" class="collapse {{ $loop.index === 0 ? 'show' : '' }}" aria-labelledby="headingOne" data-parent="#accordionExample">
-              <div class="card-body"> {{ faq.answer }}
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapse{{faq.id}}" class="collapse {{ $loop.index === 0 ? 'show' : '' }}" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body"> {{ faq.answer }}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          @endif
+            @endif
 					@endeach
         </div>
       </div>
       <div class="col-md-6 mt-5">
         <div class="accordion" id="accordionExample1">
           @each(faq in faqs)
-          @if($loop.index % 2 === 1)
-          <div class="card z-depth-0 bordered">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link faq1" type="button" data-toggle="collapse" data-target="#collapse{{faq.id}}"
-                  aria-expanded="true" aria-controls="collapseOne">{{ faq.question }}
-
-                </button>
-              </h5>
-            </div>
-            <div id="collapse{{faq.id}}" class="collapse {{ $loop.index === 0 ? 'show' : '' }}" aria-labelledby="headingOne" data-parent="#accordionExample1">
-              <div class="card-body"> {{ faq.answer }}
+            @if($loop.index % 2 === 1)
+              <div class="card z-depth-0 bordered">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link faq1" type="button" 
+                      data-toggle="collapse" data-target="#collapse{{faq.id}}"
+                      aria-expanded="true" aria-controls="collapseOne">{{ faq.question }}
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapse{{faq.id}}" class="collapse {{ $loop.index === 0 ? 'show' : '' }}" 
+                  aria-labelledby="headingOne" data-parent="#accordionExample1">
+                  <div class="card-body"> {{ faq.answer }}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          @endif
+            @endif
 					@endeach
         </div>
       </div>
-      <div class="col-md-12 text-center mt-5">
-        <a class="btn tnav4 waves-effect text-white " href="/" role="button"><b>Any Further Questions?</b></a>
+      <div class="col-md-12 text-center my-5">
+        <a class="btn tnav4 waves-effect text-white " href="/" role="button">
+          <b>Any Further Questions?</b>
+        </a>
       </div>
     </div>
   </div>

@@ -11,6 +11,7 @@ const Reference = use('App/Models/Reference');
 const ReferralsHelper = use('App/Helpers/Referrals');
 const Project = use('App/Models/Project');
 const Package = use('App/Models/Package');
+const Notification = use('App/Models/Notification');
 const _ = require('lodash');
 const moment = require('moment');
 const uuidv4 = require('uuid/v4');
@@ -22,13 +23,14 @@ const validationMessages = use('App/Helpers/ValidationMessages');
 
 class PackagesController {
   async index({ auth, view }) {
+    const where = {user_id: auth.user.id}
+    const temp_qs = (await Package.query().where(
+      {...where,payment_mode:'Year Payment'}
+    ).fetch()).rows.forEach(pkg =>pkg.notify(auth.user.id))
+    
     return view.render('app.packages.index', {
       packages: (
-        await Package.query()
-          .where({
-            user_id: auth.user.id,
-          })
-          .with('project')
+        await Package.query().where({...where}).with('project')
           .withCount('payments', builder => {
             builder.where('status', 1);
           })
@@ -342,6 +344,7 @@ class PackagesController {
       user_id: auth.user.id,
       project_id,
       amount,
+      payment_mode,
     });
 
     Deposit.create({
@@ -352,6 +355,16 @@ class PackagesController {
       amount,
       file: '/assets/images/none.jpeg',
     }).then(() => {});
+    
+    const project = (await _package.project().first()).toJSON()
+    if (payment_mode == 'Year Payment') {
+      Notification.create({
+        user_id:auth.user.id,
+        package_id:_package.id,
+        is_read:true,
+        message:`First monthly payment for ${project.fullName} project`
+      })
+    }
 
     session.flash({
       info: 'Package Successfully Created',

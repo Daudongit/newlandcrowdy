@@ -118,10 +118,11 @@ Route
 
     Route.get('/referrals', 'ReferralsController.index').as('app.referrals.index')
     Route.post('/visitations', 'VisitationController.store').as('app.visitations.store')
+    Route.delete('/remove/notification/:id', 'NotificationController.destroy').as('app.remove.notification')
   })
   .prefix('app')
   .namespace('User/')
-  .middleware(['auth.app', 'is.user']);
+  .middleware(['auth.app', 'is.user','notify']);
 
 Route
   .get('/payment/notify', 'User/PackagesController.paymentNotify')

@@ -15,9 +15,9 @@ const Factory = use('Factory')
 
 class DbSeeder {
   async run () {
-    this.setCount()
-      this.testAdminLogin()
-      this.testUserLogin()
+      this.setCount()
+      await this.testAdminLogin()
+      const user_id = await this.testUserLogin()
       await Factory
         .model('App/Models/User')
         .createMany(this.user)
@@ -39,7 +39,8 @@ class DbSeeder {
       await Factory
         .model('App/Models/BankOption')
         .createMany(this.bankOption)
-      this.others()
+      await this.others()
+      await this.notification(user_id)
   }
 
   setCount(){
@@ -49,7 +50,7 @@ class DbSeeder {
     },
     this.userLoginDetail = {
       email:'user@email.com',
-      password:'secret',role:false
+      password:'secret',role:false,
     },
     this.user = 10
     this.reference = 5
@@ -65,33 +66,34 @@ class DbSeeder {
     this.userAnnouncement = 10
     this.support = 10
     this.supportType = 5
-    this.faq = 7
+    this.faq = 8
     this.bankOption = 12
     this.testimonial = 14
     this.referral = 13
+    // this.notification = 40
   }
 
-  others(){
+  async others(){
     try {
-      this.references(this.user)
-      this.transactions(this.user)
-      this.withdrawals(this.user)
-      this.packages({
+      await this.references(this.user)
+      await this.transactions(this.user)
+      await this.withdrawals(this.user)
+      await this.packages({
         user:this.user,project:this.project
       })
-      this.bankDetails(this.user)
-      this.deposits({
+      await this.bankDetails(this.user)
+      await this.deposits({
         user:this.user,package:this.package
       })
-      this.payments({
+      await this.payments({
         user:this.user,package:this.package
       })
-      this.userAnnouncements({
+      await this.userAnnouncements({
         user:this.user,announcement:this.announcement
       })
-      this.supports(this.user)
-      this.testimonials(this.user)
-      this.referrals(this.user)
+      await this.supports(this.user)
+      await this.testimonials(this.user)
+      await this.referrals(this.user)
     } catch (error) {
       console.log(error)
     }
@@ -111,9 +113,22 @@ class DbSeeder {
     .create(this.userLoginDetail)
     user.verified = '1'
     await user.save()
+    return user.id
+
   }
 
   async references(userCount){
+    //Counter 
+    await Factory
+      .model('App/Models/Reference')
+      .create({title:'Properties',type:'counter',value:12})
+    await Factory
+      .model('App/Models/Reference')
+      .create({title:'Subscribers',type:'counter',value:50})
+    await Factory
+      .model('App/Models/Reference')
+      .create({title:'Communities',type:'counter',value:3})
+    //Max-Min
     await Factory
       .model('App/Models/Reference')
       .create({slug:'min_investment',value:10000})
@@ -129,13 +144,6 @@ class DbSeeder {
     await Factory
       .model('App/Models/Reference')
       .create({slug:'withdrawal_charges',value:1000})
-    // return await Factory
-    //   .model('App/Models/Reference')
-    //   .createMany(
-    //     this.reference,{
-    //       last_updated_by:()=>Math.floor(Math.random() * userCount) + 1
-    //     }
-    //   )
   }
 
   async transactions(userCount){
@@ -243,6 +251,21 @@ class DbSeeder {
       )
   }
 
+  async notification(user_id){
+    const pkg = await Factory
+      .model('App/Models/Package')
+      .create({
+          user_id:user_id,
+          project_id:()=>Math.floor(Math.random() * this.project) + 1,
+          payment_mode:'Year Payment'
+      })
+
+    await Factory.get('notifications').create({
+        user_id:pkg.user_id,
+        package_id:pkg.id,
+        is_read:true
+    })
+  }
 }
 
 module.exports = DbSeeder

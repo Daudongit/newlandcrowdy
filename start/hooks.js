@@ -84,5 +84,4 @@ hooks.after.providersBooted(() => {
   View.global('imageName', function (path) {
     return path.split('/').pop()
   });
-
 })

@@ -17,7 +17,7 @@ class GuestController {
           .fetch()
       ).toJSON(),
       projects: (
-        await Project.query()
+        await Project.query().limit(8)
           .fetch()
       ).toJSON(),
       testimonials: (

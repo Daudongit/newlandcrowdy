@@ -16,7 +16,7 @@ const globalMiddleware = [
   'Adonis/Middleware/BodyParser',
   'Adonis/Middleware/Session',
   'Adonis/Middleware/Shield',
-  'Adonis/Middleware/AuthInit'
+  'Adonis/Middleware/AuthInit',
 ]
 
 /*
@@ -42,7 +42,8 @@ const namedMiddleware = {
   'auth.admin': 'App/Middleware/AdminAuthenticate',
   'auth.app': 'App/Middleware/AppAuthenticate',
   'is.user': 'App/Middleware/IsUser',
-  'is.admin': 'App/Middleware/IsAdmin'
+  'is.admin': 'App/Middleware/IsAdmin',
+  'notify': 'App/Middleware/Notification'
 }
 
 

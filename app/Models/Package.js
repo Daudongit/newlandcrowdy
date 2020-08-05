@@ -3,8 +3,22 @@ const _ = require('lodash');
 
 const moment = require('moment');
 const Model = use('Model');
+const Notification = use('App/Models/Notification');
+const Project = use('App/Models/Project');
 
 class Package extends Model {
+  static boot() {
+    super.boot();
+
+    /**
+     * A hook to hash the user password before saving
+     * it to the database.
+     */
+    this.addHook('afterFetch', async packages => {
+
+    })
+  }
+  
   getNextInterestDays({ started, status, last_process }) {
     if (status === 1) {
       const _last_process = last_process ? last_process : started;
@@ -66,6 +80,29 @@ class Package extends Model {
 
   payments() {
     return this.hasMany('App/Models/Payment');
+  }
+
+  async notify(user_id){
+    let lastNotification = await Notification.query()
+      .where({package_id:this.id}).orderBy('id', 'desc').first()
+    
+    if(lastNotification){
+      lastNotification = lastNotification.toJSON()
+      const nextNotificationDou = Math.floor(
+        moment.duration(
+          moment().diff(moment(lastNotification.created_at))
+        ).asDays()
+      )
+      
+      const project = (await this.project().first()).toJSON()
+      if(nextNotificationDou >= 30){
+        Notification.create({
+          message:`your monthly payment is due for ${project.fullName} project`,
+          package_id:this.id,
+          user_id,
+        })
+      }
+    }
   }
 }
 

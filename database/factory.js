@@ -90,22 +90,26 @@ Factory.blueprint('App/Models/Withdrawal', (faker, index, data) => {
 })
 
 Factory.blueprint('App/Models/Project', (faker, index, data) => {
+    const sold_status = faker.pickone([0, 1,2])
+
     const defaultValue = {
         name: faker.unique(faker.word,50)[0],
         duration: faker.integer({min:5,max:20}),
         // interest: faker.unique(faker.word,20)[0],
         capital: faker.integer({min:100000,max:2000000}),
-        active: true,
+        active: sold_status==0?false:true,
         flats: faker.unique(faker.word,20)[0],
         slots: faker.integer({min:4,max:10}),
         annum_return: faker.integer({ min: 50000, max: 300000 }),
-        sold_status:faker.pickone([0, 1,2]),
+        sold_status:sold_status,
     }
     
     return Object.assign(defaultValue, data)
 })
 
 Factory.blueprint('App/Models/Package', (faker, index, data) => {
+    const payment_mode = ['Year Payment','Part Payment','Full Payment']
+
     const defaultValue = {
         user_id: async () => {
             return (await Factory.model('App/Models/User').create()).id
@@ -117,7 +121,8 @@ Factory.blueprint('App/Models/Package', (faker, index, data) => {
         status: true,
         started: faker.date({year: 2019}),
         last_process: faker.date({year: 2020}),
-        amount: faker.integer({ min: 50000, max: 3000000 })
+        amount: faker.integer({ min: 50000, max: 3000000 }),
+        payment_mode:faker.weighted(payment_mode,[10,1,1])
     }
     
     return Object.assign(defaultValue, data)
@@ -268,6 +273,30 @@ Factory.blueprint('App/Models/Referral', (faker, index, data) => {
         },
         amount: faker.integer({min:20945,max:3985626}),
         status: true,
+    }
+    
+    return Object.assign(defaultValue, data)
+})
+
+Factory.blueprint('notifications', (faker, index, data) => {
+    const messages = [
+        'First monthly payment for  test project',
+        'your monthly payment is due for test project'
+    ]
+    const key = faker.integer({min:0,max:1})
+    const date = faker.date({year: 2019})
+
+    const defaultValue = {
+        package_id: async () => {
+            return (await Factory.model('App/Models/Package').create()).id
+        },
+        user_id: async () => {
+            return (await Factory.model('App/Models/User').create()).id
+        },
+        message: messages[key],
+        is_read:faker.bool(),
+        created_at:date,
+        updated_at:date,
     }
     
     return Object.assign(defaultValue, data)

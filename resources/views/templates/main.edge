@@ -37,11 +37,11 @@
                 </div>
                 <div class="nk-sidebar-element">
                     <div class="nk-sidebar-content">
-                            @if(auth.user.isUser())
+                        @if(auth.user.isUser())
                             @include('includes.app_navigation')
-                           @else
+                        @else
                             @include('includes.admin_navigation')
-                           @endif
+                        @endif
                     </div>
                 </div>
             </div>
@@ -59,7 +59,64 @@
                                         alt="logo-dark"></a></div>
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
-                                    <li class="dropdown user-dropdown order-sm-first"><a href="#" class="dropdown-toggle"
+                                    @if(auth.user.isUser() && notificationItems().length > 0)
+                                        <li class="dropdown notification-dropdown">
+                                            <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
+                                                <span class="notification-count">{{notificationItems().length}}</span>
+                                                <div class="icon-status icon-status-info">
+                                                    <em class="icon ni ni-bell"></em>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
+                                                <div class="dropdown-head">
+                                                    <span class="sub-title nk-dropdown-title">Notifications</span>
+                                                    <!--  <a href="#">Mark All as Read</a>  -->
+                                                </div>
+                                                <div class="dropdown-body">
+                                                    <div class="nk-notification">
+                                                        @each(notification in notificationItems())
+                                                            <div class="nk-notification-item dropdown-inner">
+                                                                <div class="nk-notification-icon">
+                                                                    <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                                </div>
+                                                                <div class="nk-notification-content">
+                                                                    <div class="nk-notification-text">
+                                                            
+                                                                        <a href="{{ route('app.remove.notification',{id:notification.id}) }}?_method=DELETE"
+                                                                            onclick="event.preventDefault();
+                                                                                 document.getElementById('notification-form').submit();">
+                                                                            {{notification.message}}
+                                                                        </a>
+                            
+                                                                        <form id="notification-form" 
+                                                                            action="{{ route('app.remove.notification',{id:notification.id}) }}?_method=DELETE" 
+                                                                            method="POST" 
+                                                                            style="display: none;">
+                                                                            {{ csrfField() }}
+                                                                        </form>
+
+                                                                        <!--<a href="javascript" >{{notification.message}}</a>
+                                                                        <form class="form-inline" method="POST" action="{{ route(resourceRoute + '.destroy', {id : data.id}) }}?_method=DELETE">
+                                                                            {{ csrfField() }}
+                                                                            <button class="btn btn-danger btn-xs">
+                                                                              <i class="fa fa-ban"></i>
+                                                                            </button>
+                                                                        </form>-->
+                                                                    </div>
+                                                                    <div class="nk-notification-time">{{notification.createdAtFormat}}</div>
+                                                                </div>
+                                                            </div>
+                                                        @endeach
+                                                    </div><!-- .nk-notification -->
+                                                </div><!-- .nk-dropdown-body -->
+                                                <!--<div class="dropdown-foot center">
+                                                    <a href="#">View All</a>
+                                                </div>-->
+                                            </div>
+                                        </li>
+                                    @endif
+                                    <li class="dropdown user-dropdown order-sm-first">
+                                        <a href="#" class="dropdown-toggle"
                                             data-toggle="dropdown">
                                             <div class="user-toggle">
                                                 <div class="user-avatar sm"><em class="icon ni ni-user-alt"></em></div>
@@ -78,27 +135,30 @@
                                                 </div>
                                             </div>
                                             @if(auth.user.isUser())
-                                            <div class="dropdown-inner user-account-info">
-                                                <h6 class="overline-title-alt">Account Balance</h6>
-                                                <div class="user-balance">  {{{ moneyFormat(auth.user.wallet) }}}</div>
-                                                <!--  <div class="user-balance-sub">Locked <span>15,495.39 <span
-                                                            class="currency currency-usd">USD</span></span></div>  -->
-                                                <a href="{{ route('app.withdrawals.create') }}"
-                                                    class="link"><span>Withdraw Balance</span> <em
-                                                        class="icon ni ni-wallet-out"></em></a>
-                                            </div>
-                                            <div class="dropdown-inner">
-                                                <ul class="link-list">
-                                                    <li><a href="{{ route('app.account.settings') }}"><em
-                                                                class="icon ni ni-setting-alt"></em><span>Account
-                                                                Setting</span></a></li>
-                                                </ul>
-                                            </div>
+                                                <div class="dropdown-inner user-account-info">
+                                                    <h6 class="overline-title-alt">Account Balance</h6>
+                                                    <div class="user-balance">  {{{ moneyFormat(auth.user.wallet) }}}</div>
+                                                    <!--  <div class="user-balance-sub">Locked <span>15,495.39 <span
+                                                                class="currency currency-usd">USD</span></span></div>  -->
+                                                    <a href="{{ route('app.withdrawals.create') }}"
+                                                        class="link"><span>Withdraw Balance</span> <em
+                                                            class="icon ni ni-wallet-out"></em></a>
+                                                </div>
+                                                <div class="dropdown-inner">
+                                                    <ul class="link-list">
+                                                        <li><a href="{{ route('app.account.settings') }}"><em
+                                                                    class="icon ni ni-setting-alt"></em><span>Account
+                                                                    Setting</span></a></li>
+                                                    </ul>
+                                                </div>
                                             @endif
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="{{ route('logout') }}"><em class="icon ni ni-signout"></em><span>Sign
-                                                                out</span></a></li>
+                                                    <li>
+                                                        <a href="{{ route('logout') }}">
+                                                            <em class="icon ni ni-signout"></em><span>Sign out</span>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
