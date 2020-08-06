@@ -46,7 +46,8 @@ class Project extends Model {
     return [
       {
         id: 0,
-        label: 'Opening Soon',
+        label: 'Coming Soon',
+        // label: 'Opening Soon',
         class: 'info',
       },
       {
