@@ -114,9 +114,17 @@ Nigeria's #1 Digital Property Platform
             <!--<div class="rounded-bottom cdf{{ project.active === 0 ? '2' : '' }} text-center pt-3">-->
             <div class="rounded-bottom btn btn-{{ project.SoldStatusObj.class}} text-center pt-3">
               <ul class="list-unstyled list-inline font-small">
-                <li class="list-inline-item pr-1 "> <b> <i class="fa fa-recycle pr-1" ></i> {{{ moneyFormat(project.annum_return) }}}</b><span class="small">/annum</span></li>
-                <li class="list-inline-item pr-1 "><i class="fa fa-hourglass-half pr-1 "></i><b>{{ project.duration }}</b> yrs</a></li>
-                <li class="list-inline-item pr-1"><i class="fa fa-users pr-1 "></i>{{ project.slots }} </a></li>
+                <li class="list-inline-item pr-1 "> 
+                    <b> <i class="fa fa-recycle pr-1" ></i>{{{ moneyFormat(project.annum_return) }}}</b>
+                    <span class="small">/annum  <strong>|</strong></span>
+                </li>
+                <li class="list-inline-item pr-1 ">
+                    <i class="fa fa-hourglass-half pr-1 "></i><b>{{ project.duration }}</b> yrs  |
+                </li>
+                <li class="list-inline-item pr-1">
+                  <i class="fa fa-users pr-1 "></i>
+                  {{ project.slots }}<span class="font-selling text-white" > left</span>
+                </li>
               </ul>
             </div>
           </div>

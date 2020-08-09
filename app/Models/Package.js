@@ -95,7 +95,7 @@ class Package extends Model {
       )
       
       const project = (await this.project().first()).toJSON()
-      if(nextNotificationDou >= 30){
+      if(nextNotificationDou >= 30 && !this.is_fully_pay){
         Notification.create({
           message:`your monthly payment is due for ${project.fullName} project`,
           package_id:this.id,

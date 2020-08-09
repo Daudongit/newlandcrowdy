@@ -2,8 +2,9 @@
 const Notification = use('App/Models/Notification');
 
 class NotificationController {
-    async destroy({ params, session, response }) {
-        await Notification.query().where({id:params.id}).delete()
+    async update({ params, session, response }) {
+        await Notification.query().where({id:params.id})
+        .update({is_read:true})
         session.flash({
             info: 'Notification Deleted Successfully.',
         })

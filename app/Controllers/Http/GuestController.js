@@ -54,8 +54,14 @@ class GuestController {
     return view.render('guest.blog');
   }
 
-  getProperty({ view }) {
-    return view.render('guest.property');
+  async getProperty({ view, request }) {
+    return view.render('guest.property',{
+      projects: (
+        await Project.query().paginate(
+          request.input('page',1),6
+        )
+      ).toJSON()
+    });
   }
 
   getGallery({ view }) {

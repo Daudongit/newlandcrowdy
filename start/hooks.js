@@ -84,4 +84,51 @@ hooks.after.providersBooted(() => {
   View.global('imageName', function (path) {
     return path.split('/').pop()
   });
+
+  View.global('simplePagination', function (page,lastPage) {
+    const url = this.resolve('url')
+    const prevPage = ()=>{
+      if(page == 1){
+        return `<li class="page-item disabled">
+                  <span class="page-link text-white" style="background:#343A40"><strong>«</strong></span>
+                </li>`
+      }
+      else{
+        return `<li class="page-item">
+                  <a class="page-link text-white" href="${url}?page=${parseInt(page) - 1}" 
+                    style="background:#343A40">
+                    <strong>«</strong>
+                  </a>
+                </li>`
+      }
+    }
+    const nextPage = ()=>{
+      if(parseInt(lastPage) > parseInt(page)){
+        return `<li class="page-item">
+                  <a class="page-link text-white" href="${url}?page=${parseInt(page) + 1}"
+                    style="background:#343A40">
+                    <strong>»</strong>
+                  </a>
+                </li>`
+      }else{
+        return `<li class="page-item disabled">
+                  <span class="page-link text-white" style="background:#343A40">
+                    <strong>»</strong>
+                  </span>
+                </li>`
+      }
+    }
+    return this.safe(`
+      <ul class="pagination pagination-md justify-content-center mt-3">
+          ${prevPage()}
+          <li class="page-item">
+            <a class="page-link text-white" href="#" style="background:#343A40">
+              page ${page} of ${lastPage}
+            </a>
+          </li>
+          ${nextPage()}
+      </ul>
+    `)
+  })
+
 })

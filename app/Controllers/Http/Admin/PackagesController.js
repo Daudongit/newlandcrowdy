@@ -23,7 +23,7 @@ module.exports = class PackagesController extends ResourceController {
       },
     ];
 
-    this.dataFields = ['status'];
+    this.dataFields = ['status','is_fully_pay'];
     this.validationRules = {
       status: 'required',
     };
@@ -47,6 +47,21 @@ module.exports = class PackagesController extends ResourceController {
           {
             value: '3',
             display: 'Paused',
+          },
+        ],
+      },
+      {
+        label: 'Year Payment Status',
+        name: 'is_fully_pay',
+        type: 'select',
+        options: [
+          {
+            value: '0',
+            display: 'Patially Paid',
+          },
+          {
+            value: '1',
+            display: 'Fully Paid',
           },
         ],
       },

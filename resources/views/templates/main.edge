@@ -82,26 +82,18 @@
                                                                 <div class="nk-notification-content">
                                                                     <div class="nk-notification-text">
                                                             
-                                                                        <a href="{{ route('app.remove.notification',{id:notification.id}) }}?_method=DELETE"
+                                                                        <a href="{{ route('app.remove.notification',{id:notification.id}) }}?_method=PUT"
                                                                             onclick="event.preventDefault();
                                                                                  document.getElementById('notification-form').submit();">
                                                                             {{notification.message}}
                                                                         </a>
                             
                                                                         <form id="notification-form" 
-                                                                            action="{{ route('app.remove.notification',{id:notification.id}) }}?_method=DELETE" 
+                                                                            action="{{ route('app.remove.notification',{id:notification.id}) }}?_method=PUT" 
                                                                             method="POST" 
                                                                             style="display: none;">
                                                                             {{ csrfField() }}
                                                                         </form>
-
-                                                                        <!--<a href="javascript" >{{notification.message}}</a>
-                                                                        <form class="form-inline" method="POST" action="{{ route(resourceRoute + '.destroy', {id : data.id}) }}?_method=DELETE">
-                                                                            {{ csrfField() }}
-                                                                            <button class="btn btn-danger btn-xs">
-                                                                              <i class="fa fa-ban"></i>
-                                                                            </button>
-                                                                        </form>-->
                                                                     </div>
                                                                     <div class="nk-notification-time">{{notification.createdAtFormat}}</div>
                                                                 </div>
