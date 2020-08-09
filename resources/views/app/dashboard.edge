@@ -159,7 +159,7 @@
                                     <a href="{{ project.active === 0 ? '#' : project.sold_status == 2?route('app.packages.view.update', {id:project.id}): route('app.packages.choose') }}"  
                                         class="btn btn-{{ project.active === 0 ? 'info' : project.sold_status == 2?'dange':project.SoldStatusObj.class }} btn-lg btn-block"
                                         style="{{project.sold_status == 2?'background:#e85347;color:#fff;border-color:#e85347':''}}">  
-                                        {{ project.active === 0 ? 'Coming Soon' : project.sold_status == 2?'View Update':'Choose Project' }}  
+                                        {{ project.active === 0 || project.sold_status == 0? 'Coming Soon' : project.sold_status == 2?'View Update':'Choose Project' }}  
                                     </a>
                                 </div>
                           </div>
